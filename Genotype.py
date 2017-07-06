@@ -27,7 +27,7 @@ clf_entropy = DecisionTreeClassifier(criterion='entropy', random_state=100,
                                      max_depth=3, min_samples_leaf=5)
 clf_entropy.fit(X_train, y_train)       # Training entropy tree
 
-# Creating SVM with poly
+# Creating SVM with polynomial kernel
 clf_svc = svm.SVC(random_state=100, kernel='poly')
 clf_svc.fit(X_train, y_train)           # Training SVM
 
