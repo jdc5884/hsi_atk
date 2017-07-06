@@ -1,4 +1,4 @@
-__author__ = "David Ruddell, dlruddell@gmail.com"
+__author__ = "David Ruddell"
 # contact: dr1236@uncw.edu, dlruddell@gmail.com
 
 import pandas as pd
