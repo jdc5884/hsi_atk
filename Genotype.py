@@ -39,4 +39,4 @@ y_pred_sv = clf_svc.predict(X_test)     # Running SVM prediction test
 # Print accuracy scores
 print("Gini accuracy score: ", accuracy_score(y_test, y_pred_gi)*100)
 print("Entropy accuracy score: ", accuracy_score(y_test, y_pred_en)*100)
-print("SVC accuracy score: ", accuracy_score(y_test, y_pred_sv)*100)
+print("SVM accuracy score: ", accuracy_score(y_test, y_pred_sv)*100)
