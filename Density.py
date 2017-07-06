@@ -19,7 +19,7 @@ Y = hyper_data.values[:, 2]             # Label data from Density values
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=100)
 
 # Creating gini DecisionTree
-clf_gini = DecisionTreeClassifier(criterion='gini', random_state=100, max_depth=3,
+clf_gini = DecisionTreeClassifier(random_state=100, max_depth=3,
                                   min_samples_leaf=5)
 clf_gini.fit(X_train, y_train)          # Training gini tree
 
