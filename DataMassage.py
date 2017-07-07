@@ -19,6 +19,7 @@ csv_writer = csv.writer(new_data, delimiter=',')
 for row in csv_reader:
     n_count = 0
     row.pop(14)
+    row.pop(8)
 
     for n in row:
         if n == 'B73' or n == 'NORMAL' or n == 'CONTROL':
