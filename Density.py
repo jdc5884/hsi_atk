@@ -33,9 +33,9 @@ clf_svc = svm.SVC(random_state=100, kernel='poly')
 clf_svc.fit(X_train, y_train)           # Training SVM
 
 
-y_pred_gi = clf_gini.predict(X_test)    # Running gini tree prediction test
-y_pred_en = clf_entropy.predict(X_test) # Running entropy tree prediction test
-y_pred_sv = clf_svc.predict(X_test)     # Running SVM prediction test
+y_pred_gi = clf_gini.predict(X_test)    # gini tree prediction test
+y_pred_en = clf_entropy.predict(X_test) # entropy tree prediction test
+y_pred_sv = clf_svc.predict(X_test)     # SVM prediction test
 
 # Print accuracy scores
 print("Gini accuracy score: ", accuracy_score(y_test, y_pred_gi)*100)
