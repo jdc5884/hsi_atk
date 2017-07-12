@@ -10,7 +10,7 @@ import csv
 
 old_data = open('headers3mgperml.csv', 'r')
 
-new_data = open('massaged_data.csv', 'w')
+new_data = open('massaged_data_test.csv', 'w')
 
 csv_reader = csv.reader(old_data, delimiter=',')
 
@@ -18,8 +18,7 @@ csv_writer = csv.writer(new_data, delimiter=',')
 
 for row in csv_reader:
     n_count = 0
-    row.pop(14)
-    row.pop(8)
+
 
     for n in row:
         if n == 'B73' or n == 'NORMAL' or n == 'CONTROL':

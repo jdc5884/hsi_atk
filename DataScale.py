@@ -11,7 +11,6 @@ to associate with desired labels for prediction.
 import csv
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model.theil_sen import TheilSenRegressor
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.metrics import accuracy_score
 from sklearn import svm
@@ -24,9 +23,6 @@ relevant_scores = open('relevant_scores.csv', 'w')
 
 relevant_writer = csv.writer(relevant_scores, delimiter=',')
 relevant_writer.writerow(['slice', 'dtc', 'svc', 'dtr'])             # writing headers
-
-score_list = []
-score_listr = []
 
 for i in range(15, 254, 2):
     # Specifying data index slices
