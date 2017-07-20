@@ -18,11 +18,13 @@ from sklearn import svm
 # Read in data to pandas csv object
 hyper_data = pd.read_csv('headers3mgperml.csv', sep=',')
 hyper_datar = pd.read_csv('massaged_data.csv', sep=',')
+headers = hyper_data.columns
+
 
 relevant_scores = open('relevant_scores.csv', 'w')
 
 relevant_writer = csv.writer(relevant_scores, delimiter=',')
-relevant_writer.writerow(['slice', 'dtc', 'svc', 'dtr'])             # writing headers
+relevant_writer.writerow(['wavelength0', 'wavelength1', 'dtc', 'svc', 'dtr'])             # writing headers
 
 for i in range(15, 254, 2):
     # Specifying data index slices
@@ -30,10 +32,10 @@ for i in range(15, 254, 2):
     Y = hyper_data.values[:, 3]            # Label data from Nitrogen values
 
     # Separating training and testing set
-    X_train, X_test, y_train, y_test = train_test_split(X, Y, random_state=100)
+    X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.25)
 
     # Creating DecisionTree Regressor
-    clf_dtc = DecisionTreeClassifier(random_state=100)
+    clf_dtc = DecisionTreeClassifier()
     clf_dtc.fit(X_train, y_train)           # Training Decision Tree regressor
 
     # Creating SVC SVM
@@ -49,9 +51,9 @@ for i in range(15, 254, 2):
     Xr = hyper_datar.values[:, i-2:i]
     Yr = hyper_datar.values[:, 3]
 
-    X_trainr, X_testr, y_trainr, y_testr = train_test_split(Xr, Yr, random_state=100)
+    X_trainr, X_testr, y_trainr, y_testr = train_test_split(Xr, Yr)
 
-    clf_dtr = DecisionTreeRegressor(random_state=100)
+    clf_dtr = DecisionTreeRegressor()
     clf_dtr.fit(X_trainr, y_trainr)
 
     #clf_svr = svm.SVR()
@@ -68,4 +70,4 @@ for i in range(15, 254, 2):
     #svr_accuracy = accuracy_score(y_testr, y_pred_svr)
     #tsr_accuracy = accuracy_score(y_testr, y_pred_tsr)
 
-    relevant_writer.writerow([i, dtc_accuracy, svc_accuracy, dtr_accuracy])
+    relevant_writer.writerow([headers[i],headers[i+1], dtc_accuracy, svc_accuracy, dtr_accuracy])

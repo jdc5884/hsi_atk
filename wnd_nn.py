@@ -49,3 +49,7 @@ CONTINUOUS_COLUMNS = column_headers[5:8]+column_headers[9:14]+column_headers[15:
 
 train_file = tempfile.NamedTemporaryFile()
 test_file = tempfile.NamedTemporaryFile()
+
+df_train = pd.read_csv(train_file, names=COLUMNS, skipinitialspace=True)
+df_test = pd.read_csv(test_file, names=COLUMNS, skipinitialspace=True, skiprows=1)
+df_train[LABEL_COLUMN] = (df_train['Genotype'].apply(lambda x: ''))
