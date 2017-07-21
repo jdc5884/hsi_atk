@@ -21,24 +21,24 @@ hormone = tf.contrib.layers.sparse_column_with_keys(column_name="Hormone",
                                                     keys=['CONTROL','PAC','PACGA','UCN','PCZ','GA'])
 
 # Continuous base columns
-kernel_weight = tf.contrib.layers.sparse_column_with_hash_bucket("Kernelwt", hash_bucket_size=100)
-lipid_weight = tf.contrib.layers.sparse_column_with_hash_bucket("Lipidwt", hash_bucket_size=100)
-weight_ratio = tf.contrib.layers.sparse_column_with_hash_bucket("wtpercent", hash_bucket_size=100)
-palmetic = tf.contrib.layers.sparse_column_with_hash_bucket("PALMETIC", hash_bucket_size=100)
-linoleic = tf.contrib.layers.sparse_column_with_hash_bucket("LINOLEIC", hash_bucket_size=100)
-oleic = tf.contrib.layers.sparse_column_with_hash_bucket("OLEIC", hash_bucket_size=100)
-stearic = tf.contrib.layers.sparse_column_with_hash_bucket("STEARIC", hash_bucket_size=100)
+kernel_weight = tf.contrib.layers.real_valued_column("Kernelwt")
+lipid_weight = tf.contrib.layers.real_valued_column("Lipidwt")
+weight_ratio = tf.contrib.layers.real_valued_column("wtpercent")
+palmetic = tf.contrib.layers.real_valued_column("PALMETIC")
+linoleic = tf.contrib.layers.real_valued_column("LINOLEIC")
+oleic = tf.contrib.layers.real_valued_column("OLEIC")
+stearic = tf.contrib.layers.real_valued_column("STEARIC")
 
 # Wavelength signal data
-ind_121 = tf.contrib.layers.real_valued_column(wavelengths[121])
-ind_122 = tf.contrib.layers.real_valued_column(wavelengths[122])
-ind_144 = tf.contrib.layers.real_valued_column(wavelengths[144])
-ind_145 = tf.contrib.layers.real_valued_column(wavelengths[145])
-ind_185 = tf.contrib.layers.real_valued_column(wavelengths[185])
+ind_121 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[121], hash_bucket_size=1000)
+ind_122 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[122], hash_bucket_size=1000)
+ind_144 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[144], hash_bucket_size=1000)
+ind_145 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[145], hash_bucket_size=1000)
+ind_185 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[185], hash_bucket_size=1000)
 
 
 
-#TODO: put wavelengths into real-valued columns
+#TODO: put wavelengths into bucketized columns
 
 wide_columns = [
     ind_121, ind_122, ind_144, ind_145, ind_185, genotype, density, nitrogen, hormone,
@@ -53,10 +53,10 @@ wide_columns = [
 ]
 
 deep_columns = [
-    tf.contrib.layers.embedding_columns(genotype, dimensions=2),
-    tf.contrib.layers.embedding_columns(density, dimensions=2),
-    tf.contrib.layers.embedding_columns(nitrogen, dimensions=2),
-    tf.contrib.layers.embedding_columns(hormone, dimensions=6),
+    tf.contrib.layers.embedding_column(genotype, dimension=2),
+    tf.contrib.layers.embedding_column(density, dimension=2),
+    tf.contrib.layers.embedding_column(nitrogen, dimension=2),
+    tf.contrib.layers.embedding_column(hormone, dimension=6),
     kernel_weight, lipid_weight, weight_ratio, palmetic, linoleic, oleic, stearic,
 ]
 
