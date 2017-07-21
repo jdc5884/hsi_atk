@@ -1,9 +1,6 @@
 __author__ = "David Ruddell"
 # contact: dr1236@uncw.edu, dlruddell@gmail.com
 
-#TODO: Create way to set X-data (wavelength signals) to vars
-#TODO: Finishing
-
 import urllib
 import tempfile
 import pandas as pd
@@ -36,9 +33,6 @@ ind_144 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[144], has
 ind_145 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[145], hash_bucket_size=1000)
 ind_185 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[185], hash_bucket_size=1000)
 
-
-
-#TODO: put wavelengths into bucketized columns
 
 wide_columns = [
     ind_121, ind_122, ind_144, ind_145, ind_185, genotype, density, nitrogen, hormone,
