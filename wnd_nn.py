@@ -47,10 +47,10 @@ wide_columns = [
 ]
 
 deep_columns = [
-    tf.contrib.layers.embedding_column(genotype, dimension=2),
-    tf.contrib.layers.embedding_column(density, dimension=2),
-    tf.contrib.layers.embedding_column(nitrogen, dimension=2),
-    tf.contrib.layers.embedding_column(hormone, dimension=6),
+    tf.contrib.layers.embedding_column(genotype, dimension=8),
+    tf.contrib.layers.embedding_column(density, dimension=8),
+    tf.contrib.layers.embedding_column(nitrogen, dimension=8),
+    tf.contrib.layers.embedding_column(hormone, dimension=8),
     kernel_weight, lipid_weight, weight_ratio, palmetic, linoleic, oleic, stearic,
 ]
 
@@ -72,8 +72,8 @@ test_file = tempfile.NamedTemporaryFile()
 
 df_train = pd.read_csv(train_file, names=COLUMNS, skipinitialspace=True)
 df_test = pd.read_csv(test_file, names=COLUMNS, skipinitialspace=True, skiprows=1)
-df_train[LABEL_COLUMN] = df_train['Genotype']
-df_test[LABEL_COLUMN] = df_test['Genotype']
+df_train[LABEL_COLUMN] = df_train['STEARIC']
+df_test[LABEL_COLUMN] = df_test['STEARIC']
 
 def input_fn(df):
     continuous_cols = {k: tf.constant(df[k].values)
