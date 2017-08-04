@@ -1,4 +1,4 @@
-__author__ = "David Ruddell"
+# author: David Ruddell
 # contact: dr1236@uncw.edu, dlruddell@gmail.com
 
 import numpy as np
