@@ -6,7 +6,7 @@ import tempfile
 import pandas as pd
 import tensorflow as tf
 
-hyper_data = pd.read_csv("headers3mgperml.csv", sep=',')
+hyper_data = pd.read_csv("../Data/headers3mgperml.csv", sep=',')
 column_headers = hyper_data.columns.values.tolist()
 wavelengths = column_headers[15:]
 

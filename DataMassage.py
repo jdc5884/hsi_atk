@@ -8,9 +8,9 @@ analysis methods.
 
 import csv
 
-old_data = open('headers3mgperml.csv', 'r')
+old_data = open('~/PycharmProjects/HyperSpectralImaging/Data/headers3mgperml.csv', 'r')
 
-new_data = open('massaged_data_test.csv', 'w')
+new_data = open('~/PycharmProjects/HyperSpectralImaging/Data/massaged_data_test.csv', 'w')
 
 csv_reader = csv.reader(old_data, delimiter=',')
 

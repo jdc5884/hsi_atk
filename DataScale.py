@@ -16,12 +16,12 @@ from sklearn.metrics import accuracy_score
 from sklearn import svm
 
 # Read in data to pandas csv object
-hyper_data = pd.read_csv('headers3mgperml.csv', sep=',')
-hyper_datar = pd.read_csv('massaged_data.csv', sep=',')
+hyper_data = pd.read_csv('~/PycharmProjects/HyperSpectralImaging/Data/headers3mgperml.csv', sep=',')
+hyper_datar = pd.read_csv('~/PycharmProjects/HyperSpectralImaging/Data/massaged_data.csv', sep=',')
 headers = hyper_data.columns
 
 
-relevant_scores = open('relevant_scores.csv', 'w')
+relevant_scores = open('~/PycharmProjects/HyperSpectralImaging/Output/relevant_scores.csv', 'w')
 
 relevant_writer = csv.writer(relevant_scores, delimiter=',')
 relevant_writer.writerow(['wavelength0', 'wavelength1', 'dtc', 'svc', 'dtr'])             # writing headers

@@ -9,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 #from HyperspecClassifier import *
 
 # Read in data to pandas csv object
-hyper_data = pd.read_csv('headers3mgperml.csv', sep=',')
+hyper_data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
 
 # Specifying data index slices
 X = hyper_data.values[:, 15:]       # Signal data from specific wavelengths

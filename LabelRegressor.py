@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score
 from sklearn import svm
 
 
-hyper_data = pd.read_csv('massaged_data.csv', sep=',')
+hyper_data = pd.read_csv('../Data/massaged_data.csv', sep=',')
 
 #hyper_data = pd.read_csv('massaged_data_nb.csv', sep=',')
 

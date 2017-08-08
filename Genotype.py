@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 from sklearn import svm
 
 # Read in data to pandas csv object
-hyper_data = pd.read_csv('headers3mgperml.csv', sep=',')
+hyper_data = pd.read_csv('~/PycharmProjects/HyperSpectralImaging/Data/headers3mgperml.csv', sep=',')
 
 # Specifying data index slices
 X = hyper_data.values[:, 15:]           # Signal data from specific wavelengths

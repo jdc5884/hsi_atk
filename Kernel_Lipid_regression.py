@@ -6,7 +6,7 @@ from sklearn import svm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-hyper_data = pd.read_csv('headers3mgperml.csv', sep=',')
+hyper_data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
 
 X = hyper_data.values[:, 15:]
 y1 = hyper_data.values[:, 5]
