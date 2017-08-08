@@ -16,8 +16,8 @@ from sklearn.metrics import accuracy_score
 from sklearn import svm
 
 # Read in data to pandas csv object
-hyper_data = pd.read_csv('~/PycharmProjects/HyperSpectralImaging/Data/headers3mgperml.csv', sep=',')
-hyper_datar = pd.read_csv('~/PycharmProjects/HyperSpectralImaging/Data/massaged_data.csv', sep=',')
+hyper_data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
+hyper_datar = pd.read_csv('../Data/massaged_data.csv', sep=',')
 headers = hyper_data.columns
 
 

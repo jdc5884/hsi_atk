@@ -3,7 +3,7 @@
 
 import csv
 
-with open("~/PycharmProjects/HyperSpectralImaging/Data/headers3mgperml.csv", 'r') as csvfile:
+with open("../Data/headers3mgperml.csv", 'r') as csvfile:
     line = csvfile.readline()
     line = line.split(',')
     count = 0
