@@ -17,10 +17,10 @@ from evolutionary_search import maximize
 
 plty.offline.init_notebook_mode()
 
-train = pd.read_csv("../Data/massaged_data_train.csv")
-test = pd.read_csv("../Data/massaged_data_test.csv")
+train = pd.read_csv("~/PycharmProjects/HyperSpectralImaging/Data/massaged_data_train.csv")
+test = pd.read_csv("~/PycharmProjects/HyperSpectralImaging/Data/massaged_data_test.csv")
 
-Density = test['Density']
+Density = test['Genotype']
 
 hyper_data = [train, test]
 
@@ -94,7 +94,7 @@ gb = LearnHelper(clf=GradientBoostingClassifier, seed=SEED, params=gb_params)
 svc = LearnHelper(clf=SVC, seed=SEED, params=svc_params)
 
 X_train = train.values[:, 13:]
-y_train = train.values[:, 2]
+y_train = train.values[:, 1]
 X_test = test.values[:, 13:]
 
 # with kfold
@@ -456,10 +456,10 @@ gbm = xgb.XGBClassifier(
 predictions = gbm.predict(x_test)
 
 StackSub = pd.DataFrame({
-    'Density': Density,
-    'DensPreds': predictions,
+    'Genotype': Density,
+    'GenoPreds': predictions,
 })
-StackSub.to_csv("../Output/StackSub.csv", index=False)
+StackSub.to_csv("~/PycharmProjects/HyperSpectralImaging/Output/StackSub.csv", index=False)
 
 print(predictions)
 
