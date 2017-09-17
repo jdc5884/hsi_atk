@@ -2,7 +2,8 @@
 # contact: dr1236@uncw.edu, dlruddell@gmail.com
 
 from sklearn.metrics import accuracy_score
-from HyperspecClassifier import HyperImageData
+
+from scratch_files.HyperspecClassifier import HyperImageData
 
 hyper_data = HyperImageData('../Data/headers3mgperml.csv', 15, 3)
 

@@ -6,14 +6,13 @@ import pandas as pd
 import plotly.graph_objs as go
 import plotly.offline as plty
 import xgboost as xgb
+from evolutionary_search import maximize
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, \
     GradientBoostingClassifier, ExtraTreesClassifier
 from sklearn.model_selection import KFold
 from sklearn.svm import SVC
 
-from LearnHelper import *
-
-from evolutionary_search import maximize
+from scratch_files.LearnHelper import *
 
 plty.offline.init_notebook_mode()
 

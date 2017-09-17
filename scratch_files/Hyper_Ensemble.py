@@ -4,19 +4,19 @@
 import numpy as np
 import pandas as pd
 import xgboost as xgb
+from evolutionary_search import maximize
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier, \
     GradientBoostingClassifier, ExtraTreesClassifier
 from sklearn.model_selection import KFold
 from sklearn.svm import SVC
 
-from LearnHelper import *
-
-from evolutionary_search import maximize
+from scratch_files.LearnHelper import *
 
 train = pd.read_csv("~/PycharmProjects/HyperSpectralImaging/Data/massaged_data_train.csv")
 test = pd.read_csv("~/PycharmProjects/HyperSpectralImaging/Data/massaged_data_test.csv")
 
 GenoTypes = test['Genotype']
+Hormones = test['Hormone']
 
 hyper_data = [train, test]
 
@@ -49,7 +49,7 @@ rf_params = {
     'n_jobs': -1,
     'n_estimators': 500,
     'warm_start': False,
-    'max_features': 0.05,
+    'max_features': 1.0,
     'max_depth': 6,
     'min_samples_leaf': 8,
     # 'max_features': 'sqrt',
@@ -59,7 +59,7 @@ rf_params = {
 et_params = {
     'n_jobs': -1,
     'n_estimators': 500,
-    'max_features': 0.05,
+    'max_features': 1.0,
     'max_depth': 8,
     'min_samples_leaf': 8,
     'verbose': 0,
@@ -72,7 +72,7 @@ ada_params = {
 
 gb_params = {
     'n_estimators': 500,
-    'max_features': 0.05,
+    'max_features': 1.0,
     'max_depth': 4,
     'min_samples_leaf': 8,
     'verbose': 0,
@@ -107,16 +107,24 @@ et_feature = et.feature_important(X_train, y_train)
 ada_feature = ada.feature_important(X_train, y_train)
 gb_feature = gb.feature_important(X_train, y_train)
 
+# testing prediction accuracy in this test case
+print(y_test, '\n', et_oof_test, '\n', rf_oof_test, '\n', ada_oof_test, '\n', gb_oof_test, '\n', svc_oof_test)
+# looks like extra trees, random forest, and gradient boosting perform well for [Genotype, Hormone]
+# support vector and ada boosting appear to not work well for [Genotype, Hormone
+
 base_predictions_train = pd.DataFrame({
     'RandomeForest': rf_oof_train.ravel(),
     'ExtraTrees': et_oof_train.ravel(),
     'AdaBoost': ada_oof_train.ravel(),
     'GradientBoost': gb_oof_train.ravel(),
 })
-base_predictions_train.head()
 
 x_train = np.concatenate((et_oof_train, rf_oof_train, ada_oof_train, gb_oof_train, svc_oof_train), axis=1)
 x_test = np.concatenate((et_oof_test, rf_oof_test, ada_oof_test, gb_oof_test, svc_oof_test), axis=1)
+
+print(x_train, '\n', base_predictions_train)
+
+# print(x_train, '\n', x_test, '\n')
 
 gbm = xgb.XGBClassifier(
     learning_rate=0.02,
@@ -133,13 +141,13 @@ gbm = xgb.XGBClassifier(
 predictions = gbm.predict(x_test)
 
 StackSub = pd.DataFrame({
-    'GenoTypes': GenoTypes,
-    'GenoPreds': predictions,
+    'Hormones': Hormones,
+    'HormPreds': predictions,
 })
 StackSub.to_csv("~/PycharmProjects/HyperSpectralImaging/Output/StackSub.csv", index=False)
 
-print(y_test)
-print(predictions)
+print("y test", y_test, '\n')
+print("predictions", predictions, '\n')
 
 
 def func(x, y, m=1., z=False):
