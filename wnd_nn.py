@@ -45,13 +45,7 @@ ind_185 = tf.contrib.layers.sparse_column_with_hash_bucket(wavelengths[185-14], 
 #     wide_columns.append(tf.)
 wide_columns = [
     ind_121, ind_122, ind_144, ind_145, ind_185, genotype, density, nitrogen, hormone,
-    tf.contrib.layers.crossed_column([genotype, ind_121, ind_122, ind_144, ind_145,
-                                      ind_185], hash_bucket_size=int(1e4)),
-    tf.contrib.layers.crossed_column([density, ind_121, ind_122, ind_144, ind_145,
-                                      ind_185], hash_bucket_size=int(1e4)),
-    tf.contrib.layers.crossed_column([nitrogen, ind_121, ind_122, ind_144, ind_145,
-                                      ind_185], hash_bucket_size=int(1e4)),
-    tf.contrib.layers.crossed_column([hormone, ind_121, ind_122, ind_144, ind_145,
+    tf.contrib.layers.crossed_column([ind_121, ind_122, ind_144, ind_145,
                                       ind_185], hash_bucket_size=int(1e4)),
 ]
 
@@ -60,10 +54,6 @@ wide_columns = [
 # ]
 
 deep_columns = [
-    tf.contrib.layers.embedding_column(genotype, dimension=8),
-    tf.contrib.layers.embedding_column(density, dimension=8),
-    tf.contrib.layers.embedding_column(nitrogen, dimension=8),
-    tf.contrib.layers.embedding_column(hormone, dimension=8),
     kernel_weight, lipid_weight, weight_ratio, palmetic, linoleic, oleic, stearic,
     ind_121, ind_122, ind_144, ind_145, ind_185
 
@@ -105,12 +95,12 @@ def input_fn(df, n_epochs, shuffle):
     return feature_cols, label
 
 def train_input_fn():
-    return input_fn(df_train)
+    return input_fn(df_train, 2, False)
 
 def eval_input_fn():
-    return input_fn(df_test)
+    return input_fn(df_test, 2, False)
 
 m.fit(input_fn=train_input_fn(), steps=200)
-results = m.evaluate(input_fn=eval_input_fn, steps=1)
+results = m.evaluate(input_fn=eval_input_fn, steps=10)
 for key in sorted(results):
     print("%s: %s" % (key, results[key]))

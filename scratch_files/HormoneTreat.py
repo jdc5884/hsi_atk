@@ -8,6 +8,8 @@ from sklearn.tree import DecisionTreeClassifier, ExtraTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn import svm
 
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+
 # Read in data to pandas csv object
 hyper_data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
 
@@ -38,16 +40,21 @@ clf_svc.fit(X_train, y_train)           # Training SVM
 clf_ext = ExtraTreeClassifier(random_state=100, max_depth=3, min_samples_leaf=5)
 clf_ext.fit(X_train, y_train)           # Training extra tree
 
+clf_Lin = LinearDiscriminantAnalysis(solver='lsqr', shrinkage='auto')
 
 y_pred_gi = clf_gini.predict(X_test)    # gini tree prediction test
 y_pred_en = clf_entropy.predict(X_test) # entropy tree prediction test
 y_pred_sv = clf_svc.predict(X_test)     # SVM prediction test
 y_pred_et = clf_ext.predict(X_test)     # extra tree prediction test
 
+clf_Lin.fit(X_train, y_train)
+y_pred_L = clf_Lin.predict(X_test)
+
 # Print accuracy scores
 print("Gini accuracy score: ", accuracy_score(y_test, y_pred_gi)*100)
 print("Entropy accuracy score: ", accuracy_score(y_test, y_pred_en)*100)
 print("SVM accuracy score: ", accuracy_score(y_test, y_pred_sv)*100)
 print("Extra tree accuracy score: ", accuracy_score(y_test, y_pred_et)*100)
+print("LinearDiscriminant accuracy score: ", accuracy_score(y_test, y_pred_L)*100)
 print(y_test)
 print(y_pred_sv)
