@@ -15,6 +15,7 @@ def loadImage(file):
     return array
 
 
+# all images captured by same remote sensor with same settings
 def loadImageInfo(file):
     """
     Read in .bil.hdr for info on HSI data

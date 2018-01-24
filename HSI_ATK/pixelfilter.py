@@ -1,8 +1,7 @@
 from time import time
 
-import matplotlib.pyplot as plt
-
 import numpy as np
+import scipy as sp
 import pandas as pd
 import rasterio
 import sklearn.decomposition as dec
@@ -28,77 +27,65 @@ rng = np.random.RandomState(30)
 
 band_c = 0
 
-def HSI_CA(n_components, data):
-    CA = []
-    estimators = [
-        ('PCA using randomized SVD',
-         dec.PCA(n_components=n_components, svd_solver='randomized',
-                           whiten=True)),
+# Generalized class for analysis in development..
+def pixelfilter(data,line,col,band,n_comp,tmethod=None,c=None,r=None,l=None,a=None):
+    """
+    General function for manual or automatic pixel selection,
+    filtering, tesing, and other stats.
 
-        ('Independent components - FastICA',
-         dec.FastICA(n_components=n_components, whiten=True)),
+    Other geometric and supervised partitioning methods in development
 
-        ('Sparse comp. - MiniBatchSparsePCA',
-         dec.MiniBatchSparsePCA(n_components=n_components, alpha=0.8,
-                                          n_iter=100, batch_size=3,
-                                          random_state=rng))
-    ]
+    :param data: 3D array of HSI
+    :param line: 1D array of desired image pixel height range
+    :param col: 1D array of desired image pixel width range
+    :param band: 1D array of band range to perform statistics on
+    :param n_comp: 1D array of range of components for CA methods
+    :param tmethod: trace method - "circle","lc"
+    :param c: tuple of integers (#,#) representing line and column of center pixel
+    :param r: integer - desired radius for pixels of interest
+    :param l:
+    :param a:
+    :return:
+    """
+    bandStats = []
 
-    for name, estimator in estimators:
-        print("Extracting top %d components via %s..." % (n_components, name))
-        t0 = time()
-        estimator.fit(data)
-        train_time = (time() - t0)
-        print("train time: %0.3fs" % train_time)
-        if hasattr(estimator, 'cluster_centers_'):
-            components_ = estimator.cluster_centers_
-        else:
-            components_ = estimator.components_
+    for b in band:
+        bdata = data[b, line, col]
+        pca = dec.PCA(n_components=n_comp, svd_solver='randomized',
+                           whiten=True)
 
-        CA.append((name,components_))
+        mean = bdata.mean()
+        max = bdata.max()
+        min = bdata.min()
 
-        # if (hasattr(estimator, 'noise_variance_') and
-        #         estimator.noise_variance_.ndim > 0):
-        #     plot_gallery("Pixelwise variance",
-        #                  estimator.noise_variance_.reshape(1,-1), n_col=1,
-        #                  n_row=1)
-        # plot_gallery('%s - Train time %.1fs' % (name, train_time),
-        #              components_[:n_components])
+        grad = np.gradient()
 
-    return CA
+        m = np.meshgrid(col,line)
+        rbf = sp.interpolate.Rbf(m[0],m[1],grad)
+
+        pcaS = pca.fit_transform(data[b,line,col])
+
+        bandStats.append({
+            "band":b,
+            "mean":mean,
+            "max":max,
+            "min":min,
+            "pcaS":pcaS,
+            "map":m,
+            "grad":grad,
+            "rbf":rbf
+        })
+
+        # if tmethod == "circle":
+        #     circle = lambda c=c, r=r, l=l, a=a: (for)
+        #
+        #
+        #
+        # elif tmethod == "lc":
+
+        # individual band variance
 
 
-# stats = HSI_CA(15, array_2d)
-# print(stats)
-print(array.shape)
-stats = []
+    return bandStats
 
-for band in array[:,382:500,5:634]:
-    pca = dec.PCA(whiten=True, svd_solver='randomized', random_state=rng, tol=1e4)
-    #ica = FastICA(tol=1e-4, whiten=True, random_state=rng, max_iter=100, fun='cube')
-    #ica_components_ = ica.fit_transform(band)
-    pca_components_ = pca.fit_transform(band)
-    stats.append({
-        'band': wavelength[band_c],
-        'min': band.min(),
-        'mean': band.mean(),
-        'median': np.median(band),
-        'max': band.max(),
-      #  'icas': ica_components_,
-        'pcas': pca_components_,
-        'pca_mean':pca_components_.mean()
-    })
-    # band_c += 1
 
-#TODO: ensemble classifiers on new columns
-#TODO: data output to file
-
-# pca = PCA(whiten=True, svd_solver='randomized', random_state=rng, copy=True)
-# for band in array:
-#     pca.fit(band)
-
-# pprint(pca.components_)
-
-# pprint(stats)
-
-# print(array.shape)
