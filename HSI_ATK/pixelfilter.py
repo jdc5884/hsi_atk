@@ -28,6 +28,10 @@ rng = np.random.RandomState(30)
 band_c = 0
 
 # Generalized class for analysis in development..
+
+
+#TODO: Piecewise function approximation, circle/oval methods
+
 def pixelfilter(data,line,col,band,n_comp,tmethod=None,c=None,r=None,l=None,a=None):
     """
     General function for manual or automatic pixel selection,
@@ -47,10 +51,10 @@ def pixelfilter(data,line,col,band,n_comp,tmethod=None,c=None,r=None,l=None,a=No
     :param a:
     :return:
     """
-    bandStats = []
+    varStats = []
 
-    for b in band:
-        bdata = data[b, line, col]
+    for n in range(1,n_comp+1,1):
+        bdata = data[band[0]:band[1], line[0]:line[1], col[0]:col[1]]
         pca = dec.PCA(n_components=n_comp, svd_solver='randomized',
                            whiten=True)
 
@@ -60,20 +64,21 @@ def pixelfilter(data,line,col,band,n_comp,tmethod=None,c=None,r=None,l=None,a=No
 
         grad = np.gradient()
 
-        m = np.meshgrid(col,line)
-        rbf = sp.interpolate.Rbf(m[0],m[1],grad)
+        # m = np.meshgrid(col,line)
+        # rbf = sp.interpolate.Rbf(m[0],m[1],grad)
 
-        pcaS = pca.fit_transform(data[b,line,col])
+        pcaS = pca.fit_transform(bdata)
 
-        bandStats.append({
-            "band":b,
+        varStats.append({
+            # "band":b,
+            "comps":n,
             "mean":mean,
             "max":max,
             "min":min,
             "pcaS":pcaS,
-            "map":m,
+            # "map":m,
             "grad":grad,
-            "rbf":rbf
+            # "rbf":rbf
         })
 
         # if tmethod == "circle":
@@ -86,6 +91,6 @@ def pixelfilter(data,line,col,band,n_comp,tmethod=None,c=None,r=None,l=None,a=No
         # individual band variance
 
 
-    return bandStats
+    return varStats
 
 
