@@ -1,5 +1,22 @@
+import os,glob
 import numpy as np
 import rasterio
+
+
+def collectImages(folder):
+    """
+    Read in all .bil files of specified folder
+
+    :param folder: string - folder path
+    :return: array - 4D array of images in folder
+    """
+    images = []
+    for file in os.listdir(folder):
+        if file.endswith(".bil"):
+            images.append(loadImage(file))
+
+    img = np.array(images)
+    return img
 
 
 def loadImage(file):
@@ -27,3 +44,4 @@ def loadImageInfo(file):
                 label - string  HSI image label
     """
     #TODO: import and return from .bil.hdr
+

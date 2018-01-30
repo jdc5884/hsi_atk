@@ -28,34 +28,81 @@ rng = np.random.RandomState(30)
 
 band_c = 0
 
-def HSI_CA(n_components, data):
-    CA = []
-    estimators = [
-        ('PCA using randomized SVD',
-         dec.PCA(n_components=n_components, svd_solver='randomized',
-                           whiten=True)),
 
-        ('Independent components - FastICA',
-         dec.FastICA(n_components=n_components, whiten=True)),
+#TODO: architect class
+class HSI_CA(object):
 
-        ('Sparse comp. - MiniBatchSparsePCA',
-         dec.MiniBatchSparsePCA(n_components=n_components, alpha=0.8,
-                                          n_iter=100, batch_size=3,
-                                          random_state=rng))
-    ]
+    def __init__(self,data,samples=None,lines=None,bands=None):
+        self.DATA = data
+        self.STATS = dict()
+        self.AOI = [samples,lines,bands]
+        self.estimators = [
+        ('PCA',
+         dec.PCA(svd_solver='randomized',
+                whiten=True)),
 
-    for name, estimator in estimators:
-        print("Extracting top %d components via %s..." % (n_components, name))
-        t0 = time()
-        estimator.fit(data)
-        train_time = (time() - t0)
-        print("train time: %0.3fs" % train_time)
-        if hasattr(estimator, 'cluster_centers_'):
-            components_ = estimator.cluster_centers_
-        else:
-            components_ = estimator.components_
+        ('FastICA',
+         dec.FastICA(whiten=True)),
 
-        CA.append((name,components_))
+        ('MiniBatchSparsePCA',
+         dec.MiniBatchSparsePCA(alpha=0.8, n_iter=100, batch_size=3,
+                                random_state=rng))
+        ]
+
+
+    def perPixelBandVar(self,n_components,estimator):
+        samp = self.AOI[0]
+        lin = self.AOI[1]
+        ban = self.AOI[2]
+        if n_components == int:
+            for s in range(samp[0],samp[1],1):
+                bdata = self.DATA[s,lin[0]:lin[1],ban[0]:ban[1]]
+
+
+    def setAOI(self,samples,lines,bands):
+        self.AOI[0] = samples
+        self.AOI[1] = lines
+        self.AOI[2] = bands
+
+
+    def
+
+
+
+
+
+image = HSI_CA(n_array)
+
+
+
+    #
+    # CA = []
+    # estimators = [
+    #     ('PCA using randomized SVD',
+    #      dec.PCA(n_components=n_components, svd_solver='randomized',
+    #                        whiten=True)),
+    #
+    #     ('Independent components - FastICA',
+    #      dec.FastICA(n_components=n_components, whiten=True)),
+    #
+    #     ('Sparse comp. - MiniBatchSparsePCA',
+    #      dec.MiniBatchSparsePCA(n_components=n_components, alpha=0.8,
+    #                                       n_iter=100, batch_size=3,
+    #                                       random_state=rng))
+    # ]
+    #
+    # for name, estimator in estimators:
+    #     print("Extracting top %d components via %s..." % (n_components, name))
+    #     t0 = time()
+    #     estimator.fit(data)
+    #     train_time = (time() - t0)
+    #     print("train time: %0.3fs" % train_time)
+    #     if hasattr(estimator, 'cluster_centers_'):
+    #         components_ = estimator.cluster_centers_
+    #     else:
+    #         components_ = estimator.components_
+    #
+    #     CA.append((name,components_))
 
         # if (hasattr(estimator, 'noise_variance_') and
         #         estimator.noise_variance_.ndim > 0):
@@ -65,7 +112,7 @@ def HSI_CA(n_components, data):
         # plot_gallery('%s - Train time %.1fs' % (name, train_time),
         #              components_[:n_components])
 
-    return CA
+    # return CA
 
 
 # stats = HSI_CA(15, array_2d)

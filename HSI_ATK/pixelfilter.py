@@ -27,12 +27,12 @@ rng = np.random.RandomState(30)
 
 band_c = 0
 
-# Generalized class for analysis in development..
+# Generalized class for analysis and data simulation in development..
 
 
 #TODO: Piecewise function approximation, circle/oval methods
 
-def pixelfilter(data,line,col,band,n_comp,tmethod=None,r=None,l=None,a=None):
+def pixelfilter(data,sample,line,band,n_comp,tmethod=None,r=None,l=None,a=None):
     """
     General function for manual or automatic pixel selection,
     filtering, tesing, and other stats.
@@ -53,35 +53,39 @@ def pixelfilter(data,line,col,band,n_comp,tmethod=None,r=None,l=None,a=None):
     """
     varStats = {}
 
+    DATA = data[sample[0]:sample[1],line[0]:line[1],:]
+    lines = line[1]-line[0]
+    samples = sample[1]-sample[0]
+
+    # print(DATA.shape, lines, samples)
+    DATA = DATA.transpose(2,0,1).reshape(lines*samples,-1)
+
     for n in range(1,n_comp+1,1):
-        for b in range(band[0],band[1],1):
-            bdata = data[b, line[0]:line[1], col[0]:col[1]]
-            pca = dec.PCA(n_components=n_comp, svd_solver='randomized',
-                               whiten=True)
+        pca = dec.PCA(n_components=n, svd_solver='randomized',
+                      whiten=True)
 
-            mean = bdata.mean()
-            max = bdata.max()
-            min = bdata.min()
+        pca.fit(DATA)
 
-            # grad = np.gradient()
 
-            # m = np.meshgrid(col,line)
-            # rbf = sp.interpolate.Rbf(m[0],m[1],grad)
 
-            pcaS = pca.fit_transform(bdata)
+        varStats[n] = {
+            "comps": n,
+            "pca": pca,
 
-            varStats[(n,b)] = {
-                "band":b,
-                # "col":c,
-                "comps":n,
-                "mean":mean,
-                "max":max,
-                "min":min,
-                "pcaS":pcaS,
-                # "map":m,
-                # "grad":grad,
-                # "rbf":rbf
-            }
+            #"band":b,
+            # "col":c,
+            #"mean":mean,
+            #"max":max,
+            #"min":min,
+            # "map":m,
+            # "grad":grad,
+            # "rbf":rbf
+        }
+
+        # grad = np.gradient()
+
+        # m = np.meshgrid(col,line)
+        # rbf = sp.interpolate.Rbf(m[0],m[1],grad)
 
         # if tmethod == "circle":
         #     circle = lambda c=c, r=r, l=l, a=a: (for)
@@ -96,11 +100,11 @@ def pixelfilter(data,line,col,band,n_comp,tmethod=None,r=None,l=None,a=None):
     return varStats
 
 
-kernelStats = pixelfilter(array,[113,166],[472,520],[1,240],48)
+kernelStats = pixelfilter(n_array,[472,520],[113,166],[1,240],48)
 
-bgStats = pixelfilter(array,[364,500],[1,640],[1,240],48)
+bgStats = pixelfilter(n_array,[1,640],[364,500],[1,240],48)
 
-mixedStats = pixelfilter(array,[52,402],[57,575],[1,240],48)
+mixedStats = pixelfilter(n_array,[57,575],[52,402],[1,240],48)
 
-print(kernelStats[0])
-print(bgStats[0])
+print(kernelStats[10]["pca"])
+print(bgStats[10])
