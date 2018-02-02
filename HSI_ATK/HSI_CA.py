@@ -33,39 +33,24 @@ band_c = 0
 class HSI_CA(object):
 
     def __init__(self,data,samples=None,lines=None,bands=None):
-        self.DATA = data
-        self.STATS = dict()
-        self.AOI = [samples,lines,bands]
-        self.estimators = [
-        ('PCA',
-         dec.PCA(svd_solver='randomized',
-                whiten=True)),
+        self.data_ = data
+        self.stats_ = dict()
+        self.aoi = None
 
-        ('FastICA',
-         dec.FastICA(whiten=True)),
-
-        ('MiniBatchSparsePCA',
-         dec.MiniBatchSparsePCA(alpha=0.8, n_iter=100, batch_size=3,
-                                random_state=rng))
-        ]
-
+        if samples != None or lines != None or bands != None:
+            self.setAOI(samples,lines,bands)
 
     def perPixelBandVar(self,n_components,estimator):
-        samp = self.AOI[0]
-        lin = self.AOI[1]
-        ban = self.AOI[2]
         if n_components == int:
-            for s in range(samp[0],samp[1],1):
-                bdata = self.DATA[s,lin[0]:lin[1],ban[0]:ban[1]]
+
 
 
     def setAOI(self,samples,lines,bands):
-        self.AOI[0] = samples
-        self.AOI[1] = lines
-        self.AOI[2] = bands
+        samp = samples[1]-samples[0]
+        line = lines[1]-lines[0]
+        bdata = self.data_[samples[0]:samples[1],lines[0]:lines[1],bands[0]:bands[1]]
+        self.aoi = bdata.transpose(2,0,1).reshape(samp*line,-1)
 
-
-    def
 
 
 
