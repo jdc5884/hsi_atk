@@ -40,8 +40,8 @@ class HSI_CA(object):
         if samples != None or lines != None or bands != None:
             self.setAOI(samples,lines,bands)
 
-    def perPixelBandVar(self,n_components,estimator):
-        if n_components == int:
+    # def perPixelBandVar(self,n_components,estimator):
+    #     if n_components == int:
 
 
 

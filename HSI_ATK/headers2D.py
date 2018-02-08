@@ -4,9 +4,13 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import sklearn.decomposition as dec
 import sklearn.ensemble as en
+import sklearn.svm as svm
+import sklearn.linear_model as lm
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+import sklearn.metrics as m
+
+
 
 data = pd.read_csv("../Data/headers3mgperml.csv",sep=",")
 
@@ -18,15 +22,15 @@ for wave in range(16,len(wavelength)+16):
 
 waveCols = np.array(data.values[:,16:])
 
-rcor_mat = np.corrcoef(waveCols.T)
-eig_vals, eig_vecs = np.linalg.eig(rcor_mat)
+# rcor_mat = np.corrcoef(waveCols.T)
+# eig_vals, eig_vecs = np.linalg.eig(rcor_mat)
 
 x_std = StandardScaler().fit_transform(waveCols)
 cov_mat = np.cov(x_std.T)
 cor_mat = np.corrcoef(x_std.T)
 eig_valS, eig_vecS = np.linalg.eig(cor_mat)
 
-print(cov_mat)
+# print(cov_mat)
 
 genotype = np.array(data.values[:,1])
 density = np.array(data.values[:,2])
@@ -36,59 +40,73 @@ linoleic = np.array(data.values[:,11].astype(float))
 olearic = np.array(data.values[:,12].astype(float))
 stearic = np.array(data.values[:,13].astype(float))
 
+
 labels = [("genotype",genotype),("density",density),
           ("nitrogen",nitrogen),("palmetic",palmetic),
           ("linoleic",linoleic),("olearic",olearic),("stearic",stearic)]
 
-variance = []
+pcavar = []
+icavar = []
 covariance = []
-
-
-# def calc_accuracy(y_test,y_pred):
-#     sum = 0
-#     for val in range(0,len(y_test)):
 
 rng = np.random.RandomState(0)
 
-for n in range(1,46):
-    #ica = dec.FastICA(n_components=n)
-    pca = dec.PCA(n_components=n, copy=True)
-    # x_std = StandardScaler(waveCols)
-    #icaV = ica.fit_transform(waveCols)
-    pca.fit(waveCols)
+# for n in range(1,240+1):
+#     ica = dec.FastICA(n_components=n)
+#     pca = dec.PCA(n_components=n, copy=True)
+#     # x_std = StandardScaler(waveCols)
+#     icaV = ica.fit_transform(waveCols)
+#     pcaV = pca.fit_transform(waveCols)
+#
+#     pcavar.append(pcaV)
+#     icavar.append(icaV)
 
-    pcaV = pca.fit_transform(waveCols)
-    pcaC = pca.get_covariance()
 
-    variance.append(pcaV)
-    covariance.append(pcaC)
+ica = dec.FastICA(max_iter=1000)
+ica.fit(x_std)
+# print(ica.fit_transform(waveCols))
+# print(ica.components_)
 
 # print(covariance[1])
 count = 1
-for varStat in variance:
-    gbr = en.GradientBoostingRegressor()
-    ada = en.AdaBoostRegressor()
-    xtr = en.ExtraTreesRegressor()
 
-    X_train, X_test, y_train, y_test = train_test_split(varStat, linoleic, test_size=0.25, random_state=rng)
+accuracy = []
 
-    xtr.fit(X_train,y_train)
+gbr = en.GradientBoostingRegressor()
+ada = en.AdaBoostRegressor()
+xtr = en.ExtraTreesRegressor()
+rfr = en.RandomForestRegressor()
+lisvr = svm.LinearSVR()
+nusvr = svm.NuSVR()
+svr = svm.SVR()
 
-    y_pred = xtr.predict(X_test)
+regressors = [gbr,ada,xtr,rfr,lisvr,nusvr,svr]
+
+X_train, X_test, y_train, y_test = train_test_split(icavar, linoleic, test_size=0.25, random_state=33)
+
+for reg in regressors:
+    reg.fit(X=X_train,y=y_train)
+
+    y_pred = reg.predict(X_test)
     y_test = y_test
+    acc = m.mean_squared_error(y_test,y_pred)
 
-    # acc = accuracy_score(y_test,y_pred)
-    print(count)
-    count += 1
+
+    if acc < 3:
+        #print(y_test, "\n", y_pred)
+        #print(reg)
+        #print(acc)
+        accuracy.append(acc)
+
     # print(type(y_test[0]),'\n',type(y_pred[0]))
-    # print(acc)
-    print(y_pred)
+    print(min(acc))
+    # print(y_pred)
     # print("\n")
-    print(y_test)
-    print("\n\n\n")
+    # print(y_test)
+    # print("\n\n\n")
 
 #
 #
 # variance
-
+# print(min(accuracy))
 # print(data.values[0],'\n\n\n\n',data.values[1],'\n\n\n\n',data.values[2], '\n\n\n\n',data.shape)
