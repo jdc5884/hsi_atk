@@ -18,9 +18,9 @@ with rasterio.open("../Data/32.control.bil") as src:
     array = np.array(src.read())
 
 # Change array from bands,lines,samples to samples,lines,bands
-n_array = array.swapaxes(0,2)
+n_array = array.swapaxes(0, 2)
 # Reshape to 2D in form samples*lines,bands
-array_2d = n_array.transpose(2,0,1).reshape(320000,-1)
+array_2d = n_array.transpose(2, 0, 1).reshape(320000, -1)
 
 # stats = []
 rng = np.random.RandomState(30)
@@ -53,58 +53,51 @@ def pixelfilter(data,sample,line,band,n_comp,tmethod=None,r=None,l=None,a=None):
     """
     varStats = {}
 
-    DATA = data[sample[0]:sample[1],line[0]:line[1],:]
-    lines = line[1]-line[0]
-    samples = sample[1]-sample[0]
+    DATA = data[sample[0]:sample[1], line[0]:line[1], :]
+    lines = line[1] - line[0]
+    samples = sample[1] - sample[0]
 
     # print(DATA.shape, lines, samples)
-    DATA = DATA.transpose(2,0,1).reshape(lines*samples,-1)
-
-    for n in range(1,n_comp+1,1):
-        pca = dec.PCA(n_components=n, svd_solver='randomized',
-                      whiten=True)
-
-        pca.fit(DATA)
+    # DATA = DATA.transpose(2,0,1).reshape(lines*samples,-1)
 
 
-
-        varStats[n] = {
-            "comps": n,
-            "pca": pca,
-
-            #"band":b,
-            # "col":c,
-            #"mean":mean,
-            #"max":max,
-            #"min":min,
-            # "map":m,
-            # "grad":grad,
-            # "rbf":rbf
-        }
-
-        # grad = np.gradient()
-
+    for i in range(band[0], band[1], 1):
+        pca = dec.PCA(copy=True,n_components=n_comp)
+        wd = DATA[:, :, i]
+        grad = np.gradient(wd)
+        # dim = wd.shape
         # m = np.meshgrid(col,line)
         # rbf = sp.interpolate.Rbf(m[0],m[1],grad)
 
-        # if tmethod == "circle":
-        #     circle = lambda c=c, r=r, l=l, a=a: (for)
-        #
-        #
-        #
-        # elif tmethod == "lc":
+        pca.fit(wd)
+        noise = pca.noise_variance_
+        var = pca.fit_transform(wd)
+        min = wd.min()
+        max = wd.max()
+        mean = wd.mean()
 
-        # individual band variance
+
+        varStats[i] = [min, max, mean, noise, var]
+
+    # if tmethod == "circle":
+    #     circle = lambda c=c, r=r, l=l, a=a: (for)
+    #
+    #
+    #
+    # elif tmethod == "lc":
+
+    # individual band variance
 
 
     return varStats
 
 
-kernelStats = pixelfilter(n_array,[472,520],[113,166],[1,240],48)
+kernelStats = pixelfilter(n_array,[472,520],[113,166],[0,240],48)
 
-bgStats = pixelfilter(n_array,[1,640],[364,500],[1,240],48)
+bgStats = pixelfilter(n_array,[0,640],[364,500],[0,240],48)
 
-mixedStats = pixelfilter(n_array,[57,575],[52,402],[1,240],48)
+mixedStats = pixelfilter(n_array,[57,575],[52,402],[0,240],48)
 
-print(kernelStats[10]["pca"])
-print(bgStats[10])
+print(kernelStats)
+print(bgStats)
+print(mixedStats)
