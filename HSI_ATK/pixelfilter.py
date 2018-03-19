@@ -30,7 +30,7 @@ band_c = 0
 # Generalized class for analysis and data simulation in development..
 
 
-#TODO: Piecewise function approximation, circle/oval methods
+#TODO: Piecewise function approximation, circle/ellipse methods
 
 def pixelfilter(data,sample,line,band,n_comp,tmethod=None,r=None,l=None,a=None):
     """

@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score
 
 hyper_data = pd.read_csv("../Data/headers3mgperml.csv", sep=',')
 
-X = hyper_data.values[:, 15:]
+X = hyper_data.values[:, 16:]
 y = hyper_data.values[:, 2]
 
 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=75)
