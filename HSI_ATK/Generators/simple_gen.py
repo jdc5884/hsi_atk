@@ -46,10 +46,11 @@ def square3d(shape, val=0):
     im = [[[val]*shape[0] for i in range(shape[1])] for j in range(shape[2])]
     return im
 
-def cone_lin_func(r, h, x, y, xC, yC, hmod, rd):
+def cone_lin_func(r, h, x, y, c, hmod, rd):
+    xC, yC = c
     return round(-(h/r)*np.sqrt(((x-xC)**2+(y-yC)**2)/(r/h)**2)+h+hmod, rd)
 
-def enum_cone(shape, xc, yc, r, h, hmod=0, rd=4):
+def enum_cone(shape, c, r, h, hmod=0, rd=4):
     """
     generate 2d array of z values for a conic
     """
@@ -58,37 +59,67 @@ def enum_cone(shape, xc, yc, r, h, hmod=0, rd=4):
     m = h/r
     for i in range(0,shape[0]+1):
         for j in range(0,shape[1]+1):
-            zd = cone_lin_func(r, h, i, j, xc, yc, hmod, rd)
+            zd = cone_lin_func(r, h, i, j, c, hmod, rd)
             if zd > 0:
                 z[i][j] += zd
             else:
                 pass
     return z
 
-def cone_gen(im_array, xc, yc, r, h, hmod=0):
-    xL = int(np.floor(xc - r))
-    yB = int(np.floor(yc - r))
-    xR = int(np.ceil(xc + r))
-    yT = int(np.ceil(yc + r))
+def cone_gen(im_array, c, r, h, hmod=0):
+    xC = c[0]
+    yC = c[1]
+    xL = int(np.floor(xC - r))
+    yB = int(np.floor(yC - r))
+    xR = int(np.ceil(xC + r))
+    yT = int(np.ceil(yC + r))
     for i in range(xL, xR):
         for j in range(yB, yT):
-            zd = cone_lin_func(r, h, i, j, xc, yc, hmod, 4)
+            zd = cone_lin_func(r, h, i, j, c, hmod, 4)
             if zd > 0:
-                im_array[i][j] = zd
+                try:
+                    im_array[i][j] = zd
+                except IndexError:
+                    pass
             else:
                 pass
     return im_array
 
 
-print(cone_lin_func(10,10,35,35,35.5,35.5,0,4))
+def xy_gen(shape, num_img):
+    centers = []
+    imgs = []
+    labl = []
+    xc = np.random.randint(0, shape[0], num_img)
+    yc = np.random.randint(0, shape[1], num_img)
+    hs = np.random.randint(1, 50, num_img)
+    rs = np.random.randint(1, 50, num_img)
+    b_img = square2d(shape=shape)
+    for i in range(num_img):
+        im = cone_gen(b_img, (xc[i],yc[i]), rs[i], hs[i])
+        la = cone_vol(rs[i], hs[i])
+        imgs.append(im)
+        labl.append(la)
+    imgs = np.array(imgs)
+    labl = np.array(labl)
+    return imgs, labl
+
+
+def cone_vol(r, h):
+    return np.pi*(r**2)*h/3
+
+
+image_set, label_set = xy_gen((500,500), 50)
+
+
 
 # sq1 = np.array(square1d(200))
-sq2 = square2d((200,200))
+# sq2 = square2d((200,200))
 # sq3 = np.array(square3d((200,200,10)))
-sq2 = np.array(cone_gen(sq2, 35.5, 35.5, 10, 10))
-sq2 = np.array(cone_gen(sq2, 50, 50, 11, 12))
-sq2 = np.array(cone_gen(sq2, 100, 100, 11, 12))
-sq2 = np.array(cone_gen(sq2, 20, 50, 10, 15))
+# cone1 = np.array(cone_gen(sq2, (35.5, 35.5), 10, 10))
+# cone2 = np.array(cone_gen(sq2, (50, 50), 11, 12))
+# cone3 = np.array(cone_gen(sq2, (100, 100), 11, 12))
+# cone4 = np.array(cone_gen(sq2, (20, 50), 10, 15))
 ### Testing generation
 # cone1 = np.array(enum_cone((25, 25), 11, 11, 5, 5))
 #
