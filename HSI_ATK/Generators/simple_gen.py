@@ -1,6 +1,7 @@
 from math import sqrt
 import numpy as np
 
+from HSI_ATK.Classifiers.simple_class import *
 import skimage.draw as draw
 
 import pprint
@@ -86,30 +87,40 @@ def cone_gen(im_array, c, r, h, hmod=0):
     return im_array
 
 
-def xy_gen(shape, num_img):
+def xy_gen(shape, num_img, pixel_label=False):
     centers = []
     imgs = []
     labl = []
     xc = np.random.randint(0, shape[0], num_img)
     yc = np.random.randint(0, shape[1], num_img)
     hs = np.random.randint(1, 50, num_img)
-    rs = np.random.randint(1, 50, num_img)
+    rs = np.random.randint(1, 10, num_img)
     b_img = square2d(shape=shape)
     for i in range(num_img):
-        im = cone_gen(b_img, (xc[i],yc[i]), rs[i], hs[i])
+        cone_gen(b_img, (xc[i],yc[i]), rs[i], hs[i])
         la = cone_vol(rs[i], hs[i])
-        imgs.append(im)
+        # imgs.append(im)
         labl.append(la)
-    imgs = np.array(imgs)
-    labl = np.array(labl)
-    return imgs, labl
+    # imgs = np.array(imgs)
+    # labl = np.array(labl)
+    labl = sum(labl)
+    #TODO: This can be prettier and work better
+    if pixel_label is True:
+        l_space = np.zeros(shape)
+        for i in range(num_img):
+            l_space = label_circle(shape, rs[i], (xc[i], yc[i]), 1, l_space=l_space)
+        return b_img, labl, l_space
+    else:
+        return b_img, labl
 
 
 def cone_vol(r, h):
     return np.pi*(r**2)*h/3
 
 
-image_set, label_set = xy_gen((500,500), 50)
+image_set, labl, label_space = xy_gen((100,100), 50, pixel_label=True)
+
+image_set = np.array(image_set)
 
 
 
