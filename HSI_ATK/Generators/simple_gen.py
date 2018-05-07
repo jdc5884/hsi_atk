@@ -87,14 +87,14 @@ def cone_gen(im_array, c, r, h, hmod=0):
     return im_array
 
 
-def xy_gen(shape, num_img, pixel_label=False):
+def xy_gen(shape, num_img, hmax, rmax, pixel_label=False):
     centers = []
     imgs = []
     labl = []
     xc = np.random.randint(0, shape[0], num_img)
     yc = np.random.randint(0, shape[1], num_img)
-    hs = np.random.randint(1, 50, num_img)
-    rs = np.random.randint(1, 10, num_img)
+    hs = np.random.randint(1, hmax, num_img)
+    rs = np.random.randint(1, rmax, num_img)
     b_img = square2d(shape=shape)
     for i in range(num_img):
         cone_gen(b_img, (xc[i],yc[i]), rs[i], hs[i])
@@ -118,9 +118,23 @@ def cone_vol(r, h):
     return np.pi*(r**2)*h/3
 
 
-image_set, labl, label_space = xy_gen((100,100), 50, pixel_label=True)
+def add_noise(image, noise='gauss'):
+    #TODO: Add more noise types
+    if noise == 'gauss':
+        row, col, ch = image.shape
+        mean = 0
+        var = 0.1
+        sigma = var**0.5
+        gauss = np.random.normal(mean, sigma, (row, col, ch))
+        gauss = gauss.reshape(row, col, ch)
+        n_image = image + gauss
+        return n_image
 
-image_set = np.array(image_set)
+
+
+# image_set, labl, label_space = xy_gen((100,100), 50, pixel_label=True)
+
+# image_set = np.array(image_set)
 
 
 
