@@ -10,33 +10,16 @@ from sklearn.linear_model import BayesianRidge, LinearRegression, Lasso, Ridge, 
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, BaggingRegressor
-from HSI_ATK.Generators.simple_gen import xy_gen, add_noise
+from HSI_ATK.Generators.simple_gen import add_noise
 
 
-image_set = []
-label_set = []
+seed = 2018
+np.random.seed(seed)
 
-n_sets = 25
+image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
+label_set = np.genfromtxt('../TestData/c1_L_gn.csv', delimiter=',')
 
-for i in range(n_sets):
-    im, la = xy_gen((50, 50), 4, 10, 5)
-    image_set.append(im)
-    label_set.append(la)
-
-for j in range(n_sets):
-    im, la = xy_gen((50, 50), 0, 2, 2)
-    image_set.append(im)
-    label_set.append(la)
-
-for k in range(n_sets):
-    im, la = xy_gen((50, 50), 4, 50, 5)
-    image_set.append(im)
-    label_set.append(la)
-
-image_set = np.array(image_set)
 image_set = add_noise(image_set)
-imS = image_set.shape
-image_set = image_set.reshape(imS[0], imS[1]*imS[2])
 
 X_train, X_test, y_train, y_test = train_test_split(image_set, label_set, test_size=0.33)
 

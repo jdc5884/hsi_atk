@@ -19,7 +19,7 @@ sim_data = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, r1, r2, r3, 3, r3, r2, r1, 0],
             [0, 0, 1, r2, 2, r2, 1, 0, 0],
             [0, 0, 0, r1, 1, r1, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],]
+            [0, 0, 0, 0, 0, 0, 0, 0, 0], ]
 
 
 # data_skeleton = [[0 for j in range(m)] for i in range(n)]
@@ -39,9 +39,11 @@ def square1d(shape, val=0):
     im = [val]*shape
     return im
 
+
 def square2d(shape, val=0):
     im = [[val]*shape[0] for i in range(shape[1])]
     return im
+
 
 def square3d(shape, val=0):
     im = [[[val]*shape[0] for i in range(shape[1])] for j in range(shape[2])]
@@ -119,7 +121,7 @@ def cone_vol(r, h):
 
 
 def add_noise(image, noise='gauss'):
-    #TODO: Add more noise types
+    # TODO: Add more noise types
     if noise == 'gauss':
         row, col, ch = image.shape
         mean = 0
@@ -127,6 +129,17 @@ def add_noise(image, noise='gauss'):
         sigma = var**0.5
         gauss = np.random.normal(mean, sigma, (row, col, ch))
         gauss = gauss.reshape(row, col, ch)
+        n_image = image + gauss
+        return n_image
+
+def add_noise_2d(image, noise='gauss'):
+    if noise == 'gauss':
+        row, col = image.shape
+        mean = 0
+        var = 0.1
+        sigma = var**0.5
+        gauss = np.random.normal(mean, sigma, (row, col))
+        gauss = gauss.reshape(row, col)
         n_image = image + gauss
         return n_image
 

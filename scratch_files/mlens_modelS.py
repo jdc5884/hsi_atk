@@ -65,4 +65,3 @@ estimators = {'sc': ests_1,
 
 evaluator.fit(X, y, estimators, params, n_iter=10)
 print("\nComparison with different parameter dists:\n\n%r" % evaluator.results)
-

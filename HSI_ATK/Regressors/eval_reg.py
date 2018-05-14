@@ -1,8 +1,10 @@
 import numpy as np
+from scipy.stats import uniform, randint
 
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Lasso, Ridge, LinearRegression, LogisticRegression
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 from mlens.model_selection import Evaluator
@@ -10,54 +12,29 @@ from mlens.metrics import make_scorer
 from mlens.preprocessing import Subset
 
 
-from HSI_ATK.Generators.simple_gen import xy_gen, add_noise
-
-
-image_set = []
-label_set = []
-
-for i in range(50):
-    im, la = xy_gen((50, 50), 4, 10, 5)
-    image_set.append(im)
-    label_set.append(la)
-
-for j in range(50):
-    im, la = xy_gen((50, 50), 0, 2, 2)
-    image_set.append(im)
-    label_set.append(la)
-
-for k in range(50):
-    im, la = xy_gen((50, 50), 4, 50, 5)
-    image_set.append(im)
-    label_set.append(la)
-
-image_set = np.array(image_set)
-image_set = add_noise(image_set)
-imS = image_set.shape
-image_set = image_set.reshape(imS[0], imS[1]*imS[2])
+image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
+label_set = np.genfromtxt('../TestData/c1_L_gn.csv', delimiter=',')
 
 X_train, X_test, y_train, y_test = train_test_split(image_set, label_set, test_size=0.33)
 
 score_f = make_scorer(score_func=r2_score, greater_is_better=False)
 
-evaluator = Evaluator(scorer=score_f, shuffle=False, verbose=True)
+evaluator = Evaluator(scorer=score_f, shuffle=True, verbose=True)
 
-ests1 = [
-    ('las', Lasso(copy_X=True, max_iter=2000, normalize=True, positive=False)),
-    ('rdg', Ridge(copy_X=True, max_iter=2000, normalize=False))]
-# ests2 = [('rfr', RandomForestRegressor()), ('gbr', GradientBoostingRegressor())]
+estimators = [
+    ('las', Lasso(copy_X=True, max_iter=4000)),
+    ('rdg',Ridge(copy_X=True, max_iter=4000)),
+    # ('rfr', RandomForestRegressor()),
 
-n_iter = 10
+]
 
-preprocess_cases = {
-    'none': [],
-    'sc': [StandardScaler()],
-    'sub': [Subset([0, 1])]
+params = {
+    'las': {'alpha': uniform(0,5)},
+    'rdg': {'alpha': uniform(0,5)},
+    'rfr': {'n_estimators': randint(2,10), 'max_depth': randint(2,10),
+            'max_features': uniform(0.5, 0.5)}
 }
 
-pars = {'alpha': np.logspace(-2, 2, n_iter)}
-params = {'las':pars,
-          'rdg':pars}
-
-evaluator.fit(X_train, y_train, estimators=ests1, param_dicts=params, preprocessing=preprocess_cases, n_iter=n_iter)
-print(evaluator.results())
+n_iter = 20
+evaluator.fit(image_set, label_set, estimators=estimators, param_dicts=params, n_iter=n_iter)
+print(evaluator.results, '\n\n', evaluator.params)

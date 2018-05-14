@@ -1,8 +1,7 @@
 import numpy as np
-from scipy.stats import alpha
+from scipy.stats import uniform, randint
 
-from sklearn.decomposition import PCA
-from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, BaggingRegressor
+from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, BaggingRegressor, AdaBoostRegressor
 from sklearn.linear_model import Lasso, Ridge, LinearRegression, LogisticRegression
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error, mean_squared_log_error
 from sklearn.model_selection import train_test_split
@@ -15,94 +14,98 @@ from mlens.model_selection import Evaluator
 from mlens.preprocessing import Subset
 
 
-from HSI_ATK.Generators.simple_gen import xy_gen, add_noise
+from HSI_ATK.Generators.simple_gen import add_noise_2d
 
 
-a = 3.57
 seed = 2018
 np.random.seed(seed)
 
-image_set = []
-label_set = []
+image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
+label_set = np.genfromtxt('../TestData/c1_L_gn.csv', delimiter=',')
 
-for i in range(25):
-    im, la = xy_gen((50, 50), 4, 10, 5)
-    image_set.append(im)
-    label_set.append(la)
+image_set = add_noise_2d(image_set)
 
-    im, la = xy_gen((50, 50), 0, 2, 2)
-    image_set.append(im)
-    label_set.append(la)
-
-    im, la = xy_gen((50, 50), 4, 50, 5)
-    image_set.append(im)
-    label_set.append(la)
-
-image_set = np.array(image_set)
-image_set = add_noise(image_set)
-imS = image_set.shape
-image_set = image_set.reshape(imS[0], imS[1]*imS[2])
-
-# X_train, X_test, y_train, y_test = train_test_split(image_set, label_set, test_size=0.33)
-
-preprocess_cases = {
-    'none': [],
-    'sc': [StandardScaler()],
-    'sub': [Subset([0, 1])],
-    'pca': [PCA()]
-}
+X_train, X_test, y_train, y_test = train_test_split(image_set, label_set, test_size=0.12)
 
 ests_1 = [
-    ('rdg', Ridge()),
-    ('rfr', RandomForestRegressor()),
+    ('rdg', Ridge(max_iter=5000, random_state=seed)),
+    ('las', Lasso(max_iter=5000, random_state=seed)),
 ]
 
 ests_2 = [
-    ('las', Lasso()),
-    ('etr', ExtraTreesRegressor())
+#     ('rfr', RandomForestRegressor(random_state=seed)),
+#     ('etr', ExtraTreesRegressor(random_state=seed)),
+# ]
+    ('ada', AdaBoostRegressor(random_state=seed)),
+    ('bag', BaggingRegressor(n_jobs=2, random_state=seed))
 ]
 
 ests_3 = [
-    ('svr', SVR()),
-    # 'rdg': Ridge(),
+    ('svr', SVR(kernel='linear', max_iter=5000)),
 ]
 
+r = uniform(0, 10)
+d = randint(2, 10)
+f = randint(1,100)
+e = uniform(0, 1)
+
 pars_1 = {
-    'alpha': alpha(a, size=20),
-    'normalize': [True, False],
-    'tol': np.logspace(-5, 3),
+    'ens': {
+        'rdg': {'alpha': r,
+                # 'normalize': [True, False],
+                # 'solver': ['auto', 'svd', 'cholesky',
+                #            'lsqr', 'sparse_cg', 'sag', 'saga'],
+                },
+        'las': {'alpha': r,
+                # 'normalize': [True, False],
+                # 'selection': ['cyclic', 'random'],
+                # 'warm_start': [True, False],
+                # 'positive': [True, False]
+                },
+        'rfr': {'n_estimators': f,
+                'max_features': f,
+                },
+        'etr': {'n_estimators': f,
+                'max_features': f,
+                },
+        'svr': {'C': r,
+                'epsilon': e,
+                # 'kernel': ['linear', 'poly', 'rbf',
+                #            'sigmoid', 'precomputed'],
+                'degree': d,
+                'coef0': r,
+                # 'shrinking': [True, False]
+                },
+        'ada': {'n_estimators': f,
+                'learning_rate': e},
+        'bag': {'n_estimators': f,
+                }
+    }
 }
 
-pars_2 = {
-    'n_estimators': np.linspace(1, 15, 15),
+sc = StandardScaler()
+preprocessing = [
+    ('sc', [sc]),
+]
 
-}
+scorer = make_scorer(r2_score, greater_is_better=False, needs_proba=False)
 
-params = {
-    'none.rdg': pars_1,
-    'sc.rdg': pars_1,
-    'none.rfr': pars_2,
-    'pca.rfr': pars_2,
-    'sc.rfr': pars_2,
-}
+# evaluator = Evaluator(scorer=scorer, cv=2, random_state=seed, verbose=3)
+# evaluator.fit(image_set, label_set, ests_1, n_iter=4)
+# print("\nComparison with different parameter dists:\n\n%r" % evaluator.results)
 
-scorer = make_scorer(r2_score)
+ensemble = SequentialEnsemble(model_selection=True, n_jobs=1)
+ensemble.add('blend', ests_1, preprocessing=sc)
+ensemble.add('blend', ests_2)
+ensemble.add('stack', ests_3, preprocessing=sc)
+ensemble.add_meta(Ridge(max_iter=5000))
 
-evaluator = Evaluator(scorer=scorer, cv=10, random_state=seed, verbose=3)
-evaluator.fit(image_set, label_set, ests_1, params, 4, preprocess_cases)
-print("\nComparison with different parameter dists:\n\n%r" % evaluator.results)
-
-# ensemble = SequentialEnsemble()
-# ensemble.add('blend', ests_1, params)
-#
-# params = {
-#     'none.las': pars_1,
-#     'sc.las': pars_1,
-# }
-#
-# ensemble.add('blend', ests_2, params)
-# ensemble.add('subsemble', ests_3, params)
-# ensemble.add_meta(LinearRegression())
-#
 # ensemble.fit(X_train, y_train)
 # y_pred = ensemble.predict(X_test)
+# print(r2_score(y_test, y_pred))
+#
+evaluator = Evaluator(scorer=scorer, random_state=seed, verbose=True, n_jobs=1)
+# ests = [ensemble]
+evaluator.fit(image_set, label_set, [('ens', ensemble)], pars_1, 40, [sc])
+print(evaluator.results)
+print(evaluator.metrics)
