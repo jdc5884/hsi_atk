@@ -99,7 +99,7 @@ pca = PCA(whiten=True)
 fa = FactorAnalysis()
 
 pre_cases = {
-    'case-1': [],
+    'case-1': [sc, pca, fa],
     # 'case-2': [sc],
     # 'case-3': [pca],
     # 'case-4': [fa]
