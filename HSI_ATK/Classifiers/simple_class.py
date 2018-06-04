@@ -53,37 +53,37 @@ def im_part_label(im_array, parts, labels):
 lspace = label_circle((25,25), 5, (10,10), 1)
 lspace = label_circle((25,25), 5, (10,10), 2, l_space=lspace)
 
-# with rasterio.open("../Data/32.control.bil") as src:
-#     hsi_raw = np.array(src.read())
-#
-# k1 = hsi_raw[:, 86:120, 237:277]
-# k2 = hsi_raw[:, 126:200, 191:226]
-# a, b, c = k1.shape
-# d, e, f = k2.shape
-# kL = np.ones(b*c+e*f)
-#
-# k1 = k1.swapaxes(0, 2).transpose(2, 0, 1).reshape(b*c, -1)
-# k2 = k2.swapaxes(0, 2).transpose(2, 0, 1).reshape(e*f, -1)
-#
-# X1 = np.vstack((k1, k2))
-#
-# e1 = hsi_raw[:, 1:118, 1:192]
-# h, i, j = e1.shape
-# eL = np.zeros(i*j)
-#
-# e1 = e1.swapaxes(0, 2).transpose(2, 0, 1).reshape(i*j, -1)
-#
-# X = np.vstack((X1, e1))
-#
-# Y = np.hstack((kL, eL))
-#
-# gbc = GradientBoostingClassifier()
-#
-# X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=rng)
-#
-# gbc.fit(X_train, y_train)
-#
-# y_pred = gbc.predict(X_test)
-#
-# acc = accuracy_score(y_test, y_pred)
-# print(acc)
+with rasterio.open("../../Data/32.control.bil") as src:
+    hsi_raw = np.array(src.read())
+
+k1 = hsi_raw[:, 86:120, 237:277]
+k2 = hsi_raw[:, 126:200, 191:226]
+a, b, c = k1.shape
+d, e, f = k2.shape
+kL = np.ones(b*c+e*f)
+
+k1 = k1.swapaxes(0, 2).transpose(2, 0, 1).reshape(b*c, -1)
+k2 = k2.swapaxes(0, 2).transpose(2, 0, 1).reshape(e*f, -1)
+
+X1 = np.vstack((k1, k2))
+
+e1 = hsi_raw[:, 1:118, 1:192]
+h, i, j = e1.shape
+eL = np.zeros(i*j)
+
+e1 = e1.swapaxes(0, 2).transpose(2, 0, 1).reshape(i*j, -1)
+
+X = np.vstack((X1, e1))
+
+Y = np.hstack((kL, eL))
+
+gbc = GradientBoostingClassifier()
+
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=rng)
+
+gbc.fit(X_train, y_train)
+
+y_pred = gbc.predict(X_test)
+
+acc = accuracy_score(y_test, y_pred)
+print(acc)

@@ -11,7 +11,7 @@ from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error, m
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVR
+from sklearn.svm import SVR, SVC
 
 from mlens.ensemble import SequentialEnsemble, SuperLearner
 from mlens.metrics import make_scorer
@@ -20,19 +20,22 @@ from mlens.preprocessing import Subset
 
 
 from HSI_ATK.Generators.simple_gen import add_noise_2d
+from HSI_ATK.Generators.gen3d import silly_gen
 
 
-seed = 2018
-np.random.seed(seed)
+seed = np.random.seed(2018)
 
-image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
-label_set = np.genfromtxt('../TestData/c1_lb.csv', delimiter=',')
-l_space = np.genfromtxt('../TestData/c1_xy.csv', delimiter=',')
+# image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
+# label_set = np.genfromtxt('../TestData/c1_lb.csv', delimiter=',')
+# l_space = np.genfromtxt('../TestData/c1_xy.csv', delimiter=',')
 
-image_set = add_noise_2d(image_set)
+# image_set = add_noise_2d(image_set)
 
-x1train, x1test, y1train, y1test = train_test_split(image_set, label_set, test_size=0.12)
-x2train, x2test, y2train, y2test = train_test_split(image_set, l_space, test_size=0.12)
+# x1train, x1test, y1train, y1test = train_test_split(image_set, label_set, test_size=0.12)
+# x2train, x2test, y2train, y2test = train_test_split(image_set, l_space, test_size=0.12)
+
+data_pix, spacial_pix, data, spacial_data = silly_gen()
+X_train, X_test, y_train, y_test = train_test_split(data_pix, spacial_pix, test_size=.23, random_state=seed)
 
 ests = {
     'case-1': [#('lin', LinearRegression()),
@@ -96,18 +99,18 @@ pre_cases = {
     'case-1': [sc]
 }
 
-scorer = make_scorer(r2_score, greater_is_better=False, needs_proba=False, needs_threshold=False)
+# scorer = make_scorer(r2_score, greater_is_better=False, needs_proba=False, needs_threshold=False)
 
-ensemble = SequentialEnsemble(model_selection=False, n_jobs=3, shuffle=True, random_state=seed, scorer=r2_score)
+ensemble = SequentialEnsemble(model_selection=False, n_jobs=3, shuffle=True, random_state=seed, scorer=mean_absolute_error)
 ensemble.add('blend', ests, preprocessing=pre_cases)
-ensemble.add_meta(Ridge(alpha=0.99, tol=1e-5))
-ensemble.fit(x1train, y1train)
-y_pred = ensemble.predict(x1test)
-print(r2_score(y1test, y_pred))
+ensemble.add_meta(SVR())
+ensemble.fit(X_train, y_train)
+y_pred = ensemble.predict(X_test)
+print(mean_absolute_error(y_test, y_pred))
 
 # ests = [ensemble]
-evaluator = Evaluator(scorer=scorer, random_state=seed, verbose=3, cv=4, n_jobs=1)
-evaluator.fit(X=image_set, y=label_set, estimators=ests, param_dicts=pars_1,
-              n_iter=40, preprocessing=pre_cases)
-
-print(evaluator.results)
+# evaluator = Evaluator(scorer=scorer, random_state=seed, verbose=3, cv=4, n_jobs=1)
+# evaluator.fit(X=image_set, y=label_set, estimators=ests, param_dicts=pars_1,
+#               n_iter=40, preprocessing=pre_cases)
+#
+# print(evaluator.results)

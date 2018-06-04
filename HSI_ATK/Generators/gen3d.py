@@ -144,7 +144,7 @@ def silly_gen(denoise=False):
     spacial_data = np.zeros((50, 50))
 
     # creating base image
-    data = np.zeros((63, 50, 50))
+    data = np.zeros((240, 50, 50))
     data = random_noise(data)
 
     # creating label space
@@ -161,42 +161,47 @@ def silly_gen(denoise=False):
     spacial_data[rr1, cc1] *= 2
     spacial_data[rr2, cc2] *= 3
     spacial_data[rr3, cc3] *= 5
-    spacial_data[rr3, cc3] *= 7
+    # spacial_data[rr3, cc3] *= 7
     #spacial_data[prr, pcc] = 11
     # spacial_data[prr2,pcc2] = 11
 
     # create ellipse for spectral values at depth
-    ell = ellipsoid(30, 12, 18, levelset=True)
+    ell = ellipsoid(120, 12, 18, levelset=True)
 
     # making more similar to real data
     ell *= -500
-    ell += 1000
+    ell += 2500
     # ell1 *= -250
     # ell1 += 1000
     # adding ellipse to base image
-    data[:, rr, cc] += ell[:, rr, cc]
-    data[:, rr1, cc1] += ell[:, rr1, cc1]
-    ell1 = ell*0.5
+    data[0:240, rr, cc] += ell[0:240, rr, cc]
+    data[0:240, rr1, cc1] += ell[0:240, rr1, cc1]
+    ell1 = ell*0.25
     data[25:37, rr2, cc2] -= ell1[25:37, rr2, cc2]
     data[50:63, rr3, cc3] += ell[50:63, rr3, cc3]
 
     if denoise:
-        data = denoise_wavelet(data)
+        data = denoise_wavelet(data, mode='soft', multichannel=True)
     # Reshaping image for label classification
     data_n = data.swapaxes(0, 2)
+    # data_n = data_n.swapaxes(0, 1)
     # Reshape to 2D in form samples*lines,bands
     # data_pix = data_n.transpose(2, 0, 1).reshape(40000, -1)
     d1, d2, d3 = data_n.shape
-    data_pix = data_n.reshape(d1*d2, -1)
+    data_pix = data_n.transpose(2, 0, 1).reshape(d1*d2, -1)
 
-    # Reshaping label space for classification
     spacial_pix = spacial_data.reshape(d1*d2, -1).ravel()
 
+    # Reshaping label space for classification
+    # print(spacial_data.shape)
+    # sd1, sd2, sd3 = spacial_data.shape
+    # spacial_pix = spacial_data.swapaxes(0, 2).transpose(2, 0, 1).reshape(sd2*sd3, -1)
+    # print(spacial_pix.shape)
     # split train and test data
-    return data_pix, spacial_pix
+    return data_pix, spacial_pix, data, spacial_data
 
 # data_pix, spacial_pix, data, spacial_data = silly_gen()
-#
+
 # X_train, X_test, y_train, y_test = train_test_split(data_pix, spacial_pix, test_size=.23, random_state=seed)
 #
 # sc = StandardScaler()

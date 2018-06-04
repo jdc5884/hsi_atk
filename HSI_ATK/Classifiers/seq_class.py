@@ -1,16 +1,17 @@
 import numpy as np
 from scipy.stats import uniform, randint
 
-from sklearn.decomposition import RandomizedPCA, PCA, FactorAnalysis
+from sklearn.decomposition import RandomizedPCA, PCA, FactorAnalysis, NMF
 from sklearn.ensemble import ExtraTreesClassifier, GradientBoostingClassifier, AdaBoostClassifier, \
     RandomForestClassifier, BaggingClassifier
-from sklearn.linear_model import LinearRegression, LogisticRegression, RidgeClassifier
+from sklearn.linear_model import LinearRegression, LogisticRegression, RidgeClassifierCV
 from sklearn.metrics import mean_squared_error, mean_absolute_error, mean_squared_log_error, \
-    confusion_matrix, precision_score
+    confusion_matrix, precision_score, accuracy_score
 from sklearn.model_selection import train_test_split
+from sklearn.multioutput import MultiOutputClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler, MultiLabelBinarizer
+from sklearn.svm import SVC, NuSVC, LinearSVC, SVR
 
 from sklearn.multiclass import OneVsRestClassifier, OneVsOneClassifier
 
@@ -24,8 +25,7 @@ from mlens.preprocessing import Subset
 from HSI_ATK.Generators.gen3d import silly_gen
 
 
-seed = 2018
-np.random.seed(seed)
+seed = np.random.seed(2018)
 
 # image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
 # label_set = np.genfromtxt('../TestData/c1_lb.csv', delimiter=',')
@@ -36,23 +36,28 @@ np.random.seed(seed)
 # x1train, x1test, y1train, y1test = train_test_split(image_set, label_set, test_size=0.12)
 # x2train, x2test, y2train, y2test = train_test_split(image_set, l_space, test_size=0.12)
 
-data_pix, spacial_pix = silly_gen(denoise=True)
-X_train, X_test, y_train, y_test = train_test_split(data_pix, spacial_pix, test_size=.23, random_state=seed)
+data_pix, spacial_pix, data, spacial_data = silly_gen(denoise=True)
+# mb = MultiLabelBinarizer()
+# spacial_pix_L = spacial_pix.astype('int')
+# spacial_pix_L = spacial_pix_L.tolist()
+# spacial_pix = mb.fit_transform(spacial_pix_L)
+indices = np.random.permutation(data_pix.shape[0])
+training_idx, test_idx = indices[:1900], indices[1900:]
+X_train, X_test = data_pix[training_idx, :], data_pix[test_idx, :]
+y_train, y_test = spacial_pix[training_idx], spacial_pix[test_idx]
+
+# X_train, X_test, y_train, y_test = train_test_split(data_pix, spacial_pix, test_size=.23, random_state=seed)
 
 est_l1 = [
-    #('rdc', OneVsRestClassifier(RidgeClassifier(tol=1e-4))),
-    ('etr', OneVsRestClassifier(ExtraTreesClassifier(n_jobs=1))),
-    ('rfr', OneVsRestClassifier(RandomForestClassifier(n_jobs=1))),
-    ('mlp', OneVsRestClassifier(MLPClassifier())),
-    ('svc', OneVsRestClassifier(SVC(tol=1e-4, degree=9))),
-]
-
-est_l2 = [
-    ('rdc', OneVsRestClassifier(RidgeClassifier(tol=1e-4))),
-    ('gbc', OneVsRestClassifier(GradientBoostingClassifier())),
-    ('ada', OneVsRestClassifier(AdaBoostClassifier())),
-    ('svc', OneVsRestClassifier(SVC(tol=1e-4, degree=9))),
-    ('bag', OneVsRestClassifier(BaggingClassifier(n_jobs=1)))
+    ('etr', ExtraTreesClassifier(n_jobs=1)),
+    ('rfr', RandomForestClassifier(n_jobs=1)),
+    ('mlp', MLPClassifier(tol=1e-4)),
+    ('svc', SVC(tol=1e-4, degree=9)),
+    ('rdc', RidgeClassifierCV()),
+    ('gbc', GradientBoostingClassifier()),
+    ('ada', AdaBoostClassifier()),
+    ('svc', SVC(tol=1e-4, degree=7, kernel='linear')),
+    ('bag', BaggingClassifier(n_jobs=1))
 ]
 
 ests_1 = {
@@ -62,13 +67,6 @@ ests_1 = {
     # 'case-4': est_l1
 }
 
-ests_2 = {
-    'case-1': est_l2,
-    # 'case-2': est_l2,
-    # 'case-3': est_l2,
-    # 'case-4': est_l2
-}
-
 r = uniform(0, 30)
 d = randint(2, 10)
 f = randint(100, 200)
@@ -76,52 +74,51 @@ e = uniform(0, 3)
 ee = uniform(0, 1)
 
 pars_1 = {
-    'case-1.gbc': {},
-    'case-1.mlp': {'alpha': ee,
-                   'beta_1': ee,
-                   'beta_2': ee,
-                   'epsilon': ee},
-    'case-1.ard': {'alpha_1': ee,
-                   'alpha_2': ee,
-                   'lambda_1': ee,
-                   'lambda_2': ee},
-    'case-1.rfr': {},
-    'case-1.etr': {},
-    'case-1.svc': {'C': e,
-                   'degree': d,
-                   'coef0': r,},
-    'case-1.ada': {},
-    'case-1.bag': {},
+
 }
 
 sc = StandardScaler()
-pca = PCA(whiten=True)
+pca = PCA()
 fa = FactorAnalysis()
+nmf = NMF()
+
 
 pre_cases = {
-    'case-1': [sc, pca, fa],
+    'case-1': [sc],
     # 'case-2': [sc],
     # 'case-3': [pca],
     # 'case-4': [fa]
 }
 
-scorer = make_scorer(score_func=mean_absolute_error, greater_is_better=False, needs_proba=False, needs_threshold=False)
+score = make_scorer(score_func=accuracy_score, greater_is_better=True, needs_proba=False, needs_threshold=False)
 
-ensemble = SequentialEnsemble(model_selection=False, n_jobs=3, shuffle=True, random_state=seed, scorer=mean_squared_error)
+ensemble = SequentialEnsemble(model_selection=True, n_jobs=1, shuffle=False, random_state=seed)
 
 ensemble.add('stack', ests_1, preprocessing=pre_cases)
-ensemble.add('stack', ests_2, preprocessing=pre_cases)
-ensemble.add_meta(OneVsRestClassifier(SVC(degree=9)))
-ensemble.fit(X_train, y_train)
-y_pred = ensemble.predict(X_test)
-print(confusion_matrix(y_test, y_pred))
-print(precision_score(y_test, y_pred, average='micro'))
-print(mean_absolute_error(y_test, y_pred))
-print(mean_squared_error(y_test, y_pred))
+ensemble.add_meta(SVC(kernel='linear', degree=5, tol=1e-4))
+# ensemble.fit(X_train, y_train)
+# y_pred = ensemble.predict(X_test)
+# ens = ensemble
+evaluator = Evaluator(scorer=score, random_state=seed, verbose=True)
+evaluator.fit(data_pix, spacial_pix, estimators=[], param_dicts=pars_1,
+              n_iter=5, preprocessing=pre_cases)
 
-# ests = ensemble
-# evaluator = Evaluator(scorer=scorer, random_state=seed, verbose=3, cv=2, n_jobs=1)
-# evaluator.fit(X=data_pix, y=spacial_pix, estimators=ests, param_dicts=pars_1,
-#               n_iter=5, preprocessing=pre_cases)
-#
-# print(evaluator.results)
+print(evaluator.results)
+
+spacial_pix = spacial_pix.astype('int')
+unique, counts = np.unique(y_test, return_counts=True)
+print(np.asarray((unique, counts)).T)
+
+# print(confusion_matrix(y_test, y_pred, labels=unique))
+# print(precision_score(y_test, y_pred, average='micro', labels=unique))
+# print(mean_absolute_error(y_test, y_pred))
+# print(mean_squared_error(y_test, y_pred))
+
+def get_data():
+    from HSI_ATK.fileimport import loadImage
+    rData = loadImage("../../Data/32.control.bil")
+    rData = rData[:, 40:380, 100:530]
+    d1, d2, d3 = rData.shape
+    rData = rData.swapaxes(0, 2)
+    data = rData.transpose(2, 0, 1).reshape(d2*d3, -1)
+    return data
