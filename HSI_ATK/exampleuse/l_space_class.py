@@ -4,15 +4,15 @@ from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
-from HSI_ATK.Generators.simple_gen import add_noise_2d
+from HSI_ATK.generators.simple_gen import add_noise_2d
 
 
 seed = 2018
 np.random.seed(seed)
 
-image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
+image_set = np.genfromtxt('../testdata/c1_gn.csv', delimiter=',')
 image_set = add_noise_2d(image_set)
-l_space = np.genfromtxt('../TestData/c1_xy.csv', delimiter=',')
+l_space = np.genfromtxt('../testdata/c1_xy.csv', delimiter=',')
 
 X_train, X_test, y_train, y_test = train_test_split(image_set, l_space, test_size=.12)
 

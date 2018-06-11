@@ -21,15 +21,15 @@ from mlens.model_selection import Evaluator
 from mlens.preprocessing import Subset
 
 
-# from HSI_ATK.Generators.simple_gen import add_noise_2d
-from HSI_ATK.Generators.gen3d import silly_gen
+# from HSI_ATK.generators.simple_gen import add_noise_2d
+from HSI_ATK.generators.gen3d import silly_gen
 
 
 seed = np.random.seed(2018)
 
-# image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
-# label_set = np.genfromtxt('../TestData/c1_lb.csv', delimiter=',')
-# l_space = np.genfromtxt('../TestData/c1_xy.csv', delimiter=',')
+# image_set = np.genfromtxt('../testdata/c1_gn.csv', delimiter=',')
+# label_set = np.genfromtxt('../testdata/c1_lb.csv', delimiter=',')
+# l_space = np.genfromtxt('../testdata/c1_xy.csv', delimiter=',')
 #
 # image_set = add_noise_2d(image_set)
 #
