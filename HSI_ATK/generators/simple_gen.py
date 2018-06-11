@@ -1,19 +1,25 @@
-from HSI_ATK.classifiers.simple_class import *
+from math import sqrt
+import numpy as np
+
+from HSI_ATK.Classifiers.simple_class import *
+import skimage.draw as draw
+
+import pprint
 
 
-# r1 = 4-sqrt(10)
-# r2 = 4-sqrt(5)
-# r3 = 4-sqrt(2)
-#
-# sim_data = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-#             [0, 0, 0, r1, 1, r1, 0, 0, 0],
-#             [0, 0, 1, r2, 2, r2, r1, 1, 0],
-#             [0, r1, r2, r3, 3, r3, r2, r1, 0],
-#             [0, 1, 2, 3, 4, 3, 2, 1, 0],
-#             [0, r1, r2, r3, 3, r3, r2, r1, 0],
-#             [0, 0, 1, r2, 2, r2, 1, 0, 0],
-#             [0, 0, 0, r1, 1, r1, 0, 0, 0],
-#             [0, 0, 0, 0, 0, 0, 0, 0, 0], ]
+r1 = 4-sqrt(10)
+r2 = 4-sqrt(5)
+r3 = 4-sqrt(2)
+
+sim_data = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, r1, 1, r1, 0, 0, 0],
+            [0, 0, 1, r2, 2, r2, r1, 1, 0],
+            [0, r1, r2, r3, 3, r3, r2, r1, 0],
+            [0, 1, 2, 3, 4, 3, 2, 1, 0],
+            [0, r1, r2, r3, 3, r3, r2, r1, 0],
+            [0, 0, 1, r2, 2, r2, 1, 0, 0],
+            [0, 0, 0, r1, 1, r1, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0], ]
 
 
 # data_skeleton = [[0 for j in range(m)] for i in range(n)]

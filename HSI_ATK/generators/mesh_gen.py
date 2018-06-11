@@ -1,7 +1,7 @@
 import numpy as np
 from math import sqrt, hypot
-# from scipy import interpolate as itp, integrate as int
-# import matplotlib.pyplot as plt
+from scipy import interpolate as itp, integrate as int
+import matplotlib.pyplot as plt
 
 
 def point_xval(c, xy):
@@ -51,7 +51,7 @@ def conic(x, y, r, h, center, hmod=0.0, func='x'):
     else:
         return 0
 
-# cone1 = image_gen((500,500), center=(25,25), radius=5, height=5)
-#
-# plt.plot(cone1)
-# plt.show()
+cone1 = image_gen((500,500), center=(25,25), radius=5, height=5)
+
+plt.plot(cone1)
+plt.show()

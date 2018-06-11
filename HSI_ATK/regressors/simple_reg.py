@@ -1,23 +1,21 @@
 import numpy as np
 from scipy.stats import uniform
 
-from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor, BaggingRegressor
+# from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor, BaggingRegressor
 from sklearn.linear_model import LinearRegression, TheilSenRegressor, RANSACRegressor, Ridge, Lasso
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 
 from mlens.metrics import make_scorer
 from mlens.model_selection import Evaluator
 
-from pandas import DataFrame
-
 
 seed = 2018
 np.random.seed(seed)
 
-image_set = np.genfromtxt('../TestData/c1_gn.csv', delimiter=',')
-label_set = np.genfromtxt('../TestData/c1_L_gn.csv', delimiter=',')
+# image_set = np.genfromtxt('../testdata/c1_gn.csv', delimiter=',')
+# label_set = np.genfromtxt('../testdata/c1_L_gn.csv', delimiter=',')
 
 r2_scorer = make_scorer(r2_score)
 
@@ -36,8 +34,8 @@ preproc = {
 }
 
 evaluator = Evaluator(r2_scorer, cv=2, random_state=seed, verbose=1)
-evaluator.fit(image_set, label_set, ests, params, 40, preproc)
-print(evaluator.results)
+# evaluator.fit(image_set, label_set, ests, params, 40, preproc)
+# print(evaluator.results)
 
 def sig(z):
     return 1/(1 + np.exp(-z))

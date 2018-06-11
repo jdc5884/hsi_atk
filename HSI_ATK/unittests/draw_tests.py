@@ -2,9 +2,9 @@ import unittest as ut
 import numpy as np
 
 import skimage.draw as draw
-import HSI_ATK.Generators as gen
+import HSI_ATK.generators as gen
 
-class TestDrawMethods(ut.TestCase):
+class TestDrawMethods(np.testing.TestCase):
 
     def test_ellipse(self):
         rr, cc = draw.ellipse(2, 2, 2, 2, shape=(5, 5))
@@ -93,6 +93,8 @@ class TestDrawMethods(ut.TestCase):
         ])
         data.astype('float')
         test_array.astype('float')
+        # data.round(2)
+        # test_array.round(2)
         print(test_array, '\n', test_array.shape)
         print('\n', data, '\n', data.shape)
         err = "arrays do not match! 3d image gen error!"

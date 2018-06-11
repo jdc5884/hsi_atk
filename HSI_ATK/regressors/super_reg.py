@@ -1,10 +1,10 @@
 import numpy as np
 
-from sklearn.decomposition import PCA
+# from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, BaggingRegressor
 from sklearn.linear_model import LinearRegression, LogisticRegression, Ridge, Lasso
 from sklearn.metrics import r2_score, accuracy_score
-from sklearn.naive_bayes import GaussianNB
+# from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVR
 
 from mlens.metrics import make_scorer
