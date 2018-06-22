@@ -1,0 +1,107 @@
+import time
+import numpy as np
+import scipy as sp
+from scipy import ndimage as ndi
+import rasterio
+
+
+def loadHSI(file):
+    src = rasterio.open(file)
+    img = np.array(src.read())
+
+    return img
+
+
+from hsi_atk.Sasatari.sasatari import alt_view
+
+img_ = loadHSI("../Data/32.control.bil")
+img_ = img_.swapaxes(0, 2)
+img_ = img_.swapaxes(0, 1)
+
+# nimg = alt_view(img, "left")
+
+from skimage.filters import threshold_otsu, rank
+import matplotlib.pyplot as plt
+
+gray = np.mean(img_, 2)
+thresh = threshold_otsu(img_, nbins=240)
+
+n_img = img_[60:350, 100:530, :]
+n_gray = np.mean(n_img, 2)
+# img_ii = integral_image(gray)
+# feature = haar_like_feature(img_ii, 0, 0, 349, 529)
+
+# gray = np.mean(nimg[:, 464:534, 95:176], 2)
+# thresh = threshold_otsu(nimg, nbins=240)
+# thresh = 500
+
+# reg0 = (thresh<gray)
+# nreg0 = ~ reg0
+#
+# rr, cc = np.where(reg0)
+# rr0, cc0 = np.where(nreg0)
+# n_k_pix = np.sum(reg0)
+# k_pix = img[rr, cc, :]
+# mean_pix = np.mean(k_pix, 1)
+# var_pix = np.var(k_pix, 1)
+
+# k_pix = k_pix.reshape()
+
+# fig, axs = plt.subplots(2, 2)
+# axs[0, 0].imshow(gray)
+# axs[0, 1].imshow(reg0)
+#
+# shift = -2
+# edgex = (reg0 ^ np.roll(nreg0, shift=shift, axis=0))
+# edgey = (reg0 ^ np.roll(nreg0, shift=shift, axis=1))
+#
+# axs[1, 1].imshow(gray)
+# axs[1, 1].contour(edgex, 2, colors='r', lw=2.)
+# axs[1, 1].contour(edgey, 2, colors='r', lw=2.)
+# plt.show()
+# img[rr0, cc0, :] *= 0
+#
+# from skhyper.process import Process
+# from skhyper.cluster import KMeans
+# from skhyper.decomposition import PCA
+#
+# pca = PCA()
+# X = Process(img)
+# pca.fit_transform(X)
+# pca.plot_statistics()
+#
+# kmean = KMeans(8)
+# kmean.fit(X)
+#
+# rr1 = np.argwhere(kmean.labels_ != 3)
+# imgL3 = img[, :]*0
+# XL3 = Process(imgL3)
+# XL3.view()
+# pca.fit_transform(XL3)
+# pca.plot_statistics()
+
+
+# for i in range(95, 176):
+#     time0 = time.time()
+#     gray = np.mean(nimg[:, 464:600], 2)
+#     thresh = threshold_otsu(nimg, nbins=240)
+#     reg0 = (thresh<nimg[:, 464:600, i])
+#     nreg0 = ~ reg0
+#
+#     fig, axs = plt.subplots(2, 2)
+#     axs[0, 0].imshow(nimg[:, 464:600, i])
+#     axs[0, 1].imshow(reg0)
+#
+#     shift = -2
+#     edgex = (reg0 ^ np.roll(nreg0, shift=shift, axis=0))
+#     edgey = (reg0 ^ np.roll(nreg0, shift=shift, axis=1))
+#
+#     axs[1, 1].imshow(nimg[:, 464:600, i])
+#
+#     axs[1, 1].contour(edgey, 2, colors='r', lw=2.)
+#     axs[1, 1].contour(edgex, 2, colors='r', lw=2.)
+#     time1 = time.time()
+#     print(time1-time0)
+#
+#     plt.show()
+#     input("Press Enter to continue...")
