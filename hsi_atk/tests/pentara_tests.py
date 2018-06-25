@@ -4,7 +4,8 @@ import unittest as ut
 
 
 testPent = Pentara((11, 11, 15))
-testPent._img.astype('f8')
+img = testPent._img.copy().astype('f8')
+# testPent._img.astype('f8')
 
 
 class PentaraUnittest(np.testing.TestCase):
@@ -17,8 +18,18 @@ class PentaraUnittest(np.testing.TestCase):
     def test_instanciation(self):
 
         test_arr = np.zeros((11, 11, 15)).astype('f8')
+        # img = testPent._img.copy().astype('f8')
 
-        np.testing.assert_array_equal(testPent._img.flatten(), test_arr.flatten())
+        img_shape = np.array(img.shape)
+        test_arr_shape = np.array(test_arr.shape)
+
+        img_mean = np.mean(img.flatten())
+        test_arr_mean = np.mean(test_arr.flatten())
+
+        np.testing.assert_array_equal(img.flatten(), test_arr.flatten())
+
+        np.testing.assert_array_equal(img_shape, test_arr_shape)
+        np.testing.assert_equal(img_mean, test_arr_mean)
 
 
     def test_add_ell(self):
