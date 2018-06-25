@@ -19,10 +19,10 @@ class Moratikara:
 
         :return: array of bools representing threshold regions
         '''
-        if bands:
-            gray = np.mean(img[:, :, bands], 2)
-        else:
+        if bands is None:
             gray = np.mean(img[:, :, :], 2)
+        else:
+            gray = np.mean(img[:, :, bands], 2)
 
         thresh = threshold_otsu(gray, nbins=240)
         binary = img > thresh

@@ -188,12 +188,29 @@ class Pentiga(object):
             self.sub_structures[name].structure = n_ell
             self.sub_scales[name] = scale
 
-
+#TODO: remove redundant functions and generalized to
+    # add_func, add_func_bandwise, and add_func_coordwise
+    # use generalization with scale_substructure above to pass
+    # instruction sets for multi-structure change
     def add_structure(self, add):
+        '''
+        Basic addition across structure array
+
+        :param add: int/float - number to add across structure
+
+        :return: None - value added to self.structure
+        '''
         self.structure += add
 
 
     def mult_structure(self, mult):
+        '''
+        Basic multiplication across structure array
+
+        :param mult: int/float - number to multiply across structure
+
+        :return: None - value added to self.structure
+        '''
         self.structure *= mult
 
 
@@ -236,7 +253,6 @@ class Pentiga(object):
         for band in bands:
             for r, c, in rr, cc:
                 self.structure[r, c, band] += func(r, c, band)
-
 
 
     def gen_ell_stats(self):
