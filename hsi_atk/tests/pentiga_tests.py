@@ -37,7 +37,7 @@ class PentigaUnittest(np.testing.TestCase):
 
         # testPent.add_ellipsoid((5, 5, 5), 5, 3, 3, (1, 0))
         # img = testPent._img.copy()
-        # test_img = np.load("../../Data/test_ell.npy")
+        # test_img = np.load("../../Data/pentara_test_ell.npy")
         #
         # np.testing.assert_array_equal(img.flatten(), test_img.flatten())
         pass
