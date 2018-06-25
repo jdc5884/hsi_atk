@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/test_data/pentiga_test_compose.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/test_data/pentiga_test_ell.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/test_data/pentiga_test_sub_ell.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,6 +18,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_in_pentiga_tests_py.coverage" NAME="Nosetests in pentiga_tests.py Coverage Results" MODIFIED="1529950932494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk/tests" />
+    <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_in_pentiga_scratch_py.coverage" NAME="Nosetests in pentiga_scratch.py Coverage Results" MODIFIED="1529950643149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk" />
+  </component>
   <component name="DockManager">
     <window id="1">
       <content type="file-editors">
@@ -20,8 +30,8 @@
             <file leaf-file-name="pentiga.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="972">
-                    <caret line="270" column="26" selection-start-line="270" selection-start-column="26" selection-end-line="270" selection-end-column="26" />
+                  <state relative-caret-position="1503">
+                    <caret line="235" column="26" selection-start-line="235" selection-start-column="26" selection-end-line="235" selection-end-column="26" />
                     <folding>
                       <element signature="e#0#18#0" expanded="true" />
                     </folding>
@@ -39,10 +49,34 @@
       <file leaf-file-name="pentiga_tests.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+            <state relative-caret-position="495">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pentiga_scratch.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_scratch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#43#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pentara.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="92" column="65" selection-start-line="92" selection-start-column="65" selection-end-line="92" selection-end-column="65" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,10 +85,10 @@
       <file leaf-file-name="pentara_tests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="56" lean-forward="true" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
+            <state relative-caret-position="180">
+              <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -100,10 +134,11 @@
         <option value="$PROJECT_DIR$/hsi_atk/rebuild.sh" />
         <option value="$PROJECT_DIR$/hsi_atk/ganita_scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/mortikara_scratch.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/__init__.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentara.py" />
         <option value="$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" />
       </list>
     </option>
@@ -119,7 +154,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="910" />
+    <option name="width" value="970" />
     <option name="height" value="1177" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -238,6 +273,12 @@
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -278,7 +319,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pentara_tests">
+  <component name="RunManager" selected="Python tests.Nosetests in pentiga_tests.py">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -336,26 +377,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="scratch (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="hsi_atk" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi-atk" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi-atk/scratch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="scratch (2)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="pentiga_scratch" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -368,45 +390,56 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="scratch (3)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Nosetests in pentiga_scratch.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi_atk/scratch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/hsi_atk/pentiga_scratch.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="Nosetests in pentiga_tests.py" type="tests" factoryName="Nosetests" temporary="true" nameIsGenerated="true">
+      <module name="hsi_atk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list>
-      <item itemvalue="Python.scratch (1)" />
-      <item itemvalue="Python.scratch (2)" />
-      <item itemvalue="Python.scratch (3)" />
       <item itemvalue="Python.pentara_tests" />
       <item itemvalue="Python.pentara" />
+      <item itemvalue="Python tests.Nosetests in pentiga_tests.py" />
+      <item itemvalue="Python tests.Nosetests in pentiga_scratch.py" />
+      <item itemvalue="Python.pentiga_scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Nosetests in pentiga_tests.py" />
+        <item itemvalue="Python.pentiga_scratch" />
+        <item itemvalue="Python tests.Nosetests in pentiga_scratch.py" />
         <item itemvalue="Python.pentara_tests" />
         <item itemvalue="Python.pentara" />
-        <item itemvalue="Python.scratch (2)" />
-        <item itemvalue="Python.scratch (3)" />
-        <item itemvalue="Python.scratch (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -442,12 +475,38 @@
       <option name="project" value="LOCAL" />
       <updated>1529944088257</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Reformatted pentiga_tests.py, changed imports and set todo tests">
+      <created>1529944502057</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1529944502057</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Nosetests_in_pentiga_tests_py - 2018.06.25 at 13h 41m 02s.xml">
+      <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_pentiga_tests_py - 2018.06.25 at 13h 42m 00s.xml">
+      <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_pentiga_tests_py - 2018.06.25 at 13h 42m 25s.xml">
+      <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_pentiga_tests_py - 2018.06.25 at 13h 43m 12s.xml">
+      <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_pentiga_scratch_py - 2018.06.25 at 14h 17m 24s.xml">
+      <configuration name="Nosetests in pentiga_scratch.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Nosetests_in_pentiga_tests_py - 2018.06.25 at 14h 22m 13s.xml">
+      <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="910" height="1177" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="970" height="1177" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" />
@@ -457,13 +516,13 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32923368" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32923368" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2108295" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19719827" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32923368" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.7511521" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.7510776" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -486,7 +545,8 @@
     <MESSAGE value="Completed base version of compose function for Pentiga objects. Added custom function scaling across bands for Pentiga structures. Started building Pentara test cases." />
     <MESSAGE value="Separated Pentara and Pentiga classes in file structure. Started Pentiga testing file. Added todo notes for Pentara objects. Updated Pentara.__init__.py to include Pentara and Pentiga objects." />
     <MESSAGE value="Set test array in test_data folder, made updates and cleanups in pentara_tests.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set test array in test_data folder, made updates and cleanups in pentara_tests.py" />
+    <MESSAGE value="Reformatted pentiga_tests.py, changed imports and set todo tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted pentiga_tests.py, changed imports and set todo tests" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hsi_atk/dataset.py">
@@ -545,7 +605,7 @@
         <state relative-caret-position="315">
           <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -739,40 +799,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" column="65" selection-start-line="92" selection-start-column="65" selection-end-line="92" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
           <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="56" lean-forward="true" selection-start-line="23" selection-start-column="56" selection-end-line="23" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="270" column="26" selection-start-line="270" selection-start-column="26" selection-end-line="270" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -786,10 +816,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="92" column="65" selection-start-line="92" selection-start-column="65" selection-end-line="92" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1503">
+          <caret line="235" column="26" selection-start-line="235" selection-start-column="26" selection-end-line="235" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="12" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
+        <state relative-caret-position="495">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>

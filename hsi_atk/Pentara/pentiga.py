@@ -7,24 +7,29 @@ class Pentiga(object):
     HSI object to store data about image substructure and easily add or remove it
     """
 
-    def __init__(self, name, ell_sma, stats=False, is_base=True, is_substructure=False):
+    def __init__(self, name, ell_sma, scale=(1, 0), center=(0, 0), is_base=True, is_substructure=False,
+                 stats=False):
         '''
         Initializes pentiga object. Meant to store collections of structures representing one object
         in an HSI, and storing label information related to the structures
 
         :param name: string - name of pentiga object for use with dict-like structures
         :param ell_sma: tuple of 3 ints - lengths of the semi-major axes to produce an ellipsoid
-        :param stats: bool - T/F to compute stats of structure (Volume, Surface Area)
-        :param is_base: bool - T/F whether this pentiga has children
-        :param is_substructure: bool - T/F whether this pentiga has a parent pentiga
+        :param scale: tuple of ints - scaling factor, structure is multiplied by scale[0]
+                                                      and has scale[1] added as well
+        :param center: tuple of ints - supposed center in some image (for passing to Pentara image composer)
+        :param is_base: bool - whether this pentiga has children
+        :param is_substructure: bool - whether this pentiga has a parent pentiga
+        :param stats: bool - to compute stats of structure (Volume, Surface Area)
         '''
         self._sma = ell_sma
         self.name = name
 
-        self.scale = (1, 0)
+        self.scale = scale
 
-        self.center = (0, 0)
+        self.center = center
         self.dist_center = None
+
         self.structure = None
         self.stats = None
         self.img_area = 0
@@ -57,7 +62,7 @@ class Pentiga(object):
         '''
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
-        :param stats: bool - T/F to compute ellipsoid stats, can always be done later given any sma
+        :param stats: bool -to compute ellipsoid stats, can always be done later given any sma
         :param kwargs: for passing additional arguments to ellipsoid function such as spacing
 
         :return: None - data stored in object
@@ -124,7 +129,7 @@ class Pentiga(object):
         Adds pentiga object to collection of substructures of the self pentiga
 
         :param obj: Pentiga - ellipsoid object
-        :param stats: bool - T/F enforce the ellipsoid stats are stored in object
+        :param stats: bool - enforce the ellipsoid stats are stored in object
 
         :return: None - stores passed obj in self.sub_structures dictionary
         '''
@@ -140,7 +145,7 @@ class Pentiga(object):
             self.sub_structures[sub_name] = obj
 
 
-    def gen_sub_ellipsoid(self, ell_sma, sub_name, dist_center=(0, 0),
+    def gen_sub_ellipsoid(self, sub_name, ell_sma, dist_center=(0, 0),
                           bands=None, stats=False):
         '''
         Generates another Pentiga object as a sub-structure and store it
@@ -150,7 +155,7 @@ class Pentiga(object):
         :param dist_center: tuple of ints - new structure center distance from parent pentiga
         :param bands: Not used atm, will later be combined with scaling-addition functions
                       to detail structure's effect and brightness across the spectrum
-        :param stats: bool - T/F for computing the elipsoid stats, can always be done later
+        :param stats: bool - for computing the elipsoid stats, can always be done later
 
         :return: None - sub structure is added to self.sub_structure dictionary
         '''
@@ -217,9 +222,21 @@ class Pentiga(object):
             self.structure[:, :, i] += (a*np.log(b*(i+1) + c) + d)
 
 
-    def add_func(self, fx, bands):
+    def add_func_coordwise(self, func, rr, cc):
+        for r, c in rr, cc:
+            self.structure[r, c, :] += func(r, c)
+
+
+    def add_func_bandwise(self, func, bands):
         for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += fx(i)
+            self.structure[:, :, i] += func(i)
+
+
+    def add_func(self, func, rr, cc, bands):
+        for band in bands:
+            for r, c, in rr, cc:
+                self.structure[r, c, band] += func(r, c, band)
+
 
 
     def gen_ell_stats(self):
@@ -242,30 +259,3 @@ def basic_gen(name, sma, s_sma, dist_center):
         i += 1
 
     return pent
-
-
-smas = [(240, 18, 27), (240, 4, 10), (240, 5, 6)]
-cents = [(0, 0), (-3, -4), (2, 5)]
-
-
-def test_func(x):
-    return (100.*np.sin(.02*x - 1)*np.cos(.05*x-5) + 600 + x)
-
-
-def test_pent():
-    # pent0 = basic_gen("pent0", (240, 20, 30), smas, cents)
-    import time
-    time0 = time.time()
-    pent0 = Pentiga('pent0', (24, 30, 240), stats=True)
-    pent0.gen_sub_ellipsoid((5, 8, 240), 'sub_ell_0', stats=True, dist_center=(2, 3))
-    pent0.scale_structure(-50, 500)
-    pent0.add_func(test_func, (0, 240))
-    # pent0.add_linear(.5, 200, (0, 240))
-    pent0.sub_structures['sub_ell_0'].scale_structure(-25, 200)
-    pent0.sub_structures['sub_ell_0'].add_func(test_func, (0, 240))
-    n_img = pent0.compose(240)
-    time1 = time.time()
-    print(time1-time0)
-    return pent0, n_img
-
-pent0, n_img = test_pent()

@@ -1,4 +1,4 @@
-from hsi_atk.Pentara.pentara import *
+from hsi_atk.Pentara.pentara import Pentara
 import numpy as np
 import unittest as ut
 
@@ -8,9 +8,9 @@ class PentaraUnittest(np.testing.TestCase):
 
     def test_instanciation(self):
         testPent = Pentara((11, 11, 15))
-        img = testPent._img.copy().astype('f8')
+        img = testPent._img.copy()
 
-        test_arr = np.zeros((11, 11, 15)).astype('f8')
+        test_arr = np.zeros((11, 11, 15))
 
         img_shape = np.array(img.shape)
         test_arr_shape = np.array(test_arr.shape)
