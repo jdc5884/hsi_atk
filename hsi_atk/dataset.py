@@ -56,7 +56,7 @@ def openBIL(file_path):
     :param file_path: string, path to .bil file (requires .bil.hdr file in same directory)
     :return: numpy array of image in shape (lines, cols, bands)
     '''
-    raw = open(file_path)
+    raw = rasterio.open(file_path)
     img = np.array(raw.read())
     img = img.swapaxes(0, 2).swapaxes(0, 1)
     return img

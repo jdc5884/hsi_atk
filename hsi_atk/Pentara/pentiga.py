@@ -240,13 +240,42 @@ class Pentiga(object):
 
 
     def add_func_coordwise(self, func, rr, cc):
+        '''
+        Alter brightness values by adding from specified function arrays of coordinates
+
+        :param func: input func, some f(x, y) = z
+        :param rr: ndarray - list of x-coordinates
+        :param cc: ndarray - list of y-coordinates
+                - x- and y-coordinates must correspond
+
+        :return: None - values added to image arrays
+        '''
         for r, c in rr, cc:
             self.structure[r, c, :] += func(r, c)
 
 
     def add_func_bandwise(self, func, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += func(i)
+        '''
+        Alter brightness values by adding from specified function with band as input
+
+        :param func: input func, some f(x) = y
+        :param bands: int, tuple, list, or ndarray representing band indices
+
+        :return: None - values added to image arrays
+        '''
+        if isinstance(bands, tuple):
+            for i in range(bands[0], bands[1]+1):
+                self.structure[:, :, i] += func(i)
+
+        elif isinstance(bands, int):
+            for i in range(0, bands):
+                self.structure[:, :, i] += func(i)
+
+        elif isinstance(bands, list) or isinstance(bands, np.ndarray):
+            for i in bands:
+                self.structure[:, :, i] += func(i)
+
+
 
 
     def add_func(self, func, rr, cc, bands):

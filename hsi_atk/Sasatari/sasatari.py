@@ -6,7 +6,7 @@ class Sasatari(process.Process):
 
     def __init__(self, X, scale=True):
         process.Process.__init__(self, X, scale)
-
+        self.histo = np.histogram(X, bins=np.arange(0, 256))
         self.update()
 
 
