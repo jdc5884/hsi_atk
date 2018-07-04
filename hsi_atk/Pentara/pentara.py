@@ -16,20 +16,21 @@ class Pentara:
         # self.add_noise()
         self.obs = {}
 
+    def get_img(self):
+        return self._img
 
     def add_noise(self, **kwargs):
-        '''
+        """
         Adds noise to HSI via skimage util
 
         :param kwargs: arguments for noise generators
         :return: None, alters base image from self
-        '''
+        """
         self.noisy = True
         self._img = random_noise(self._img, **kwargs)
 
-
     def add_ellipsoid(self, center, a, b, c, scale, bands=None, rot=0.0, cut=None, stats=False, name=None):
-        '''
+        """
         Adds ellipsoid structure in simulated HSI.
 
         :param center: tuple of 2 ints centering structure in image
@@ -52,7 +53,7 @@ class Pentara:
         :param name: unique string for dict key of ellipsoid stats
             - must have valid string if stats==True
         :return: None, alters base image from self
-        '''
+        """
         ell = ellipsoid(a, b, c, levelset=True)
         ell.astype('f8')
         ell *= scale[0]
@@ -61,14 +62,14 @@ class Pentara:
         d0, d1, d2 = self._s
         ed0, ed1, ed2 = ell.shape
 
-        c1 = int(ed1/2)+1
-        c2 = int(ed2/2)+1
+        c1 = int(ed1 / 2) + 1
+        c2 = int(ed2 / 2) + 1
 
         rr, cc = ellipse(c1, c2, b, c, shape=(ed1, ed2))
 
         rr1, cc1 = ellipse(center[0], center[1], b, c, shape=(d1, d2), rotation=rot)
 
-        if d0<ed0:
+        if d0 < ed0:
             self._img[:d0, rr1, cc1] += ell[:d0, rr, cc]
         else:
             self._img[:ed0, rr1, cc1] += ell[:ed0, rr, cc]
@@ -80,10 +81,9 @@ class Pentara:
             except ValueError:
                 raise Exception("if stats=True, name must be a unique string not in self.obs")
 
-
-    #TODO: add structure by compose function of pentiga object
+    # TODO: add structure by compose function of pentiga object
     def add_structure(self, pentiga, rot=0.0, center=None):
-        '''
+        """
         Add Pentiga object to base hsi image
 
         :param pentiga: Pentiga - image object, including sub-structures
@@ -91,7 +91,7 @@ class Pentara:
         :param center: tuple of ints - optional forced center of pentiga image
 
         :return: None - adds values to base image of self Pentara
-        '''
+        """
         name = pentiga.name
         self.obs[name] = pentiga
 
@@ -100,20 +100,20 @@ class Pentara:
         else:
             x, y, z = center
 
-        a, b, c = pentiga._sma
+        a, b, c = pentiga.get_sma()
 
         d0, d1, d2 = self._s
         ed0, ed1, ed2 = pentiga.structure.shape
 
-        c1, c2 = int(ed1/2)+1, int(ed2/2)+1
+        c1, c2 = int(ed1/2) + 1, int(ed2/2)+1
 
         rr1, cc1 = ellipse(c1, c2, b, c, shape=(ed1, ed2), rotation=rot)
         rr, cc = ellipse(x-1, y-1, b, c, shape=self._s, rotation=rot)
 
-        if d1>ed1 or d2>ed2:
+        if d1 > ed1 or d2 > ed2:
             raise Exception("obj structure is larger than image!")
 
-        if d0<ed0:
+        if d0 < ed0:
             self._img[:d0, rr, cc] += pentiga.structure[:d0, rr1, cc1]
         else:
             self._img[:ed0, rr, cc] += pentiga.structure[:ed0, rr1, cc1]
