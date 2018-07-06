@@ -6,7 +6,7 @@ import rasterio
 
 
 # pass as list of tuples to make 1 for loop generating file
-def build_dataset(file, pentaras, pentigas):
+def build_dataset(file, pentaras):
 
     hf = h5py.File(file, 'w')
     g0 = hf.create_group('images')
@@ -19,9 +19,10 @@ def build_dataset(file, pentaras, pentigas):
         g0.create_dataset(data_s, data=pentara.get_img(), compression="gzip", compression_opts=9, dtype='f8')
         k_s = 'kernels_' + str(i)
         g2 = g1.create_group(k_s)
-        kernels = pentigas[data_s]
+        kernels = pentara.obs
+        kernels_k = kernels.keys()
         j = 0
-        for kernel in kernels:
+        for kernel in kernels_k:
             kern = 'kernel_' + str(j)
             g2.create_dataset(kern, data=kernel.labels, compression="gzip", compression_opts=9)
             j += 1

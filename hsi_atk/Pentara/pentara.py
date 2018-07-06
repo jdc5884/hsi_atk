@@ -19,6 +19,9 @@ class Pentara:
     def get_img(self):
         return self._img
 
+    def get_obs(self):
+        return self.obs
+
     def add_noise(self, **kwargs):
         """
         Adds noise to HSI via skimage util

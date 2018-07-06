@@ -36,6 +36,20 @@ class Pentiga(object):
         self.img_area = 0
         self.n_pixels = 0
 
+        self.weight = 0
+        self.lipidwt = 0
+        self.lipidratio = 0
+
+        self.geno = None
+        self.density = None
+        self.nitrogen = None
+        self.hormone = None
+
+        self.palmetic = 0
+        self.linoleic = 0
+        self.stearic = 0
+        self.oleic = 0
+
         self.labels = {}
         if labels is not None:
             self.labels = labels
@@ -291,17 +305,59 @@ class Pentiga(object):
     def set_labels(self, labels):
         self.labels = labels
 
-    def gen_labels(self, wt_func, lp_func, str_wts):
+    def gen_wt_label(self, wt_func, structs, str_wts):
         """
-        Function for generating continuous labels explicity or within a distribution
-        versus structure and substructure stats
+        Function for generating continuous labels of weight explicitly or within a
+        distribution versus structure and substructure stats
         :param wt_func: func -
-        :param lp_func:
+        :param structs:
         :param str_wts:
         :return:
         """
         pass
 
+    def gen_lp_labels(self, lp_func, palm_func, lino_func, olei_func, stea_func,
+                      structs, str_wts):
+        """
+        Function for generating continuous labels of lipids explicitly or within a
+        distribution versus structure and substructure stats.
+        Kernel weight must be assigned first. Use gen_wt_label.
+        :param lp_func:
+        :param palm_func:
+        :param lino_func:
+        :param olei_func:
+        :param stea_func:
+        :param structs:
+        :param str_wts:
+        :return:
+        """
+        if 'kernelwt' not in self.labels.keys() or self.labels['kernelwt'] == 0 or \
+                self.labels['kernelwt'] == None:
+            raise Exception('Kernel weight must be assigned before lipid labels can be assigned!')
+
+    def set_palmetic(self, density):
+        """
+        :param density: float - representing mg/mL measure
+        """
+        self.palmetic = density
+
+    def set_linoleic(self, density):
+        """
+        :param density: float - representing mg/mL measure
+        """
+        self.linoleic = density
+
+    def set_oleic(self, density):
+        """
+        :param density: float - representing mg/mL measure
+        """
+        self.oleic = density
+
+    def set_stearic(self, density):
+        """
+        :param density: float - representing mg/mL measure
+        """
+        self.stearic = density
 
 
 def basic_gen(name, sma, s_sma, dist_center):
