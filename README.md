@@ -8,3 +8,5 @@ hsi_atk is a hyperspectral image (hsi) analysis toolkit that features simple sim
 4. analysis pipelines for composed learning and estimation
 
 The hsi_atk utilizes scikit-learn, scikit-hyper, scikit-image, numpy, scipy, h5py, and custom functions and classes.
+
+kspec branch code will focus on analysis of hyperspectral images of corn kernels for current work.
