@@ -36,20 +36,6 @@ class Pentiga(object):
         self.img_area = 0
         self.n_pixels = 0
 
-        self.weight = 0
-        self.lipidwt = 0
-        self.lipidratio = 0
-
-        self.geno = None
-        self.density = None
-        self.nitrogen = None
-        self.hormone = None
-
-        self.palmetic = 0
-        self.linoleic = 0
-        self.stearic = 0
-        self.oleic = 0
-
         self.labels = {}
         if labels is not None:
             self.labels = labels
@@ -335,29 +321,44 @@ class Pentiga(object):
                 self.labels['kernelwt'] == None:
             raise Exception('Kernel weight must be assigned before lipid labels can be assigned!')
 
+    def set_kernelwt(self, weight):
+        """
+        :param weight: float - representing weight in grams of kernel
+        """
+        self.labels['kernelwt'] = weight
+
+    def set_lipidwt(self, weight):
+        """
+        :param weight: float - representing weight of lipids in grams of kernel
+        """
+        self.labels['lipidwt'] = weight
+
+    def set_wtratio(self):
+        self.labels['wtratio'] = self.labels['lipidwt'] / self.labels['kernelwt']
+
     def set_palmetic(self, density):
         """
         :param density: float - representing mg/mL measure
         """
-        self.palmetic = density
+        self.labels['palmetic'] = density
 
     def set_linoleic(self, density):
         """
         :param density: float - representing mg/mL measure
         """
-        self.linoleic = density
+        self.labels['linoleic'] = density
 
     def set_oleic(self, density):
         """
         :param density: float - representing mg/mL measure
         """
-        self.oleic = density
+        self.labels['oleic'] = density
 
     def set_stearic(self, density):
         """
         :param density: float - representing mg/mL measure
         """
-        self.stearic = density
+        self.labels['stearic'] = density
 
 
 def basic_gen(name, sma, s_sma, dist_center):
