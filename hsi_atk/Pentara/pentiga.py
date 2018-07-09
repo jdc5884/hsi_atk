@@ -56,6 +56,9 @@ class Pentiga(object):
     def get_sma(self):
         return self._sma
 
+    def get_npix(self):
+        return self.n_pixels
+
     def set_dist_center(self, dist_center):
         self.dist_center = dist_center
 
@@ -291,35 +294,102 @@ class Pentiga(object):
     def set_labels(self, labels):
         self.labels = labels
 
-    def gen_wt_label(self, wt_func, structs, str_wts):
+    #TODO: implement use_pix_avg and use_pix_var
+    def gen_wt_label(self, wt_func, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
         """
         Function for generating continuous labels of weight explicitly or within a
         distribution versus structure and substructure stats
-        :param wt_func: func -
-        :param structs:
-        :param str_wts:
-        :return:
+        :param wt_func: mathematical function - takes pixel count and weight to generate weight label
+        :param structs: list of keys - sub structures to include in weight label computation
+        :param str_wts: dict of floats - keyed to sub structures, float of structure
+                                         computational weight vs total weight
         """
-        pass
+        base_pix = self.get_npix()
+        tot_mod = 0
 
+        if structs is not None:
+            modif = []
+            for struct in structs:
+                n_str = self.sub_structures[struct]
+                modif.append(n_str.get_npix() * str_wts[struct])
+
+            tot_mod = sum(modif)
+
+        if not use_pix_avg:
+            weight = wt_func(base_pix) + tot_mod
+
+        else:
+            weight = wt_func(base_pix) + tot_mod
+
+        self.set_kernelwt(weight)
+
+    #TODO: implement use_pix_avg and use_pix_var and base "weighting"
     def gen_lp_labels(self, lp_func, palm_func, lino_func, olei_func, stea_func,
-                      structs, str_wts):
+                      base_wt, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
         """
         Function for generating continuous labels of lipids explicitly or within a
         distribution versus structure and substructure stats.
         Kernel weight must be assigned first. Use gen_wt_label.
-        :param lp_func:
-        :param palm_func:
-        :param lino_func:
-        :param olei_func:
-        :param stea_func:
-        :param structs:
-        :param str_wts:
-        :return:
+        :param lp_func: mathematical func - takes pixel count and weight to generate
+                                              lipid label
+        :param palm_func: mathematical func - takes pixel count and weight to generate
+                                              palmetic label
+        :param lino_func: mathematical func - takes pixel count and weight to generate
+                                              linoleic label
+        :param olei_func: mathematical func - takes pixel count and weight to generate
+                                              oleic label
+        :param stea_func: mathematical func - takes pixel count and weight to generate
+                                              stearic label
+        :param base_wt: float - weight of base structure vs lipid labels
+        :param structs: list of keys - structures to conside for given label
+        :param str_wts: dict of dicts - corresponding weight of structure for each given label
         """
-        if 'kernelwt' not in self.labels.keys() or self.labels['kernelwt'] == 0 or \
-                self.labels['kernelwt'] == None:
-            raise Exception('Kernel weight must be assigned before lipid labels can be assigned!')
+        base_pix = self.get_npix()
+        tot_mod = 0
+        tot_mod_p = 0
+        tot_mod_l = 0
+        tot_mod_o = 0
+        tot_mod_s = 0
+
+        if structs is not None:
+            modif = []
+            modif_p = []
+            modif_l = []
+            modif_o = []
+            modif_s = []
+            for struct in structs:
+                n_str = self.sub_structures[struct]
+                modif.append(lp_func(n_str.get_npix() * str_wts[struct + '.lp']))
+                modif_p.append(palm_func(n_str.get_npix() * str_wts[struct + '.palm']))
+                modif_l.append(lino_func(n_str.get_npix() * str_wts[struct + '.lino']))
+                modif_o.append(olei_func(n_str.get_npix() * str_wts[struct + '.olei']))
+                modif_s.append(stea_func(n_str.get_npix() * str_wts[struct + '.stea']))
+
+            tot_mod = sum(modif)
+            tot_mod_p = sum(modif_p)
+            tot_mod_l = sum(modif_l)
+            tot_mod_o = sum(modif_o)
+            tot_mod_s = sum(modif_s)
+
+        if not use_pix_avg:
+            lp_weight = lp_func(base_pix) + tot_mod
+            p_weight = palm_func(base_pix) + tot_mod_p
+            l_weight = lino_func(base_pix) + tot_mod_l
+            o_weight = olei_func(base_pix) + tot_mod_o
+            s_weight = stea_func(base_pix) + tot_mod_s
+
+        else:
+            lp_weight = lp_func(base_pix) + tot_mod
+            p_weight = palm_func(base_pix) + tot_mod_p
+            l_weight = lino_func(base_pix) + tot_mod_l
+            o_weight = olei_func(base_pix) + tot_mod_o
+            s_weight = stea_func(base_pix) + tot_mod_s
+
+        self.set_lipidwt(lp_weight)
+        self.set_palmetic(p_weight)
+        self.set_linoleic(l_weight)
+        self.set_oleic(o_weight)
+        self.set_stearic(s_weight)
 
     def set_kernelwt(self, weight):
         """
