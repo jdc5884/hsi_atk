@@ -13,7 +13,17 @@ cmlPath = '/Volumes/RuddellD/hsi/Hyperspectral/Cml103/'
 
 cols = ['Packet #', 'Genotype', 'Hormone', 'Kernelwt', 'Lipidwt']
 
-cl_stats = pd.DataFrame()
+labeled_data = pd.read_csv("../Data/headers3mgperml.csv", sep=",")
+files = []
+
+for idx, row in labeled_data.iterrows():
+    file = str(row['Packet #']) + row['Hormone'].lower() + '.bil'
+    if row['Genotype'] == 'B73':
+        file = b73Path + file
+    elif row['Genotype'] == 'CML103':
+        file = cmlPath + file
+
+    files.append(file)
 
 
 def filter_kernelspace(img):

@@ -84,7 +84,6 @@ class Pentara:
             except ValueError:
                 raise Exception("if stats=True, name must be a unique string not in self.obs")
 
-    # TODO: add structure by compose function of pentiga object
     def add_structure(self, pentiga, rot=0.0, center=None):
         """
         Add Pentiga object to base hsi image
@@ -95,18 +94,19 @@ class Pentara:
 
         :return: None - adds values to base image of self Pentara
         """
-        name = pentiga.name
+        name = pentiga.get_name()
         self.obs[name] = pentiga
 
         if center is None:
-            x, y, z = pentiga.center
+            x, y, z = pentiga.get_center()
         else:
             x, y, z = center
 
         a, b, c = pentiga.get_sma()
+        struct = pentiga.compose()
 
         d0, d1, d2 = self._s
-        ed0, ed1, ed2 = pentiga.structure.shape
+        ed0, ed1, ed2 = struct.shape
 
         c1, c2 = int(ed1/2) + 1, int(ed2/2)+1
 
@@ -117,9 +117,9 @@ class Pentara:
             raise Exception("obj structure is larger than image!")
 
         if d0 < ed0:
-            self._img[:d0, rr, cc] += pentiga.structure[:d0, rr1, cc1]
+            self._img[:d0, rr, cc] += struct[:d0, rr1, cc1]
         else:
-            self._img[:ed0, rr, cc] += pentiga.structure[:ed0, rr1, cc1]
+            self._img[:ed0, rr, cc] += struct[:ed0, rr1, cc1]
 
 
 class Tukara:
