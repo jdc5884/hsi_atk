@@ -15,7 +15,7 @@ class PentigaUnittest(np.testing.TestCase):
 
 
     def test_add_ell(self):
-        pentiga.gen_sub_ellipsoid('sub_0', (2, 2, 5), stats=True)
+        pentiga.gen_sub_structure('sub_0', (2, 2, 5), stats=True)
         test_ell = np.load('../test_data/pentiga_test_sub_ell.npy')
         n_ell = pentiga.sub_structures['sub_0'].structure
 
@@ -23,7 +23,7 @@ class PentigaUnittest(np.testing.TestCase):
 
 
     def test_scale_ell(self):
-        pentiga.gen_sub_ellipsoid('sub_1', (2, 2, 5), stats=False)
+        pentiga.gen_sub_structure('sub_1', (2, 2, 5), stats=False)
         test_ell = np.load('../test_data/pentiga_test_sub_scale.npy')
         n_pent = pentiga.sub_structures['sub_1']
         n_pent.scale_structure(-50, 200)
@@ -32,7 +32,7 @@ class PentigaUnittest(np.testing.TestCase):
 
 
     def test_scale_func(self):
-        pentiga.gen_sub_ellipsoid('sub_2', (2, 2, 5), stats=False)
+        pentiga.gen_sub_structure('sub_2', (2, 2, 5), stats=False)
         test_ell = np.load('../test_data/pentiga_test_scale_func.npy')
         n_pent = pentiga.sub_structures['sub_2']
         def nfunc(x): return ((x - 2)**2 + 10)
