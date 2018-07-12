@@ -7,7 +7,7 @@ class Pentiga(object):
     HSI object to store data about image substructure and easily add or remove it
     """
 
-    def __init__(self, name, ell_sma, scale=(1, 0), center=(0, 0), is_base=True, is_substructure=False,
+    def __init__(self, name, ell_sma, bands=None, scale=(1, 0), center=(0, 0), is_base=True, is_substructure=False,
                  stats=False, labels=None):
         """
         Initializes pentiga object. Meant to store collections of structures representing one object
@@ -15,6 +15,8 @@ class Pentiga(object):
 
         :param name: string - name of pentiga object for use with dict-like structures
         :param ell_sma: tuple of 3 ints - lengths of the semi-major axes to produce an ellipsoid
+        :param bands: array-like of ints or None - integers representing bands occupied by the structure
+
         :param scale: tuple of ints - scaling factor, structure is multiplied by scale[0]
                                                       and has scale[1] added as well
         :param center: tuple of ints - supposed center in some image (for passing to Pentara image composer)
@@ -23,8 +25,9 @@ class Pentiga(object):
         :param stats: bool - to compute stats of structure (Volume, Surface Area)
         :param labels: dictionary - assigned labels of kernel
         """
-        self._sma = ell_sma
         self.name = name
+        self._sma = ell_sma
+        self.bands = bands
 
         self.scale = scale
 
@@ -56,7 +59,45 @@ class Pentiga(object):
     def get_sma(self):
         return self._sma
 
+    def get_bands(self):
+        if self.bands is not None:
+            return self.bands
+        else:
+            return np.arange(self.structure.shape[2])
+
+    def set_bands(self, bands=None):
+        """
+        Assign bands to self image structure (slicing across bandwidths)
+        :param bands: array-like - list of bands, if None, all of structure 3rd axis is used
+        """
+        if bands is None:
+            d2 = self.structure.shape
+            self.bands = np.arange(d2)
+        else:
+            self.bands = bands
+
+    def gen_rand_bands(self, n_bands, max_band=None):
+        """
+        Generates random shuffling of bands
+        :param n_bands: number of bandwidths to sample from
+        :param max_band: max bandwidth or "frequency" to sample from
+        """
+        if max_band is None and self.structure is not None:
+            d2 = self.structure.shape
+            bands = np.arange(d2)
+            np.random.shuffle(bands)
+            self.bands = bands[:n_bands-1]
+        elif max_band is not None:
+            bands = np.arange(max_band)
+            np.random.shuffle(bands)
+            self.bands = bands[:n_bands-1]
+        else:
+            raise Exception("Structure is None and max_bands not defined! One or both must be set.")
+
     def get_npix(self):
+        """
+        :return: int - number of pixels taken by object in the 2d spacial dimension
+        """
         return self.n_pixels
 
     def set_dist_center(self, dist_center):
@@ -64,6 +105,12 @@ class Pentiga(object):
 
     def get_dist_center(self):
         return self.dist_center
+
+    def get_structure(self):
+        if self.bands is None:
+            return self.structure
+        else:
+            return self.structure[:, :, self.bands]
 
     def gen_ellipsoid(self, stats=False, n_pix=True, **kwargs):
         """
@@ -90,11 +137,15 @@ class Pentiga(object):
             self.n_pixels = pix # setting n_pixels
 
     def gen_img_area(self, pix_area=1):
-        a, b, c = self._sma
-        img_area = np.pi*b*c*pix_area
+        """
+        Get's image area by n_pixels of object and area of pixels.
+        For approximating real size of objects.
+        :param pix_area: int - size of pixels of real image (ex. 20cm, 6ft, etc.)
+        """
+        img_area = self.n_pixels*pix_area
         self.img_area = img_area
 
-    def compose(self, bands, objects=None):
+    def compose(self, objects=None):
         """
         Composes all ellipsoids from parent pentiga and all immediate children pentiga of parent
         limiting third axis to specified number of bands
@@ -111,19 +162,28 @@ class Pentiga(object):
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
 
         # base_img = self.structure[:, :, :bands]
-        base_img = np.zeros((d0, d1, bands))
+        base_img = np.zeros((d0, d1, d2))
 
-        if bands < d2:
-            rr, cc, bb = self._sma
-            rr0, cc0 = ellipse(r0, c0, rr, cc, shape=(d0, d1))
-            base_img[rr0, cc0, :] += self.structure[rr0, cc0, :bands]
+        # if bands < d2:
+        rr, cc, bb = self._sma
+        rr0, cc0 = ellipse(r0, c0, rr, cc, shape=(d0, d1))
+
+        if self.bands is None:
+            base_img[rr0, cc0, :] += self.structure[rr0, cc0, :]
+        else:
+            base_b = self.bands
+            base_img[rr0, cc0, base_b] += self.structure[rr0, cc0, base_b]
+
+
 
         if objects is None:
-            objects = list(self.sub_structures.keys())
+            objects = self.sub_structures.keys()
+
 
         for obj in objects:
             # od0, od1, od2 = obj.structure.shape
             n_obj = self.sub_structures[obj]
+            n_obj_b = n_obj.bands
             nd0, nd1, nd2 = n_obj.structure.shape
             nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
@@ -134,7 +194,7 @@ class Pentiga(object):
             r, c = nr + r0, nc + c0
             rr0, cc0 = ellipse(r, c, nrr, ncc, shape=(d0, d1))
 
-            base_img[rr0, cc0, :] += n_obj.structure[nrr0, ncc0, :bands]
+            base_img[rr0, cc0, n_obj_b] += n_obj.structure[nrr0, ncc0, n_obj_b]
 
         return base_img
 
@@ -158,13 +218,14 @@ class Pentiga(object):
         else:
             self.sub_structures[sub_name] = obj
 
-    def gen_sub_ellipsoid(self, sub_name, ell_sma, dist_center=(0, 0),
+    def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0),
                           bands=None, stats=False):
         """
         Generates another Pentiga object as a sub-structure and store it
 
         :param ell_sma: tuple of 3 ints - semi-major axes lengths for new ellipsoid structure
-        :param sub_name: string - name of new structure
+        :param name: string - name of new structure, if None default name will be generated..
+                                                     "sub_0", "sub_1", "sub_2", ...
         :param dist_center: tuple of ints - new structure center distance from parent pentiga
         :param bands: Not used atm, will later be combined with scaling-addition functions
                       to detail structure's effect and brightness across the spectrum
@@ -175,15 +236,18 @@ class Pentiga(object):
 
         a0, b0, c0 = self._sma
         a, b, c = ell_sma
+        if name is None:
+            s_i = len(self.sub_structures)
+            name = "sub_" + str(s_i + 1)
 
         if a > a0 or b > b0 or c > c0:
             raise Exception("semi-major axes of sub-structures must be less-than or equal to primary ellipsoid axes")
-        s_ell = Pentiga(sub_name, ell_sma, stats=stats, is_base=False, is_substructure=True)
+        s_ell = Pentiga(name, ell_sma, stats=stats, is_base=False, is_substructure=True)
 
         s_ell.center = (dist_center[0] + self.center[0], dist_center[1] + self.center[1])
         s_ell.dist_center = dist_center
 
-        self.sub_structures[sub_name] = s_ell
+        self.sub_structures[name] = s_ell
 
         if not self.is_base:
             self.is_base = True
@@ -359,11 +423,11 @@ class Pentiga(object):
             modif_s = []
             for struct in structs:
                 n_str = self.sub_structures[struct]
-                modif.append(lp_func(n_str.get_npix() * str_wts[struct + '.lp']))
-                modif_p.append(palm_func(n_str.get_npix() * str_wts[struct + '.palm']))
-                modif_l.append(lino_func(n_str.get_npix() * str_wts[struct + '.lino']))
-                modif_o.append(olei_func(n_str.get_npix() * str_wts[struct + '.olei']))
-                modif_s.append(stea_func(n_str.get_npix() * str_wts[struct + '.stea']))
+                modif.append(lp_func(n_str.get_npix() * str_wts[struct]['lp']) / base_pix)
+                modif_p.append(palm_func(n_str.get_npix() * str_wts[struct]['palm']) / base_pix)
+                modif_l.append(lino_func(n_str.get_npix() * str_wts[struct]['lino']) / base_pix)
+                modif_o.append(olei_func(n_str.get_npix() * str_wts[struct]['olei']) / base_pix)
+                modif_s.append(stea_func(n_str.get_npix() * str_wts[struct]['stea']) / base_pix)
 
             tot_mod = sum(modif)
             tot_mod_p = sum(modif_p)
@@ -438,7 +502,7 @@ def basic_gen(name, sma, s_sma, dist_center):
     for _sma, dist in s_sma, dist_center:
         s_name = 'sub_ell_'
         s_name += str(i)
-        pent.gen_sub_ellipsoid(s_name, _sma, dist, stats=True)
+        pent.gen_sub_structure(s_name, _sma, dist, stats=True)
         i += 1
 
     return pent
