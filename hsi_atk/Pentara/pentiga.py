@@ -50,6 +50,9 @@ class Pentiga(object):
         self.sub_structures = {}
         self.sub_scales = {}
 
+    def get_name(self):
+        return self.name
+
     def set_center(self, center):
         self.center = center
 
@@ -116,7 +119,8 @@ class Pentiga(object):
         """
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
-        :param stats: bool -to compute ellipsoid stats, can always be done later given any sma
+        :param stats: bool - to compute ellipsoid stats, can always be done later given any sma
+        :param n_pix: bool - computes number of pixels taken by structure and assigns self.n_pixels
         :param kwargs: for passing additional arguments to ellipsoid function such as spacing
 
         :return: None - data stored in object
@@ -134,7 +138,7 @@ class Pentiga(object):
             base = np.zeros((s0, s1))
             base[rr, cc] += 1
             pix = np.count_nonzero(base)
-            self.n_pixels = pix # setting n_pixels
+            self.n_pixels = pix  # setting n_pixels
 
     def gen_img_area(self, pix_area=1):
         """
@@ -145,7 +149,7 @@ class Pentiga(object):
         img_area = self.n_pixels*pix_area
         self.img_area = img_area
 
-    def compose(self, objects=None):
+    def compose(self, objects=None, return_labels=False):
         """
         Composes all ellipsoids from parent pentiga and all immediate children pentiga of parent
         limiting third axis to specified number of bands
@@ -155,10 +159,13 @@ class Pentiga(object):
                         if None, all children of parent pentiga
                         if empty list, no children are used in composition and only parent structure
                             is included
+        :param return_labels: bool - return labels array with compose image as separate array
 
         :return: base_img - ndarray of composed image
+                 labels_  - 2d array of labels (if return_labels=True)
         """
         d0, d1, d2 = self.structure.shape
+        print(self.structure.shape)
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
 
         # base_img = self.structure[:, :, :bands]
@@ -167,6 +174,11 @@ class Pentiga(object):
         # if bands < d2:
         rr, cc, bb = self._sma
         rr0, cc0 = ellipse(r0, c0, rr, cc, shape=(d0, d1))
+
+        labels_ = np.empty((d0, d1), dtype=object)
+
+        if return_labels:
+            labels_[rr0, cc0] = self.name
 
         if self.bands is None:
             base_img[rr0, cc0, :] += self.structure[rr0, cc0, :]
@@ -195,8 +207,14 @@ class Pentiga(object):
             rr0, cc0 = ellipse(r, c, nrr, ncc, shape=(d0, d1))
 
             base_img[rr0, cc0, n_obj_b] += n_obj.structure[nrr0, ncc0, n_obj_b]
+            if return_labels:
+                n_l = "," + n_obj.get_name()
+                labels_[rr0, cc0] += n_l
 
-        return base_img
+        if return_labels:
+            return base_img, labels_
+        else:
+            return base_img
 
     def add_substructure(self, obj, stats=True):
         """
