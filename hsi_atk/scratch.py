@@ -60,8 +60,8 @@ time_load = time.time()
 print("Time to load img... ", (time_load-time_in))
 
 from skhyper.process import Process
-from skhyper.cluster import DBSCAN
-dbscan = DBSCAN(eps=0.1, min_samples=5, n_jobs=-1)
+from skhyper.cluster import KMeans
+mdl = KMeans(8)
 
 from skimage.filters import threshold_otsu
 gray = np.mean(img_, 2)
@@ -78,9 +78,12 @@ time_proc = time.time()
 print("Time to process img... ", (time_proc-time_p))
 
 time_inf = time.time()
-dbscan.fit(X)
+mdl.fit(X)
 time_fit = time.time()
 print("Time to fit img... ", (time_fit-time_inf))
+
+X.view()
+
 
 #
 # n_img = img_[60:350, 100:530, :]
