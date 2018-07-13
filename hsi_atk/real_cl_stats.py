@@ -5,6 +5,7 @@ import pandas as pd
 from hsi_atk.dataset import open_hsi_bil
 from skhyper.cluster import KMeans
 from skhyper.process import Process
+from skhyper.svm import SVC
 from skimage.filters import threshold_otsu
 
 
@@ -46,11 +47,23 @@ def load_cl(path):
     print('Begin Clustering...')
     kmeans.fit(X)
 
-    return kmeans
+    return kmeans.labels_
+
+
+def unify_labels(img, lbls, clf):
+    """
+    Takes pre-fitted classifier fitted on cluster of image, and applies predictions to given
+    image. The predictions are used to reset labels of given image
+    :param img: 3d-array - numpy array of hsi
+    :param lbls: 2d-array - numpy array of hsi cluster labels
+    :param clf: skhyper classifier - pixel classifier for hsi
+    :return: 2d-array - numpy array of unified labels (makes labels similar across images)
+    """
 
 
 def getstats(path, geno):
     # hsi_info = []
+    svc = SVC(kernel='linear', degree=5)
     img_dt = {}
     images = os.listdir(path)
     count = 0
@@ -58,15 +71,17 @@ def getstats(path, geno):
         print(count)
 
         if img.endswith('.bil'):
-            # packet, hormone, ext = img.split('.')
-            # img_dt['File'] = img
-            # img_dt['Packet #'] = int(packet)
-            # img_dt['Genotype'] = geno
-            # img_dt['Hormone'] = hormone
-            km = load_cl(path+img)
+            lbls = load_cl(path + img)
+            uni_v, uni_c = np.unique(lbls, return_counts=True)
+
+            if count == 0:
+                svc.fit(img, lbls)
+
+
             # img_dt['mdl'] = km
             # hsi_info.append(img_dt)
-            img_dt[geno+img] = km
+
+            img_dt[geno+img] = lbls
             count += 1
         # if count == 5:
         #     break
