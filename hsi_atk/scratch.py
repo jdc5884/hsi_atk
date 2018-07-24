@@ -60,29 +60,31 @@ time_load = time.time()
 print("Time to load img... ", (time_load-time_in))
 
 from skhyper.process import Process
-from skhyper.cluster import KMeans
-mdl = KMeans(8)
-
-from skimage.filters import threshold_otsu
-gray = np.mean(img_, 2)
-thresh = threshold_otsu(gray, nbins=240)
-reg0 = (thresh<gray)
-nreg0 = ~ reg0
-rr, cc = np.where(reg0)
-rr0, cc0 = np.where(nreg0)
-img_[rr0, cc0, :] *= 0
-
+# from skhyper.cluster import KMeans
+# mdl = KMeans(8)
+#
+# from skimage.filters import threshold_otsu
+# gray = np.mean(img_, 2)
+# thresh = threshold_otsu(gray, nbins=240)
+# reg0 = (thresh<gray)
+# nreg0 = ~ reg0
+# rr, cc = np.where(reg0)
+# rr0, cc0 = np.where(nreg0)
+# img_[rr0, cc0, :] *= 0
+#
 time_p = time.time()
 X = Process(img_)
 time_proc = time.time()
 print("Time to process img... ", (time_proc-time_p))
-
-time_inf = time.time()
-mdl.fit(X)
-time_fit = time.time()
-print("Time to fit img... ", (time_fit-time_inf))
-
-X.view()
+print(X.var_image)
+print(X.var_spectrum)
+#
+# time_inf = time.time()
+# mdl.fit(X)
+# time_fit = time.time()
+# print("Time to fit img... ", (time_fit-time_inf))
+#
+# X.view()
 
 
 #
