@@ -4,10 +4,11 @@ from skimage.draw import ellipse, ellipsoid, ellipsoid_stats
 
 class Pentiga(object):
     """
-    HSI object to store data about image substructure and easily add or remove it
+    HSI object to store data about image and substructures, easily add or remove features,
+    or generate separate HSI's.
     """
 
-    def __init__(self, name, ell_sma, bands=None, scale=(1, 0), center=(0, 0), is_base=True, is_substructure=False,
+    def __init__(self, name, ell_sma, bands=None, center=(0, 0), is_base=True, is_substructure=False,
                  stats=False, labels=None):
         """
         Initializes pentiga object. Meant to store collections of structures representing one object
@@ -29,23 +30,28 @@ class Pentiga(object):
         self._sma = ell_sma
         self.bands = bands
 
-        self.scale = scale
-
         self.center = center
         self.dist_center = None
 
         self.structure = None
         self.stats = None
-        self.img_area = 0
-        self.n_pixels = 0
+        self.img_area = None
+        self.n_pixels = None
+
+        self.scaling_fn = None
+        self.wt_fn = None
+        self.lp_fn = None
+        self.palm_fn = None
+        self.lino_fn = None
+        self.olei_fn = None
+        self.stea_fn = None
 
         self.labels = {}
         if labels is not None:
             self.labels = labels
 
-        self.gen_ellipsoid(stats=stats)
+        # self.gen_ellipsoid(stats=stats)
 
-        self.is_base = is_base
         self.is_substructure = is_substructure
         self.sub_structures = {}
         self.sub_scales = {}
@@ -86,7 +92,7 @@ class Pentiga(object):
         :param max_band: max bandwidth or "frequency" to sample from
         """
         if max_band is None and self.structure is not None:
-            d2 = self.structure.shape
+            d0, d1, d2 = self.structure.shape
             bands = np.arange(d2)
             np.random.shuffle(bands)
             self.bands = bands[:n_bands-1]
@@ -101,7 +107,23 @@ class Pentiga(object):
         """
         :return: int - number of pixels taken by object in the 2d spacial dimension
         """
-        return self.n_pixels
+        if self.n_pixels is not None:
+            return self.n_pixels
+        else:
+            self.gen_npix()
+            return self.get_npix()
+
+    def gen_npix(self):
+        a, b, c = self._sma
+        # Getting pixel count of parent ellipsoid
+        s0 = a * 2 + 1
+        s1 = b * 2 + 1
+        rr, cc = ellipse(a, b, a, b, (s0, s1))
+        base = np.zeros((s0, s1))
+        base[rr, cc] += 1
+        pix = np.count_nonzero(base)
+        self.n_pixels = pix  # setting n_pixels
+
 
     def set_dist_center(self, dist_center):
         self.dist_center = dist_center
@@ -110,12 +132,15 @@ class Pentiga(object):
         return self.dist_center
 
     def get_structure(self):
-        if self.bands is None:
-            return self.structure
+        if self.structure is not None:
+            if self.bands is None:
+                return self.structure
+            else:
+                return self.structure[:, :, self.bands]
         else:
-            return self.structure[:, :, self.bands]
+            raise Exception("Structure not generated! Call gen_ellipsoid on obj first")
 
-    def gen_ellipsoid(self, stats=False, n_pix=True, **kwargs):
+    def gen_ellipsoid(self, n_pix=True, save_arr=False, **kwargs):
         """
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
@@ -126,19 +151,14 @@ class Pentiga(object):
         :return: None - data stored in object
         """
         a, b, c = self._sma
-        self.structure = ellipsoid(a, b, c, **kwargs, levelset=True)
-        if stats:
-            self.stats = ellipsoid_stats(a, b, c)
+        structure = ellipsoid(a, b, c, **kwargs, levelset=True)
+        if save_arr:
+            self.structure = structure
 
         if n_pix:
-            # Getting pixel count of parent ellipsoid
-            s0 = a*2+1
-            s1 = b*2+1
-            rr, cc = ellipse(a, b, a, b, (s0, s1))
-            base = np.zeros((s0, s1))
-            base[rr, cc] += 1
-            pix = np.count_nonzero(base)
-            self.n_pixels = pix  # setting n_pixels
+            self.gen_npix()
+
+        return structure
 
     def gen_img_area(self, pix_area=1):
         """
@@ -149,7 +169,14 @@ class Pentiga(object):
         img_area = self.n_pixels*pix_area
         self.img_area = img_area
 
-    def compose(self, objects=None, return_labels=False):
+    def get_img_area(self):
+        if self.img_area is not None:
+            return self.img_area
+        else:
+            self.gen_img_area()
+            return self.get_img_area()
+
+    def compose(self, objects=None, return_labels=False, save_arrs=False):
         """
         Composes all ellipsoids from parent pentiga and all immediate children pentiga of parent
         limiting third axis to specified number of bands
@@ -164,7 +191,8 @@ class Pentiga(object):
         :return: base_img - ndarray of composed image
                  labels_  - 2d array of labels (if return_labels=True)
         """
-        d0, d1, d2 = self.structure.shape
+        base_struct = self.gen_ellipsoid(save_arr=save_arrs)
+        d0, d1, d2 = base_struct.shape
         print(self.structure.shape)
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
 
@@ -195,8 +223,9 @@ class Pentiga(object):
         for obj in objects:
             # od0, od1, od2 = obj.structure.shape
             n_obj = self.sub_structures[obj]
+            n_obj_struct = n_obj.gen_ellipsoid(save_arr=save_arrs)
             n_obj_b = n_obj.bands
-            nd0, nd1, nd2 = n_obj.structure.shape
+            nd0, nd1, nd2 = n_obj_struct.shape
             nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
             nrr, ncc, bb = n_obj.get_sma()
@@ -226,6 +255,7 @@ class Pentiga(object):
         :return: None - stores passed obj in self.sub_structures dictionary
         """
         sub_name = obj.name
+
         if stats:
             if obj.stats is not None:
                 self.sub_structures[sub_name] = obj
@@ -267,104 +297,40 @@ class Pentiga(object):
 
         self.sub_structures[name] = s_ell
 
-        if not self.is_base:
-            self.is_base = True
+    def get_substructure(self, name):
+        return self.sub_structures[name]
 
-    # Basic version
-    # Add scaling instructions instead of basic linear tuples
-    def scale_substructure(self, names, scales):
+    def set_scale_fn(self, fn, bands=None):
+        self.scaling_fn = [fn, bands]
 
-        for name in names:
-            n_ell = self.sub_structures[name].structure
-            scale = scales[name]
-            n_ell *= scale[0]
-            n_ell += scale[1]
-            self.sub_structures[name].structure = n_ell
-            self.sub_scales[name] = scale
-
-# TODO: remove redundant functions and generalized to
-    # add_func, add_func_bandwise, and add_func_coordwise
-    # use generalization with scale_substructure above to pass
-    # instruction sets for multi-structure change
-    def add_structure(self, add):
+    # 4D functions and ranges of images under development
+    def add_func(self, struct=None):
         """
-        Basic addition across structure array
-
-        :param add: int/float - number to add across structure
-
-        :return: None - value added to self.structure
+        Adds to bandwidth values across coordinates of image. If composing singular
+        HSI function must be of 3 variables (for (x,y,z) coordinates). Similarly, if
+        composing multiple images and scaling across some range, we will be in the 4D
+        and function must be of 4 variables (x,y,z,w).
+        :param struct: ndarray - pass structure as not attached to object,
+                                 useful for when not storing
         """
-        self.structure += add
+        fn = self.scaling_fn[0]
+        bands = self.scaling_fn[1]
 
-    def mult_structure(self, mult):
-        """
-        Basic multiplication across structure array
+        if struct is None:
+            structure = self.structure
+        else:
+            structure = struct
 
-        :param mult: int/float - number to multiply across structure
+        shape = structure.shape
 
-        :return: None - value added to self.structure
-        """
-        self.structure *= mult
+        if bands is None:
+            bands = shape[-1]
 
-    def scale_structure(self, mult, add):
-        self.mult_structure(mult)
-        self.add_structure(add)
-
-    def add_linear(self, a, b, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i + b)
-
-    def add_quadratic(self, a, b, c, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i**2 + b*i + c)
-
-    def add_cubic(self, a, b, c, d, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i**3 + b*i**2 + c*i + d)
-
-    def add_logarithmic(self, a, b, c, d, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*np.log(b*(i+1) + c) + d)
-
-    def add_func_coordwise(self, func, rr, cc):
-        """
-        Alter brightness values by adding from specified function arrays of coordinates
-
-        :param func: input func, some f(x, y) = z
-        :param rr: ndarray - list of x-coordinates
-        :param cc: ndarray - list of y-coordinates
-                - x- and y-coordinates must correspond
-
-        :return: None - values added to image arrays
-        """
-        for r, c in rr, cc:
-            self.structure[r, c, :] += func(r, c)
-
-    def add_func_bandwise(self, func, bands):
-        """
-        Alter brightness values by adding from specified function with band as input
-
-        :param func: input func, some f(x) = y
-        :param bands: int, tuple, list, or ndarray representing band indices
-
-        :return: None - values added to image arrays
-        """
-        if isinstance(bands, tuple):
-            for i in range(bands[0], bands[1]+1):
-                self.structure[:, :, i] += func(i)
-
-        elif isinstance(bands, int):
-            for i in range(0, bands):
-                self.structure[:, :, i] += func(i)
-
-        elif isinstance(bands, list) or isinstance(bands, np.ndarray):
-            for i in bands:
-                self.structure[:, :, i] += func(i)
-
-    def add_func(self, func, rr, cc, bands):
-        for band in bands:
-            for r, c, in rr, cc:
-                self.structure[r, c, band] += func(r, c, band)
+        add_arr = np.fromfunction(fn, shape)
+        if len(shape) == 3:
+            self.structure[:, :, bands] += add_arr[:, :, bands]
+        elif len(shape) == 4:
+            self.structure[:, :, :, bands] += add_arr[:, :, :, bands]
 
     def gen_ell_stats(self):
         a, b, c = self._sma
@@ -376,12 +342,14 @@ class Pentiga(object):
     def set_labels(self, labels):
         self.labels = labels
 
+    def set_wt_lbl_fn(self, wt_fn):
+        self.wt_fn = wt_fn
+
     #TODO: implement use_pix_avg and use_pix_var
-    def gen_wt_label(self, wt_func, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
+    def gen_wt_label(self, wt_fn=None, structs=None, use_pix_avg=False, use_pix_var=False):
         """
         Function for generating continuous labels of weight explicitly or within a
         distribution versus structure and substructure stats
-        :param wt_func: mathematical function - takes pixel count and weight to generate weight label
         :param structs: list of keys - sub structures to include in weight label computation
         :param str_wts: dict of floats - keyed to sub structures, float of structure
                                          computational weight vs total weight
@@ -393,21 +361,40 @@ class Pentiga(object):
             modif = []
             for struct in structs:
                 n_str = self.sub_structures[struct]
-                modif.append(n_str.get_npix() * str_wts[struct])
+                wt = n_str.gen_wt_label(use_pix_avg=use_pix_avg, use_pix_var=use_pix_var)
+                modif.append(wt)
 
             tot_mod = sum(modif)
 
-        if not use_pix_avg:
-            weight = wt_func(base_pix) + tot_mod
-
+        if wt_fn is None:
+            wt_fun = self.wt_fn
         else:
-            weight = wt_func(base_pix) + tot_mod
+            wt_fun = wt_fn
+
+        weight = wt_fun(base_pix) + tot_mod
+
+        if use_pix_avg:
+            weight = wt_fun(base_pix) + tot_mod
 
         self.set_kernelwt(weight)
 
+    def set_lp_fn(self, lp_fn):
+        self.lp_fn = lp_fn
+
+    def set_palm_fn(self, palm_fn):
+        self.palm_fn = palm_fn
+
+    def set_lino_fn(self, lino_fn):
+        self.lino_fn = lino_fn
+
+    def set_olei_fn(self, olei_fn):
+        self.olei_fn = olei_fn
+
+    def set_stea_fn(self, stea_fn):
+        self.stea_fn = stea_fn
+
     #TODO: implement use_pix_avg and use_pix_var and base "weighting"
-    def gen_lp_labels(self, lp_func, palm_func, lino_func, olei_func, stea_func,
-                      base_wt, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
+    def gen_lp_labels(self, structs=None, use_pix_avg=False, use_pix_var=False):
         """
         Function for generating continuous labels of lipids explicitly or within a
         distribution versus structure and substructure stats.
@@ -441,11 +428,11 @@ class Pentiga(object):
             modif_s = []
             for struct in structs:
                 n_str = self.sub_structures[struct]
-                modif.append(lp_func(n_str.get_npix() * str_wts[struct]['lp']) / base_pix)
-                modif_p.append(palm_func(n_str.get_npix() * str_wts[struct]['palm']) / base_pix)
-                modif_l.append(lino_func(n_str.get_npix() * str_wts[struct]['lino']) / base_pix)
-                modif_o.append(olei_func(n_str.get_npix() * str_wts[struct]['olei']) / base_pix)
-                modif_s.append(stea_func(n_str.get_npix() * str_wts[struct]['stea']) / base_pix)
+                modif.append(n_str.lp_fn(n_str.get_npix()) / base_pix)
+                modif_p.append(n_str.palm_fn(n_str.get_npix()) / base_pix)
+                modif_l.append(n_str.lino_fn(n_str.get_npix()) / base_pix)
+                modif_o.append(n_str.olei_fn(n_str.get_npix()) / base_pix)
+                modif_s.append(n_str.stea_fn(n_str.get_npix()) / base_pix)
 
             tot_mod = sum(modif)
             tot_mod_p = sum(modif_p)
@@ -454,18 +441,18 @@ class Pentiga(object):
             tot_mod_s = sum(modif_s)
 
         if not use_pix_avg:
-            lp_weight = lp_func(base_pix) + tot_mod
-            p_weight = palm_func(base_pix) + tot_mod_p
-            l_weight = lino_func(base_pix) + tot_mod_l
-            o_weight = olei_func(base_pix) + tot_mod_o
-            s_weight = stea_func(base_pix) + tot_mod_s
+            lp_weight = self.lp_fn(base_pix) + tot_mod
+            p_weight = self.palm_fn(base_pix) + tot_mod_p
+            l_weight = self.lino_fn(base_pix) + tot_mod_l
+            o_weight = self.olei_fn(base_pix) + tot_mod_o
+            s_weight = self.stea_fn(base_pix) + tot_mod_s
 
         else:
-            lp_weight = lp_func(base_pix) + tot_mod
-            p_weight = palm_func(base_pix) + tot_mod_p
-            l_weight = lino_func(base_pix) + tot_mod_l
-            o_weight = olei_func(base_pix) + tot_mod_o
-            s_weight = stea_func(base_pix) + tot_mod_s
+            lp_weight = self.lp_fn(base_pix) + tot_mod
+            p_weight = self.palm_fn(base_pix) + tot_mod_p
+            l_weight = self.lino_fn(base_pix) + tot_mod_l
+            o_weight = self.olei_fn(base_pix) + tot_mod_o
+            s_weight = self.stea_fn(base_pix) + tot_mod_s
 
         self.set_lipidwt(lp_weight)
         self.set_palmetic(p_weight)
