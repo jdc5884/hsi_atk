@@ -20,7 +20,7 @@ def npentiga(name, base_sma, sub_smas, sub_dists):
     time0 = time.time()
 
     # initialize pentiga object with base structure
-    pent = Pentiga(name, base_sma, stats=True)
+    pent = Pentiga(name, base_sma)
     pent.set_scale_fn(nfunc)
 
     # generate sub_structures
@@ -82,9 +82,6 @@ pent0.set_palm_fn(palm_func)
 pent0.set_lino_fn(lino_func)
 pent0.set_olei_fn(olei_func)
 pent0.set_stea_fn(stea_func)
-lp_wts = {'pent_0': {'lp': 0.2, 'palm': 0.05, 'lino': 0.04, 'olei': 0.01, 'stea': 0.15},
-          'pent_1': {'lp': 0.2, 'palm': 0.01, 'lino': 0.02, 'olei': 0.001, 'stea': 0.75},
-          'pent_2': {'lp': 0.5, 'palm': 0.5, 'lino': 0.2, 'olei': 0.1, 'stea': 0.075}}
 
 pent0.gen_lp_labels()
 

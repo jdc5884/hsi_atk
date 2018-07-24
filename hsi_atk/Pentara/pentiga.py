@@ -134,15 +134,14 @@ class Pentiga(object):
         else:
             raise Exception("Structure not generated! Call gen_ellipsoid on obj first")
 
-    def gen_ellipsoid(self, n_pix=True, save_arr=False, **kwargs):
+    def gen_ellipsoid(self, n_pix=True, save_arr=False, stats=False, **kwargs):
         """
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
-        :param stats: bool - to compute ellipsoid stats, can always be done later given any sma
         :param n_pix: bool - computes number of pixels taken by structure and assigns self.n_pixels
+        :param save_arr: bool - save ellipsoid array as obj structure
+        :param stats: bool - to compute ellipsoid stats, can always be done later given any sma
         :param kwargs: for passing additional arguments to ellipsoid function such as spacing
-
-        :return: None - data stored in object
         """
         a, b, c = self._sma
         structure = ellipsoid(a, b, c, **kwargs, levelset=True)
@@ -151,6 +150,9 @@ class Pentiga(object):
 
         if n_pix:
             self.gen_npix()
+
+        if stats:
+            self.gen_ell_stats()
 
         return structure
 
@@ -245,8 +247,6 @@ class Pentiga(object):
 
         :param obj: Pentiga - ellipsoid object
         :param stats: bool - enforce the ellipsoid stats are stored in object
-
-        :return: None - stores passed obj in self.sub_structures dictionary
         """
         sub_name = obj.name
 
@@ -260,8 +260,7 @@ class Pentiga(object):
         else:
             self.sub_structures[sub_name] = obj
 
-    def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0),
-                          bands=None, stats=False):
+    def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0), bands=None, stats=False):
         """
         Generates another Pentiga object as a sub-structure and store it
 
@@ -272,8 +271,6 @@ class Pentiga(object):
         :param bands: Not used atm, will later be combined with scaling-addition functions
                       to detail structure's effect and brightness across the spectrum
         :param stats: bool - for computing the elipsoid stats, can always be done later
-
-        :return: None - sub structure is added to self.sub_structure dictionary
         """
 
         a0, b0, c0 = self._sma
@@ -284,10 +281,13 @@ class Pentiga(object):
 
         if a > a0 or b > b0 or c > c0:
             raise Exception("semi-major axes of sub-structures must be less-than or equal to primary ellipsoid axes")
-        s_ell = Pentiga(name, ell_sma, stats=stats, is_base=False, is_substructure=True)
+        s_ell = Pentiga(name, ell_sma, is_substructure=True)
+        s_ell.set_bands(bands)
+        if stats:
+            s_ell.gen_ell_stats()
 
-        s_ell.center = (dist_center[0] + self.center[0], dist_center[1] + self.center[1])
-        s_ell.dist_center = dist_center
+        s_ell.set_center((dist_center[0] + self.center[0], dist_center[1] + self.center[1]))
+        s_ell.set_dist_center(dist_center)
 
         self.sub_structures[name] = s_ell
 
