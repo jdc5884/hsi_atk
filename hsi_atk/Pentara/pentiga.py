@@ -8,8 +8,7 @@ class Pentiga(object):
     or generate separate HSI's.
     """
 
-    def __init__(self, name, ell_sma, bands=None, center=(0, 0), is_base=True, is_substructure=False,
-                 stats=False, labels=None):
+    def __init__(self, name, ell_sma, bands=None, center=(0, 0), is_substructure=False, labels=None):
         """
         Initializes pentiga object. Meant to store collections of structures representing one object
         in an HSI, and storing label information related to the structures
@@ -17,13 +16,9 @@ class Pentiga(object):
         :param name: string - name of pentiga object for use with dict-like structures
         :param ell_sma: tuple of 3 ints - lengths of the semi-major axes to produce an ellipsoid
         :param bands: array-like of ints or None - integers representing bands occupied by the structure
-
-        :param scale: tuple of ints - scaling factor, structure is multiplied by scale[0]
-                                                      and has scale[1] added as well
         :param center: tuple of ints - supposed center in some image (for passing to Pentara image composer)
         :param is_base: bool - whether this pentiga has children
         :param is_substructure: bool - whether this pentiga has a parent pentiga
-        :param stats: bool - to compute stats of structure (Volume, Surface Area)
         :param labels: dictionary - assigned labels of kernel
         """
         self.name = name
@@ -50,11 +45,10 @@ class Pentiga(object):
         if labels is not None:
             self.labels = labels
 
-        # self.gen_ellipsoid(stats=stats)
-
         self.is_substructure = is_substructure
         self.sub_structures = {}
         self.sub_scales = {}
+        self.sub_fns = {}
 
     def get_name(self):
         return self.name
