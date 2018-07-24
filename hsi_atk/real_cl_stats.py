@@ -27,14 +27,78 @@ for idx, row in labeled_data.iterrows():
     files.append(file)
 
 
-def filter_kernelspace(img):
+def get_lbld_img_paths(df):
+    packets = df['Packet #'].tolist()
+    genos = df['Genotype'].tolist()
+    hormones = df['Hormone'].tolist()
+    paths = []
+    for i in range(len(packets)):
+        pack = str(packets[i])
+        horm = str(hormones[i]).lower()
+        geno = genos[i]
+        path = pack + "." + horm + ".bil"
+        if geno == "B73":
+            path = b73Path + path
+            paths.append(path)
+        elif geno == "CML103":
+            path = cmlPath + path
+            paths.append(path)
+
+    return paths
+
+
+def build_4d_img(paths):
+    images = []
+    count = 0
+    rmin = 500
+    rmax = 0
+    cmin = 640
+    cmax = 0
+    for path in paths:
+        img = open_hsi_bil(path)
+        img, nrmin, nrmax, ncmin, ncmax = filter_kernelspace(img, return_bbox=True)
+        if nrmin < rmin:
+            rmin = nrmin
+        if nrmax > rmax:
+            rmax = nrmax
+        if ncmin < cmin:
+            cmin = ncmin
+        if ncmax > cmax:
+            cmax = ncmax
+        images.append(img)
+        count += 1
+        # if count == 5:
+        #     break
+        print("Processed ", count, " image(s)...")
+
+    images = np.array(images)
+    images = images.swapaxes(0, 3).swapaxes(0, 2).swapaxes(0, 1)
+
+    return images[rmin:rmax, cmin:cmax, :, :]
+
+
+def clf_chain(list_img, labels):
+
+    # for img, lbl_set in list_img, labels:
+    #     imgr =
+    return None
+
+
+def filter_kernelspace(img, return_bbox=False):
     gray = np.mean(img, 2)
     thresh = threshold_otsu(gray, nbins=240)
     kernel_reg = (thresh < gray)
+    rows = np.any(kernel_reg, axis=1)
+    cols = np.any(kernel_reg, axis=0)
+    rmin, rmax = np.where(rows)[0][[0, -1]]
+    cmin, cmax = np.where(cols)[0][[0, -1]]
     n_reg = ~ kernel_reg
     rr, cc = np.where(n_reg)
     img[rr, cc, :] *= 0
-    return img
+    if return_bbox:
+        return img, rmin, rmax, cmin, cmax
+    else:
+        return img
 
 
 def load_cl(path):
@@ -48,17 +112,6 @@ def load_cl(path):
     kmeans.fit(X)
 
     return kmeans.labels_
-
-
-def unify_labels(img, lbls, clf):
-    """
-    Takes pre-fitted classifier fitted on cluster of image, and applies predictions to given
-    image. The predictions are used to reset labels of given image
-    :param img: 3d-array - numpy array of hsi
-    :param lbls: 2d-array - numpy array of hsi cluster labels
-    :param clf: skhyper classifier - pixel classifier for hsi
-    :return: 2d-array - numpy array of unified labels (makes labels similar across images)
-    """
 
 
 def getstats(path, geno):
@@ -90,5 +143,9 @@ def getstats(path, geno):
     return img_dt
 
 
-b73_stats = getstats(b73Path, 'B73')
-cml_stats = getstats(cmlPath, 'Cml103')
+paths = get_lbld_img_paths(labeled_data)
+img_4d = build_4d_img(paths)
+print(img_4d.shape)
+# X = Process(img_4d)
+# mdl = KMeans(9, n_jobs=1)
+# mdl.fit(X)

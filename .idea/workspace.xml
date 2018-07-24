@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,8 +49,8 @@
             <file leaf-file-name="pentiga.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="428">
-                    <caret line="302" column="43" selection-start-line="302" selection-start-column="43" selection-end-line="302" selection-end-column="43" />
+                  <state relative-caret-position="-1481">
+                    <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
                     <folding>
                       <element signature="e#0#18#0" expanded="true" />
                     </folding>
@@ -211,8 +208,8 @@
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
         <option value="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
       </list>
     </option>
   </component>
@@ -668,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531510669543</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Changes to pentiga objects to conserve memory usage and improve variability of generator. Removed redundancies with scaling and labeling functions. Added more getter and setter functions for attributes, removed redundant or unnecessary attributes. Changes reflected in _tests and _scratch. More testing TODO">
+      <created>1532449989184</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1532449989184</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -760,7 +764,8 @@
     <MESSAGE value="Added get_name() function for pentiga objects. Fixed some documentation in functions and for params. Added return_labels feature to compose() functions to return labeled array for presence of objects in generated image." />
     <MESSAGE value="Testing clustering functions and viewing images with skhyper Process.view()" />
     <MESSAGE value="Further testing with clustering on real data. TODO: read in hsi's to 4d array and perform clustering and recording statistics. TODO: Generate new labels from cluster statistics, and test vs real labels." />
-    <option name="LAST_COMMIT_MESSAGE" value="Further testing with clustering on real data. TODO: read in hsi's to 4d array and perform clustering and recording statistics. TODO: Generate new labels from cluster statistics, and test vs real labels." />
+    <MESSAGE value="Changes to pentiga objects to conserve memory usage and improve variability of generator. Removed redundancies with scaling and labeling functions. Added more getter and setter functions for attributes, removed redundant or unnecessary attributes. Changes reflected in _tests and _scratch. More testing TODO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes to pentiga objects to conserve memory usage and improve variability of generator. Removed redundancies with scaling and labeling functions. Added more getter and setter functions for attributes, removed redundant or unnecessary attributes. Changes reflected in _tests and _scratch. More testing TODO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1051,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="302" column="43" selection-start-line="302" selection-start-column="43" selection-end-line="302" selection-end-column="43" />
+        <state relative-caret-position="-1481">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
