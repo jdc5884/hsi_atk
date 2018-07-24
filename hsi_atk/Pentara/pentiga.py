@@ -495,7 +495,8 @@ class Pentiga(object):
 
 
 def basic_gen(name, sma, s_sma, dist_center):
-    pent = Pentiga(name, sma, stats=True)
+    pent = Pentiga(name, sma)
+    pent.gen_ellipsoid(stats=True)
 
     i = 0
     for _sma, dist in s_sma, dist_center:
