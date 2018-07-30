@@ -59,7 +59,7 @@ def wt_func(x):
 
 str_wts = {'pent_0': .01, 'pent_1': .02, 'pent_2': .5}
 
-pent0.gen_wt_label(wt_func, str_wts.keys(), str_wts)
+pent0.gen_wt_label(wt_func, str_wts.keys())
 
 
 def lp_func(x): return x ** 0.95
