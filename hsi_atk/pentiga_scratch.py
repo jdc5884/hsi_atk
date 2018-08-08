@@ -21,6 +21,7 @@ def npentiga(name, base_sma, sub_smas, sub_dists):
 
     # initialize pentiga object with base structure
     pent = Pentiga(name, base_sma)
+    # pent.gen_ellipsoid(save_arr=True)
     pent.set_scale_fn(nfunc)
 
     # generate sub_structures
@@ -30,7 +31,7 @@ def npentiga(name, base_sma, sub_smas, sub_dists):
         pent.gen_sub_structure(sma, name=sub_name, dist_center=sub_dists[i], stats=True)
         i += 1
 
-    n_img, label_arr = pent.compose(return_labels=True)  # create composed image of base and sub structures
+    n_img, label_arr = pent.compose(return_labels=True, save_arrs=True)  # create composed image of base and sub structures
 
     time1 = time.time()
     print(time1-time0)
@@ -59,7 +60,7 @@ def wt_func(x):
 
 str_wts = {'pent_0': .01, 'pent_1': .02, 'pent_2': .5}
 
-pent0.gen_wt_label(wt_func, str_wts.keys())
+pent0.gen_wt_label(wt_func)
 
 
 def lp_func(x): return x ** 0.95

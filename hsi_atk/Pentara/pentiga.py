@@ -25,6 +25,8 @@ class Pentiga(object):
         self._sma = ell_sma
         self.bands = bands
 
+        self.gen_ellipsoid(save_arr=True)
+
         self.center = center
         self.dist_center = None
 
@@ -32,6 +34,7 @@ class Pentiga(object):
         self.stats = None
         self.img_area = None
         self.n_pixels = None
+        self.gen_npix()
 
         self.scaling_fn = None
         self.wt_fn = None
@@ -282,7 +285,7 @@ class Pentiga(object):
         if a > a0 or b > b0 or c > c0:
             raise Exception("semi-major axes of sub-structures must be less-than or equal to primary ellipsoid axes")
         s_ell = Pentiga(name, ell_sma, is_substructure=True)
-        s_ell.set_bands(bands)
+        # s_ell.set_bands(bands)
         if stats:
             s_ell.gen_ell_stats()
 
