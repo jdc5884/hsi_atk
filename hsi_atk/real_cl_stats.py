@@ -1,12 +1,15 @@
-import os
+# import os
 import numpy as np
 import pandas as pd
 
 from hsi_atk.dataset import open_hsi_bil
-from sklearn.svm import SVR, SVC
-from skhyper.cluster import KMeans
+from sklearn.cluster import KMeans
+from sklearn.model_selection import train_test_split
+# from sklearn.svm import SVR, SVC
+# from sklearn.metrics import accuracy_score
+from skhyper.cluster import KMeans as hKMeans
 from skhyper.process import Process
-# from skhyper.svm import SVC
+from skhyper.svm import SVC as hSVC
 from skimage.filters import threshold_otsu
 
 
@@ -17,8 +20,11 @@ cols = ['Packet #', 'Genotype', 'Hormone', 'Kernelwt', 'Lipidwt']
 
 labeled_data = pd.read_csv("../Data/headers3mgperml.csv", sep=",")
 files = []
+img_rows = []
+img_row = 1
 
 for idx, row in labeled_data.iterrows():
+
     file = str(row['Packet #']) + row['Hormone'].lower() + '.bil'
     if row['Genotype'] == 'B73':
         file = b73Path + file
@@ -26,9 +32,14 @@ for idx, row in labeled_data.iterrows():
         file = cmlPath + file
 
     files.append(file)
+    img_rows.append(img_row)
+    img_row += 1
 
+#TODO: Get specified paths from labeled images in separate function
+def get_lbld_img_paths(df, folders=None):  #TODO: refactor to get paths to all images in list of folder paths
 
-def get_lbld_img_paths(df):
+    b73Path = '/Volumes/RuddellD/hsi/Hyperspectral/B73/'
+    cmlPath = '/Volumes/RuddellD/hsi/Hyperspectral/Cml103/'
     packets = df['Packet #'].tolist()
     genos = df['Genotype'].tolist()
     hormones = df['Hormone'].tolist()
@@ -48,9 +59,13 @@ def get_lbld_img_paths(df):
     return paths
 
 
-def build_4d_img(paths):
+def build_4d_img(paths, minimize_pix=False):
+    """ Reads in HSI's from list of paths and returns as stacked array across new axis
+    :param paths: list, strings pathing to images
+    :param minimize_pix: boolean, to minimize row height and column width of all images
+    :return: 4D array, stacked image arrays
+    """
     images = []
-
     count = 0
     rmin = 500
     rmax = 0
@@ -58,37 +73,39 @@ def build_4d_img(paths):
     cmax = 0
     for path in paths:
         img = open_hsi_bil(path)
-        img, nrmin, nrmax, ncmin, ncmax = filter_kernelspace(img, return_bbox=True)
-        if nrmin < rmin:
-            rmin = nrmin
-        if nrmax > rmax:
-            rmax = nrmax
-        if ncmin < cmin:
-            cmin = ncmin
-        if ncmax > cmax:
-            cmax = ncmax
+        if not minimize_pix:
+            img = filter_kernelspace(img)
+        else:
+            img, nrmin, nrmax, ncmin, ncmax = filter_kernelspace(img, return_bbox=True)
+            if nrmin < rmin:
+                rmin = nrmin
+            if nrmax > rmax:
+                rmax = nrmax
+            if ncmin < cmin:
+                cmin = ncmin
+            if ncmax > cmax:
+                cmax = ncmax
         images.append(img)
-
         count += 1
-        if count == 1:
-            break
+        # if count == 1:
+        #     break
         print("Processed ", count, " image(s)...")
 
     images = np.array(images)
     images = images.swapaxes(0, 3).swapaxes(0, 2).swapaxes(0, 1)
 
+    if minimize_pix:
+        return images[rmin:rmax, cmin:cmax, :, :]
 
-    return images[rmin:rmax, cmin:cmax, :, :]
-
-
-def clf_chain(list_img, labels):
-
-    # for img, lbl_set in list_img, labels:
-    #     imgr =
-    return None
+    return images
 
 
 def filter_kernelspace(img, return_bbox=False):
+    """ Threshold filter zeroing out background with overall bounding box return option
+    :param img: ndarray, hsi image to filter
+    :param return_bbox: boolean, to return the row min/max and column min/max
+    :return: ndarray, filtered image, and optional bbox
+    """
     gray = np.mean(img, 2)
     thresh = threshold_otsu(gray, nbins=240)
     kernel_reg = (thresh < gray)
@@ -105,101 +122,248 @@ def filter_kernelspace(img, return_bbox=False):
         return img
 
 
-def load_cl(path):
-    print('Loading hsi...')
-    hsi = open_hsi_bil(path)
-    hsi = filter_kernelspace(hsi)
+def load_proc(hsi_img, filter=True):
+    if filter:
+        hsi_img = filter_kernelspace(hsi_img)  # applies filter to image, zeroing out background
     print('Processing hsi...')
-    X = Process(hsi)
-    kmeans = KMeans(9, copy_x=False)
-    print('Begin Clustering...')
-    kmeans.fit(X)
-    labels = kmeans.labels_
+    X = Process(hsi_img)  # creates process object of image for skhyper clustering
+    return X
 
-    img_cl_stats = {}
-    uniq, unic = np.unique(labels, return_counts=True)
-    print(uniq, "\n\n", unic)
-    means = []
-    meds = []
-    vars = []
-    stds = []
-    mins = []
-    maxs = []
-    counts = []
+
+def get_class_stats(hsi_img, labels, unify):
+    """ Gets statistics for clusters of clustered image
+    :param hsi_img: 2/3D array, image
+    :param labels: 2D list/array, image labels
+    :return: dict, cluster statistics for given image
+    """
+    # img_cl_stats = {}
+    img_cl = {}
+    uniq, unic = np.unique(labels, return_counts=True)  # gets unique labels and counts
+    # print(uniq, "\n\n", unic)
+    all_means = []
+    # means = []
+    # meds = []
+    # vars = []
+    # stds = []
+    # mins = []
+    # maxs = []
+    # counts = []
 
     for i in uniq:
         cl = "class_" + str(i)
+        img_cl[cl] = {}
         # print(cl)
         rr0, cc0 = np.where(labels == i)
-        nhsi = hsi[rr0, cc0, :]
+        nhsi = hsi_img[rr0, cc0, :]
         # print(nhsi.shape)
         coun = nhsi.shape[0]
 
-        mean = np.mean(nhsi, 0)
-        med = np.median(nhsi, 0)
-        var = np.mean(nhsi, 0)
-        std = np.std(nhsi, 0)
-        min_ = nhsi.min(axis=0)
-        max_ = nhsi.max(axis=0)
+        mean = np.mean(nhsi, 0)  # mean of all spectra
+        img_cl[cl]['mean'] = mean
+        # means.append(mean)
+        all_means.append(mean)
+        med = np.median(nhsi, 0)  # median of all spectra
+        img_cl[cl]['med'] = med
+        # meds.append(med)
+        var = np.mean(nhsi, 0)  # variance of all spectra
+        img_cl[cl]['var'] = var
+        # vars.append(var)
+        std = np.std(nhsi, 0)  # standard deviation of all spectra
+        img_cl[cl]['std'] = std
+        # stds.append(std)
+        min_ = nhsi.min(axis=0)  # minimum of all spectra
+        img_cl[cl]['min'] = min_
+        # mins.append(min_)
+        max_ = nhsi.max(axis=0)  # maximum of all spectra
+        img_cl[cl]['max'] = max_
+        # maxs.append(max_)
+        img_cl[cl]['count'] = coun
+        # counts.append(coun)
 
-        means.append(mean)
-        meds.append(med)
-        vars.append(var)
-        stds.append(std)
-        mins.append(min_)
-        maxs.append(max_)
-        counts.append(coun)
+    # img_cl_stats['means'] = means
+    # img_cl_stats['meds'] = meds
+    # img_cl_stats['vars'] = vars
+    # img_cl_stats['stds'] = stds
+    # img_cl_stats['mins'] = mins
+    # img_cl_stats['maxs'] = maxs
+    # img_cl_stats['counts'] = counts
 
-    img_cl_stats['means'] = means
-    img_cl_stats['meds'] = meds
-    img_cl_stats['vars'] = vars
-    img_cl_stats['stds'] = stds
-    img_cl_stats['mins'] = mins
-    img_cl_stats['maxs'] = maxs
-    img_cl_stats['counts'] = counts
+    if unify:
+        return img_cl, all_means
+        # return img_cl_stats, all_means
 
-    return img_cl_stats
+    # return img_cl_stats
+    return img_cl
 
 
-# def getstats(path, geno):
-#     # hsi_info = []
-#     svc = SVC(kernel='linear', degree=5)
-#     img_dt = {}
-#     images = os.listdir(path)
-#     count = 0
-#     for img in images:
-#         print(count)
-#
-#         if img.endswith('.bil'):
-#             lbls = load_cl(path + img)
-#             uni_v, uni_c = np.unique(lbls, return_counts=True)
-#
-#             if count == 0:
-#                 svc.fit(img, lbls)
-#
-#
-#             # img_dt['mdl'] = km
-#             # hsi_info.append(img_dt)
-#
-#             img_dt[geno+img] = lbls
-#             count += 1
-#         # if count == 5:
-#         #     break
-#
-#     # return hsi_info
-#     return img_dt
+def load_cl(paths, n_clusters=8, filter=True, unify=True):
+    """ Performs clustering, filtering, and other operations on images
+    :param paths: list, strings pathing to images
+    :param n_clusters: int, number of clusters
+    :param filter: boolean, to perform filtering on images
+    :return: dict, cluster statistics for all images in paths
+    """
+    print('Loading hsi...')
+
+    img_stats = {}
+    means_all = []
+
+    image = 1
+    for path in paths:
+        print("Processing image: ", image)
+        hsi = open_hsi_bil(path)
+
+        if filter:
+            hsi = filter_kernelspace(hsi)
+
+        X = Process(hsi)
+        km = hKMeans(n_clusters, copy_x=False)
+        km.fit(X)
+        labels = km.labels_
+        if unify:
+            img_cl_stats, all_means = get_class_stats(hsi, labels, unify=unify)
+            means_all.extend(all_means)
+
+        else:
+            img_cl_stats = get_class_stats(hsi, labels, unify=unify)
+        img_stats[path] = img_cl_stats
+        image +=1
+
+    if unify:
+        u_labels = unify_labels(means_all, n_clusters)
+        return img_stats, u_labels
+
+    return img_stats
+
+
+def unify_labels(cl_means, n_clusters, order_f_imgs=True):
+    """ Takes list of unordered clustered pixel means and returns list of unified labels.
+    Alternatively, returns 2D list of unified labels for running regression on multiple image cluster stats
+    :param cl_means: list/array, all clustered pixels means
+    :param n_clusters: int, number of clusters
+    :param order_f_imgs: boolean, to return array as 2D unified labels if true
+    :return: labels-1D array of unified labels
+             n_labels-2D array of unified labels (per image)
+    """
+    cl_cl = KMeans(n_clusters)
+    cl_cl.fit(cl_means)
+    labels = cl_cl.labels_
+
+    if order_f_imgs:
+        l_len = len(labels)
+        n_labels = []
+        for i in range(0, int(l_len/n_clusters)):
+            n_labels.append(labels[i*n_clusters:(i+1)*n_clusters])
+        return n_labels
+
+    return labels
+
+#TODO: pipeline predictions schema from cl_dict and headers df
+#TODO: add accuracy metrics (rmse and acc)
+def train_pred(labeled_df, img_stats, uni_labels, clf_reg, label_pred, cl_stats="counts", vars="con", metrics=True):
+    """ Trains predictor(s) on specified label(s) from image cluster statistics, and assesses accuracy metric.
+    :param labeled_df: DataFrame, labels for images
+    :param img_stats: dictionary, contains cluster statistics for each image
+    :param uni_labels: list/array, clustered cluster statistics (unified clusters)
+    :param clf_reg: classifier or array of clf's, sklearn
+        # currently supports one clf
+    :param label_pred: string or array of strings, labels to predict (should match column headers of dataframe)
+        # currently supports one label
+    :param cl_stats: string or array of strings, cluster statistics to be used a X in clf's
+    :param vars: string, "cat" or "con" (categorical or continuous) picks between accuracy_score and mean_squared_error
+    :param metrics: boolean, whether to get/return scoring
+    :return:
+    """
+    labels = labeled_df[label_pred]
+    images = img_stats.keys()  # keys should have been entered in order with labeled_df row order
+    # this order will be retained if get_lbld_img_paths is used
+
+    X_train_keys, X_test_keys, y_train, y_test = train_test_split(images, labels, test_size=.2)
+
+
+    return None
+
+#TODO: reorder cl_stats dictionary based on unified labels
+def build_n_var(img_stats, uni_labels):
+    images = img_stats.keys()
+    i_order = img_stats[images[0]].keys()
+    cl_order = uni_labels[0]
+    for lbl_order in uni_labels:
+        if lbl_order == cl_order:
+            continue
+        else:
+            for cl in cl_order:
+                pass
+
+    return None
 
 
 paths = get_lbld_img_paths(labeled_data)
-img_stats = {}
+b73paths = []
+b73_rows = []
+cml103paths = []
+cml103_rows = []
+for i in range(len(paths)):
+    path = paths[i]
+    if "B73" in path:
+        b73paths.append(path)
+        b73_rows.append(img_rows[i])
+    elif "Cml103" in path:
+        cml103paths.append(path)
+        cml103_rows.append(img_rows[i])
+
+# b73_all = build_4d_img(b73paths)
+# b73img_stats, u_labels = load_cl(b73paths[:2])
+
+# cml103img_stats = load_cl(cml103paths)
+# b73df = pd.DataFrame(b73img_stats)
+# cml103df = pd.DataFrame(cml103img_stats)
+img_stats, u_labels = load_cl(paths)
+
+# Testing hSVC image labeling versus hKMeans cluster labels
+# nhkm = hKMeans(8, copy_x=False)
+# b73_0 = filter_kernelspace(open_hsi_bil(b73paths[0]))
+# b73_1 = filter_kernelspace(open_hsi_bil(b73paths[1]))
+# b73_0_1 = Process(np.stack((b73_0, b73_1), axis=2))
+# b73_0p = Process(b73_0)
+# b73_1p = Process(b73_1)
+# nhkm.fit(b73_0_1)
+# labels = nhkm.labels_
+# nsvc = hSVC(kernel="linear", degree=5, tol=1e-4)
+# nsvc.fit(b73_0p, labels[:,:,0])
+# b73_1_preds = nsvc.predict(b73_1p)
+# preds_1 = b73_1_preds.ravel()
+# labels_1 = labels[:,1].ravel()
+# print(accuracy_score(labels_1, preds_1))
+# ~95% accuracy.. good enough for now.. improve later
+
+# img_stats = {}
+# means_all = []
+# meds_all = []
+# vars_all = []
+# stds_all = []
+# mins_all = []
+# maxs_all = []
+# counts_all = []
+# all_stats = []
+#
+# img_count = 1
 # for path in paths:
 #     img_cl_st = load_cl(path)
+#     for mean, med, var, std, min, max, count in zip(img_cl_st['means'], img_cl_st['meds'], img_cl_st['vars'],\
+#         img_cl_st['stds'], img_cl_st['mins'], img_cl_st['maxs'], img_cl_st['counts']):
+#         all_stats.append([mean, med, var, std, min, max, count])
+#
 #     img_stats[path] = img_cl_st
+#     print(img_count)
+#     img_count += 1
 
-from sklearn.cluster import KMeans as BKMeans
+# from sklearn.cluster import KMeans
+#
+# cl_cl = KMeans(n_clusters=9)
+# cl_cl.fit(all_stats)
 
-img_cl_st = load_cl("../Data/32.control.bil")
-
+# img_cl_st = load_cl("../Data/32.control.bil")
 
 # img_4d = build_4d_img(paths)
 # mdl0 = KMeans(9, n_jobs=1)
