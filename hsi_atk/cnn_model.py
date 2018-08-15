@@ -34,7 +34,7 @@ def cnn_model_fn(features, labels, mode, params):
 
     input_layer = tf.reshape(img_tensor["x"], [-1, 500, 640, 240])
 
-    conv1 = tf.layers.conv3d(
+    conv1 = tf.layers.conv2d(
         inputs=input_layer,
         filters=32,
         kernel_size=[8, 8, 240],
@@ -44,7 +44,7 @@ def cnn_model_fn(features, labels, mode, params):
 
     pool1 = tf.layers.max_pooling3d(inputs=conv1, pool_size=[4, 4, 240], strides=1)
 
-    conv2 = tf.layers.conv3d(
+    conv2 = tf.layers.conv2d(
         inputs=pool1,
         filters=64,
         kernel_size=[5, 8, 3],
