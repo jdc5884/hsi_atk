@@ -46,33 +46,67 @@ class Pentiga_n(object):
         self.sub_structures = {}
         self.sub_scales = {}
 
+    def set_name(self, name):
+        """Sets name of image compont
+        :param name: string - image component name
+        """
+        self.name = name
+
     def get_name(self):
+        """Returns image component identifier
+        :return: string - image component name
+        """
         return self.name
 
     def set_center(self, center):
+        """Sets assigned image coordinates (row, col)
+        :param center: tuple of 2 ints - (row, col) coordinates
+        """
         self.center = center
 
     def get_center(self):
+        """Gets assigned image coordinates (row, col)
+        :return: tuple of 2 ints - (row, col) coordinates
+        """
         return self.center
 
+    def set_sma(self, sma):
+        """Sets semi-major and semi-minor axis values for (x, y) axes
+        :param sma: tuple of 2 ints - length of axes
+        """
+        self._sma = sma
+
     def get_sma(self):
+        """Gets semi-major and semi-minor axis values for (x, y) axes
+        :return: tuple of 2 ints -  length of axes
+        """
         return self._sma
 
-    def get_bands(self):
-        return self.bands
-
-    def copy_img(self, copy):
-        self.copy = copy
-
-    def get_copy(self):
-        return self.copy
-
-    def set_bands(self, bands=None):
-        """
-        Assign bands to self image structure (slicing across bandwidths)
+    def set_bands(self, bands):
+        """Assign bands to self image structure (slicing across bandwidths)
         :param bands: int - number of bands
         """
         self.bands = bands
+
+    def get_bands(self):
+        """Gets number of bands for current image component generator
+        :return: int - number of bands
+        """
+        return self.bands
+
+    def set_copy(self, copy):
+        """Whether generator actively keeps copy of image array.
+        Objects being designed to hold the information that generates the image component
+        with images typically only being stored in fully composed forms.
+        :param copy: boolean - if true, image component will be composed at parameter updates
+        """
+        self.copy = copy
+
+    def get_copy(self):
+        """Gets copy boolean
+        :return: boolean - whether object is actively updating image component
+        """
+        return self.copy
 
     def gen_rand_bands(self, n_bands):
         """
@@ -85,12 +119,15 @@ class Pentiga_n(object):
         return rand_bands[:n_bands-1]
 
     def get_npix(self):
-        """
+        """Gets number of pixels occupied by this (self) structure. Based upon the shape and its params.
         :return: int - number of pixels taken by object in the 2d spacial dimension
         """
         return self.n_pixels
 
     def gen_npix(self):
+        """Calculates pixels occupied by this (self) structure. Currently based under the assumption
+        of shape as an ellipse.
+        """
         # Getting pixel count of parent ellipsoid
         sma = self.get_sma()
         rr, cc = ellipse(sma[0], sma[1], sma[0], sma[1])
@@ -100,6 +137,9 @@ class Pentiga_n(object):
         self.n_pixels = pix  # setting n_pixels
 
     def set_dist_center(self, dist_center):
+        """Sets distance from center of parent image component object.
+        :param dist_center: tuple of 2 ints -
+        """
         self.dist_center = dist_center
 
     def get_dist_center(self):

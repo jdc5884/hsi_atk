@@ -2,11 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="More fixes to functions calls and params.">
-      <change afterPath="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/doctrees/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/.buildinfo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/.nojekyll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/ajax-loader.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/alabaster.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/comment-bright.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/comment-close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/comment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/custom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/doctools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/down-pressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/down.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/jquery-3.1.0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/minus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/plus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/pygments.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/searchtools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/underscore-1.3.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/underscore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/up-pressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/websupport.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/genindex.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/objects.inv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/_build/html/searchindex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/conf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/docs/make.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/cnn_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/cnn_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,25 +67,27 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="5671" />
-          <entry key="py" value="15075" />
-          <entry key="txt" value="737" />
+          <entry key="Python Console" value="5705" />
+          <entry key="py" value="16572" />
+          <entry key="txt" value="949" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="737" />
-          <entry key="Python" value="20746" />
+          <entry key="PLAIN_TEXT" value="949" />
+          <entry key="Python" value="22277" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="17" />
+          <entry key="Makefile" value="1" />
+          <entry key="py" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="17" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="19" />
         </counts>
       </usages-collector>
     </session>
@@ -73,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/real_cl_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="2071">
               <caret line="382" column="24" selection-start-line="382" selection-start-column="24" selection-end-line="382" selection-end-column="24" />
               <folding>
                 <element signature="e#12#30#0" expanded="true" />
@@ -90,7 +126,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-58">
+            <state relative-caret-position="690">
               <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -99,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model_cont.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="58" column="51" lean-forward="true" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
+            <state relative-caret-position="326">
+              <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -112,10 +148,33 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+                <marker date="1534349622241" expanded="true" signature="1800:1932" ph="..." />
+                <marker date="1534349622241" expanded="true" signature="2482:2647" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/docs/conf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/weight_logger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state>
+              <caret column="29" selection-start-column="29" selection-end-column="29" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1534316335064" expanded="true" signature="123:124" ph="..." />
@@ -185,11 +244,12 @@
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
         <option value="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" />
         <option value="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" />
         <option value="$PROJECT_DIR$/hsi_atk/weight_logger.py" />
         <option value="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" />
         <option value="$PROJECT_DIR$/hsi_atk/cnn_model.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/docs/conf.py" />
       </list>
     </option>
   </component>
@@ -291,6 +351,12 @@
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
@@ -752,7 +818,28 @@
       <option name="project" value="LOCAL" />
       <updated>1534298430267</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="CNN model for continuous variables">
+      <created>1534341422570</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1534341422570</updated>
+    </task>
+    <task id="LOCAL-00034" summary="conv3d-&gt;conv2d. Need to update parameters and ensure multi-class learning/prediction.">
+      <created>1534341475079</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1534341475079</updated>
+    </task>
+    <task id="LOCAL-00035" summary="h5py to read and write image much faster than .bil raster files.">
+      <created>1534341525468</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1534341525468</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -798,9 +885,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1001" height="1127" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25755996" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25755996" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -813,10 +899,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.24031778" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.24011858" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5046924" side_tool="true" weight="0.24703558" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49947864" weight="0.32905138" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.49530762" visible="true" weight="0.24703558" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.49530762" visible="true" weight="0.24703558" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -834,9 +920,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor restructuring. Started functions for Pentiga labels." />
-    <MESSAGE value="Specializing for hsi kernel analysis. Merge later as child classes" />
-    <MESSAGE value="Fixed labeling to access labels dictionary for pentigas" />
     <MESSAGE value="Added structure for pentiga labeling functions via arbitrary functions." />
     <MESSAGE value="Changed adding pentiga structures to adding by pentiga compose() func" />
     <MESSAGE value="Edit for bandwidth specifications of pentiga structures, compose() edits, substructure generators, and labeling functions" />
@@ -859,7 +942,10 @@
     <MESSAGE value="Additional building with decomposition and preprocessing along with variable organization." />
     <MESSAGE value="Building cnn_model for multi-label predictions." />
     <MESSAGE value="Refactoring generators for more efficient and versatile storage and generation of KT simulated and labeled images." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring generators for more efficient and versatile storage and generation of KT simulated and labeled images." />
+    <MESSAGE value="CNN model for continuous variables" />
+    <MESSAGE value="conv3d-&gt;conv2d. Need to update parameters and ensure multi-class learning/prediction." />
+    <MESSAGE value="h5py to read and write image much faster than .bil raster files." />
+    <option name="LAST_COMMIT_MESSAGE" value="h5py to read and write image much faster than .bil raster files." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hsi-atk/Sasatari.py" />
@@ -1046,17 +1132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="79" column="30" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1534183084729" expanded="true" signature="2119:2150" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/dataset_simple.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1081,9 +1156,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="48" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/weight_logger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="29" selection-start-column="29" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1534316335064" expanded="true" signature="123:124" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/real_cl_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="2071">
           <caret line="382" column="24" selection-start-line="382" selection-start-column="24" selection-end-line="382" selection-end-column="24" />
           <folding>
             <element signature="e#12#30#0" expanded="true" />
@@ -1096,41 +1199,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="48" selection-start-column="48" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/weight_logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1534316335064" expanded="true" signature="123:124" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-58">
-          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model_cont.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="58" column="51" lean-forward="true" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
+        <state relative-caret-position="326">
+          <caret line="58" column="51" selection-start-line="58" selection-start-column="51" selection-end-line="58" selection-end-column="51" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1534349622241" expanded="true" signature="1800:1932" ph="..." />
+            <marker date="1534349622241" expanded="true" signature="2482:2647" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/docs/Makefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/docs/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
