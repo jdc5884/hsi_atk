@@ -5,9 +5,11 @@ import pandas as pd
 from hsi_atk.dataset import open_hsi_bil
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 # from sklearn.svm import SVR, SVC
 # from sklearn.metrics import accuracy_score
 from skhyper.cluster import KMeans as hKMeans
+from skhyper.decomposition import PCA as hPCA
 from skhyper.process import Process
 from skhyper.svm import SVC as hSVC
 from skimage.filters import threshold_otsu
@@ -73,18 +75,20 @@ def build_4d_img(paths, minimize_pix=False):
     cmax = 0
     for path in paths:
         img = open_hsi_bil(path)
-        if not minimize_pix:
-            img = filter_kernelspace(img)
-        else:
-            img, nrmin, nrmax, ncmin, ncmax = filter_kernelspace(img, return_bbox=True)
-            if nrmin < rmin:
-                rmin = nrmin
-            if nrmax > rmax:
-                rmax = nrmax
-            if ncmin < cmin:
-                cmin = ncmin
-            if ncmax > cmax:
-                cmax = ncmax
+
+        # img = apply_sc(img)
+        # if not minimize_pix:
+        #     img = filter_kernelspace(img)
+        # else:
+        #     img, nrmin, nrmax, ncmin, ncmax = filter_kernelspace(img, return_bbox=True)
+        #     if nrmin < rmin:
+        #         rmin = nrmin
+        #     if nrmax > rmax:
+        #         rmax = nrmax
+        #     if ncmin < cmin:
+        #         cmin = ncmin
+        #     if ncmax > cmax:
+        #         cmax = ncmax
         images.append(img)
         count += 1
         # if count == 1:
@@ -122,12 +126,28 @@ def filter_kernelspace(img, return_bbox=False):
         return img
 
 
+def apply_sc(img, with_mean=True, with_std=True):
+    d0, d1, d2 = img.shape
+    img2d = img.reshape(-1, d2)
+    sc = StandardScaler(copy=False, with_mean=with_mean, with_std=with_std)
+    img2d = sc.fit_transform(img2d)
+    scaled_img = img2d.reshape(d0, d1, d2)
+
+    return scaled_img
+
+
 def load_proc(hsi_img, filter=True):
     if filter:
         hsi_img = filter_kernelspace(hsi_img)  # applies filter to image, zeroing out background
     print('Processing hsi...')
     X = Process(hsi_img)  # creates process object of image for skhyper clustering
     return X
+
+
+def get_img_pca(hsi_img_proc, n_components):
+    pca = hPCA(n_components=n_components, copy=False)
+    pca.fit_transform(hsi_img_proc)
+    return pca
 
 
 def get_class_stats(hsi_img, labels, unify):
@@ -196,10 +216,11 @@ def get_class_stats(hsi_img, labels, unify):
     return img_cl
 
 
-def load_cl(paths, n_clusters=8, filter=True, unify=True):
+def load_cl(paths, n_clusters=8, s_scale=True, filter=False, unify=False):
     """ Performs clustering, filtering, and other operations on images
     :param paths: list, strings pathing to images
     :param n_clusters: int, number of clusters
+
     :param filter: boolean, to perform filtering on images
     :return: dict, cluster statistics for all images in paths
     """
@@ -216,6 +237,9 @@ def load_cl(paths, n_clusters=8, filter=True, unify=True):
         if filter:
             hsi = filter_kernelspace(hsi)
 
+        if s_scale:
+            hsi = apply_sc(hsi)
+
         X = Process(hsi)
         km = hKMeans(n_clusters, copy_x=False)
         km.fit(X)
@@ -227,6 +251,7 @@ def load_cl(paths, n_clusters=8, filter=True, unify=True):
         else:
             img_cl_stats = get_class_stats(hsi, labels, unify=unify)
         img_stats[path] = img_cl_stats
+        print("Finished image: ", image)
         image +=1
 
     if unify:
@@ -234,6 +259,29 @@ def load_cl(paths, n_clusters=8, filter=True, unify=True):
         return img_stats, u_labels
 
     return img_stats
+
+
+def load_pca(paths, n_components, s_scale=True, filter=False):
+    image = 1
+    pcas = {}
+    for path in paths:
+        print("Processing image: ", image)
+        hsi = open_hsi_bil(path)
+
+        if filter:
+            hsi = filter_kernelspace(hsi)
+
+        if s_scale:
+            hsi = apply_sc(hsi)
+
+        X = Process(hsi, scale=False)
+        pca = hPCA(n_components=n_components, copy=False)
+        pca.fit_transform(X)
+        # pca.plot_statistics()
+        # input("Pause")
+        pcas[path] = pca
+
+    return None
 
 
 def unify_labels(cl_means, n_clusters, order_f_imgs=True):
@@ -245,6 +293,7 @@ def unify_labels(cl_means, n_clusters, order_f_imgs=True):
     :return: labels-1D array of unified labels
              n_labels-2D array of unified labels (per image)
     """
+    print("clustering clusters")
     cl_cl = KMeans(n_clusters)
     cl_cl.fit(cl_means)
     labels = cl_cl.labels_
@@ -283,19 +332,37 @@ def train_pred(labeled_df, img_stats, uni_labels, clf_reg, label_pred, cl_stats=
 
     return None
 
-#TODO: reorder cl_stats dictionary based on unified labels
-def build_n_var(img_stats, uni_labels):
-    images = img_stats.keys()
-    i_order = img_stats[images[0]].keys()
-    cl_order = uni_labels[0]
-    for lbl_order in uni_labels:
-        if lbl_order == cl_order:
-            continue
-        else:
-            for cl in cl_order:
-                pass
 
-    return None
+def build_n_var(img_stats, uni_labels):
+    images = []
+    images.extend(img_stats.keys())
+    print(images)
+    # i_order = img_stats[images[0]].keys()
+    cl_order = uni_labels[0]
+    # n_cl = len(cl_order)
+    for lbl_order, img_path in zip(uni_labels[1:], images[1:]):
+        # if lbl_order == cl_order:
+        #     continue
+        # else:
+        cou = 1
+        print(lbl_order)
+        for cl in cl_order:
+            cl0 = "class_" + str(cou)
+            print(cl)
+            index = np.where(lbl_order == cl)
+            if len(index[0]) > 1 or len(index[0]) == 0:
+
+                continue
+            # print(index[0])
+            cl1 = "class_" + str(int(index[0]+1))
+            # img_stats[img_path]["null_0"] = img_stats[img_path][cl0]
+            img_stats[img_path]["null_1"] = img_stats[img_path][cl1]
+            img_stats[img_path][cl1] = img_stats[img_path][cl0]
+            img_stats[img_path][cl0] = img_stats[img_path]["null_1"]
+            cou += 1
+        # del img_stats[img_path]["null_1"]
+
+    return img_stats
 
 
 paths = get_lbld_img_paths(labeled_data)
@@ -312,13 +379,35 @@ for i in range(len(paths)):
         cml103paths.append(path)
         cml103_rows.append(img_rows[i])
 
+# all_stats = load_cl(paths, n_clusters=8, s_scale=True, filter=False, unify=False)
+# all_means = []
+# for img in paths:
+#     all_means.append(all_stats[img]["class_1"]['mean'])
+#     all_means.append(all_stats[img]["class_2"]['mean'])
+#     all_means.append(all_stats[img]["class_3"]['mean'])
+#     all_means.append(all_stats[img]["class_4"]['mean'])
+#     all_means.append(all_stats[img]["class_5"]['mean'])
+#     all_means.append(all_stats[img]["class_6"]['mean'])
+#     all_means.append(all_stats[img]["class_7"]['mean'])
+#     all_means.append(all_stats[img]["class_8"]['mean'])
+
+img_4d = build_4d_img(paths)
+# img_3d = img_4d.reshape(8*500, 640, 240)
+# img_4d = img_4d.reshape(-1, 240)
+# X = Process(img_4d, scale=False)
+# hpca = hPCA(n_components=8, copy=False)
+# hpca.fit_transform(X)
+# hpca.plot_statistics()
+
 # b73_all = build_4d_img(b73paths)
-# b73img_stats, u_labels = load_cl(b73paths[:2])
+# b73img_stats, u_labels = load_cl(b73paths, n_clusters=5)
+# reordered_img_stats = build_n_var(b73img_stats, u_labels)
 
 # cml103img_stats = load_cl(cml103paths)
 # b73df = pd.DataFrame(b73img_stats)
 # cml103df = pd.DataFrame(cml103img_stats)
-img_stats, u_labels = load_cl(paths)
+# img_stats, u_labels = load_cl(paths)
+# build_n_var(img_stats, u_labels)
 
 # Testing hSVC image labeling versus hKMeans cluster labels
 # nhkm = hKMeans(8, copy_x=False)
