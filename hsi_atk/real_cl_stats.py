@@ -61,6 +61,19 @@ def get_lbld_img_paths(df, folders=None):  #TODO: refactor to get paths to all i
     return paths
 
 
+def build_3d_means_img(paths):
+    images = []
+    count = 0
+
+    for path in paths:
+        img = open_hsi_bil(path)
+        img = np.mean(img, axis=2)
+        images.append(img)
+
+    gray_img3d = np.stack(images, axis=2)
+    return gray_img3d
+
+
 def build_4d_img(paths, minimize_pix=False):
     """ Reads in HSI's from list of paths and returns as stacked array across new axis
     :param paths: list, strings pathing to images
@@ -365,19 +378,26 @@ def build_n_var(img_stats, uni_labels):
     return img_stats
 
 
-paths = get_lbld_img_paths(labeled_data)
-b73paths = []
-b73_rows = []
-cml103paths = []
-cml103_rows = []
-for i in range(len(paths)):
-    path = paths[i]
-    if "B73" in path:
-        b73paths.append(path)
-        b73_rows.append(img_rows[i])
-    elif "Cml103" in path:
-        cml103paths.append(path)
-        cml103_rows.append(img_rows[i])
+import h5py
+img_file = h5py.File("../Data/img_all_4d.h5", "r")
+images = img_file['datatset']
+img_file.close()
+images = np.mean(images, axis=3)
+print(images.shape)
+
+# paths = get_lbld_img_paths(labeled_data)
+# b73paths = []
+# b73_rows = []
+# cml103paths = []
+# cml103_rows = []
+# for i in range(len(paths)):
+#     path = paths[i]
+#     if "B73" in path:
+#         b73paths.append(path)
+#         b73_rows.append(img_rows[i])
+#     elif "Cml103" in path:
+#         cml103paths.append(path)
+#         cml103_rows.append(img_rows[i])
 
 # all_stats = load_cl(paths, n_clusters=8, s_scale=True, filter=False, unify=False)
 # all_means = []
@@ -391,7 +411,7 @@ for i in range(len(paths)):
 #     all_means.append(all_stats[img]["class_7"]['mean'])
 #     all_means.append(all_stats[img]["class_8"]['mean'])
 
-img_4d = build_4d_img(paths)
+# img_4d = build_4d_img(paths)
 # img_3d = img_4d.reshape(8*500, 640, 240)
 # img_4d = img_4d.reshape(-1, 240)
 # X = Process(img_4d, scale=False)
