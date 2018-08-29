@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Read the docs init build commit">
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="refactored gen_ellipsoid to gen_structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" afterDir="false" />
+    </list>
+    <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="">
       <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
@@ -34,14 +38,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="5740" />
-          <entry key="py" value="18625" />
-          <entry key="txt" value="1011" />
+          <entry key="py" value="18904" />
+          <entry key="txt" value="1115" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1011" />
-          <entry key="Python" value="24365" />
+          <entry key="PLAIN_TEXT" value="1115" />
+          <entry key="Python" value="24644" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -127,14 +131,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="264" column="37" lean-forward="true" selection-start-line="264" selection-start-column="37" selection-end-line="264" selection-end-column="37" />
+            <state relative-caret-position="3420">
+              <caret line="336" column="51" selection-start-line="336" selection-start-column="51" selection-end-line="336" selection-end-column="51" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1535465506330" expanded="true" signature="1963:2095" ph="..." />
-                <marker date="1535465506330" expanded="true" signature="2645:2810" ph="..." />
-                <marker date="1535465506330" expanded="true" signature="11069:11106" ph="..." />
-                <marker date="1535465506330" expanded="true" signature="13073:13108" ph="..." />
+                <marker date="1535568164984" expanded="true" signature="1963:2095" ph="..." />
+                <marker date="1535568164984" expanded="true" signature="2645:2810" ph="..." />
+                <marker date="1535568164984" expanded="true" signature="10391:10428" ph="..." />
+                <marker date="1535568164984" expanded="true" signature="12447:12482" ph="..." />
               </folding>
             </state>
           </provider>
@@ -206,6 +210,28 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+      <ranges>
+        <range start1="155" end1="157" start2="155" end2="156" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="158" end1="162" start2="157" end2="158" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="176" end1="178" start2="172" end2="173" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="179" end1="179" start2="174" end2="175" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="185" end1="187" start2="181" end2="182" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="189" end1="190" start2="184" end2="184" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="231" end1="233" start2="225" end2="227" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
+        <range start1="253" end1="256" start2="247" end2="249" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="257" end1="261" start2="250" end2="251" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="263" end1="272" start2="253" end2="254" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="276" end1="277" start2="258" end2="259" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="279" end1="280" start2="261" end2="262" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="284" end1="286" start2="266" end2="268" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="290" end1="291" start2="272" end2="273" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="298" end1="299" start2="280" end2="281" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="354" end1="357" start2="336" end2="340" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -530,6 +556,7 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="" />
       <changelist id="" name="Read the docs init build commit" comment="" />
+      <changelist id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="" />
       <created>1529078384365</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -801,7 +828,28 @@
       <option name="project" value="LOCAL" />
       <updated>1534352745254</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Added comments, changes to compose and gen_ellipse functions">
+      <created>1535567305611</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1535567305611</updated>
+    </task>
+    <task id="LOCAL-00040" summary="refactored gen_ellipsoid to gen_structure">
+      <created>1535567363882</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1535567363882</updated>
+    </task>
+    <task id="LOCAL-00041" summary="refactored gen_ellipsoid to gen_structure">
+      <created>1535567582933</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1535567582933</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -853,7 +901,7 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32806325" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49676025" weight="0.23535253" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3996004" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -909,8 +957,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Edit for bandwidth specifications of pentiga structures, compose() edits, substructure generators, and labeling functions" />
-    <MESSAGE value="refactor edit" />
     <MESSAGE value="Finished basic version of pentiga generator function with multiple structures, scaling, and labels." />
     <MESSAGE value="Added output for label array from compose() function, altered some function values for label and structure generation, testing clustering on generated images" />
     <MESSAGE value="Added get_name() function for pentiga objects. Fixed some documentation in functions and for params. Added return_labels feature to compose() functions to return labeled array for presence of objects in generated image." />
@@ -934,7 +980,9 @@
     <MESSAGE value="h5py to read and write image much faster than .bil raster files." />
     <MESSAGE value="Updated docs and functions" />
     <MESSAGE value="Read the docs init build commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Read the docs init build commit" />
+    <MESSAGE value="Added comments, changes to compose and gen_ellipse functions" />
+    <MESSAGE value="refactored gen_ellipsoid to gen_structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored gen_ellipsoid to gen_structure" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hsi-atk/Sasatari.py" />
@@ -1241,14 +1289,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="264" column="37" lean-forward="true" selection-start-line="264" selection-start-column="37" selection-end-line="264" selection-end-column="37" />
+        <state relative-caret-position="3420">
+          <caret line="336" column="51" selection-start-line="336" selection-start-column="51" selection-end-line="336" selection-end-column="51" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1535465506330" expanded="true" signature="1963:2095" ph="..." />
-            <marker date="1535465506330" expanded="true" signature="2645:2810" ph="..." />
-            <marker date="1535465506330" expanded="true" signature="11069:11106" ph="..." />
-            <marker date="1535465506330" expanded="true" signature="13073:13108" ph="..." />
+            <marker date="1535568164984" expanded="true" signature="1963:2095" ph="..." />
+            <marker date="1535568164984" expanded="true" signature="2645:2810" ph="..." />
+            <marker date="1535568164984" expanded="true" signature="10391:10428" ph="..." />
+            <marker date="1535568164984" expanded="true" signature="12447:12482" ph="..." />
           </folding>
         </state>
       </provider>

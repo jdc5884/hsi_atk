@@ -153,13 +153,9 @@ class Pentiga_n(object):
 
 
     def gen_structure(self, save_str=False, **kwargs):
-        """
-        Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
+        """Generates image array for base structure based on self.scale_func and self._sma
 
-        :param stats: bool - to compute ellipsoid stats, can always be done later given any sma
-        :param kwargs: for passing additional arguments to ellipsoid function such as spacing
-
-        :return: None - data stored in object
+        :param save_str: bool - whether or not to save image array to object
         """
         a, b = self.get_sma()
         bands = self.get_bands()
@@ -174,20 +170,18 @@ class Pentiga_n(object):
             return structure
 
     def gen_img_area(self, pix_area=1):
-        """
-        Get's image area by n_pixels of object and area of pixels.
+        """Get's image area by n_pixels of object and area of pixels.
         For approximating real size of objects.
+
         :param pix_area: int - size of pixels of real image (ex. 20cm, 6ft, etc.)
         """
         img_area = self.n_pixels*pix_area
         self.img_area = img_area
 
     def compose(self, objects=None, return_labels=False):
-        """
-        Composes all ellipsoids from parent pentiga and all immediate children pentiga of parent
+        """Composes all ellipsoids from parent pentiga and all immediate children pentiga of parent
         limiting third axis to specified number of bands
 
-        :param bands: int - bandwidths to span across
         :param objects: list of strings - names of sub-structures to include in composition
                         if None, all children of parent pentiga
                         if empty list, no children are used in composition and only parent structure
@@ -251,44 +245,32 @@ class Pentiga_n(object):
         else:
             return base_img
 
-    def add_substructure(self, obj, stats=True):
-        """
-        Adds pentiga object to collection of substructures of the self pentiga
+    def add_substructure(self, obj):
+        """Adds pentiga object to collection of substructures of the self pentiga
 
-        :param obj: Pentiga - ellipsoid object
-        :param stats: bool - enforce the ellipsoid stats are stored in object
-
-        :return: None - stores passed obj in self.sub_structures dictionary
+        :param obj: Pentiga
         """
         sub_name = obj.name
-        if stats:
-            if obj.stats is not None:
-                self.sub_structures[sub_name] = obj
-            else:
-                obj.gen_ell_stats()
-                self.sub_structures[sub_name] = obj
-
-        else:
-            self.sub_structures[sub_name] = obj
+        self.sub_structures[sub_name] = obj
 
     def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0), bands=None):
         """Generates another Pentiga object as a sub-structure and store it
 
-        :param ell_sma: tuple of 3 ints - semi-major axes lengths for new ellipsoid structure
+        :param ell_sma: tuple of 2 ints - semi-major axes lengths for new ellipsoid structure
         :param name: string - name of new structure, if None default name will be generated..
                                                      "sub_0", "sub_1", "sub_2", ...
-        :param dist_center: tuple of ints - new structure center distance from parent pentiga
+        :param dist_center: tuple of 2 ints - new structure center distance from parent pentiga
         :param bands: Not used atm, will later be combined with scaling-addition functions
                       to detail structure's effect and brightness across the spectrum
         """
 
-        a0, b0, c0 = self._sma
-        a, b, c = ell_sma
+        a0, b0 = self._sma
+        a, b = ell_sma
         if name is None:
             s_i = len(self.sub_structures)
             name = "sub_" + str(s_i + 1)
 
-        if a > a0 or b > b0 or c > c0:
+        if a > a0 or b > b0:
             raise Exception("semi-major axes of sub-structures must be less-than or equal to primary ellipsoid axes")
         s_ell = Pentiga_n(name, ell_sma, bands=bands, is_substructure=True)
 
@@ -296,7 +278,7 @@ class Pentiga_n(object):
         s_ell.set_center((dist_center[0] + c_b[0], dist_center[1] + c_b[1]))
         s_ell.set_dist_center(dist_center)
 
-        self.sub_structures[name] = s_ell
+        self.add_substructure(s_ell)
 
     # TODO: replace/repurpose add_func functions
     def set_scale_func(self, func):
@@ -352,9 +334,10 @@ class Pentiga_n(object):
     #         func = coor_funcs[key]
     #         func_mat = np.fromfunction(func, shape)
 
-    def gen_ell_stats(self):
-        a, b, c = self._sma
-        self.stats = ellipsoid_stats(a, b, c)
+    # TODO: Separate auto-generated stats functions
+    # def gen_ell_stats(self):
+    #     a, b = self._sma
+    #     self.stats = ellipsoid_stats(a, b)
 
     def add_label(self, key, label):
         self.labels[key] = label
