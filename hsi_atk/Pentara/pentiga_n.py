@@ -152,7 +152,7 @@ class Pentiga_n(object):
         return self.dist_center
 
 
-    def gen_ellipsoid(self, save_str=False, **kwargs):
+    def gen_structure(self, save_str=False, **kwargs):
         """
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
@@ -163,9 +163,9 @@ class Pentiga_n(object):
         """
         a, b = self.get_sma()
         bands = self.get_bands()
-        structure = np.zeros((a*2+1, b*2+1, bands))
+        struct_shape = (a*2+1, b*2+1, bands)
         scale_func = self.get_scale_func()
-        structure = np.fromfunction()
+        structure = np.fromfunction(scale_func, struct_shape)
 
         if save_str:
             self.structure = structure
@@ -197,7 +197,7 @@ class Pentiga_n(object):
         :return: base_img - ndarray of composed image
                  labels_  - 2d array of labels (if return_labels=True)
         """
-        base = self.gen_ellipsoid()
+        base = self.gen_structure()
         d0, d1, d2 = base.shape
         print(base.shape)
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
