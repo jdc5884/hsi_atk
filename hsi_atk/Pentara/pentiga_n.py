@@ -7,7 +7,7 @@ class Pentiga_n(object):
     HSI object to store data about image substructure and easily add or remove it
     """
 
-    def __init__(self, name, ell_sma, bands, copy=False, center=(0, 0), is_substructure=False, labels=None):
+    def __init__(self, name, ell_sma, bands=240, band_dist=2.072, copy=False, center=(0, 0), is_substructure=False, labels=None):
         """
         Initializes pentiga object. Meant to store collections of structures representing one object
         in an HSI, and storing label information related to the structures
@@ -16,6 +16,7 @@ class Pentiga_n(object):
         :param ell_sma: tuple of 2 ints - lengths of the semi-major axes to produce an ellipse
         :param bands: int - integers representing bands occupied by the structure
                         int for total number of bands as representation
+        :param band_dist: float - separation (in nm) between wavelength
         :param copy: bool - whether to keep image loaded or not
         :param center: tuple of ints - supposed center in some image (for passing to Pentara image composer)
         :param is_substructure: bool - whether this pentiga has a parent pentiga
@@ -25,6 +26,7 @@ class Pentiga_n(object):
         self.name = name
         self._sma = ell_sma
         self.bands = bands
+        self.band_dist = band_dist
 
         self.copy = copy
 
@@ -32,10 +34,11 @@ class Pentiga_n(object):
         self.dist_center = None
 
         self.structure = None
-        self.stats = None
+        self.scale_func = None
         self.img_area = 0
         self.n_pixels = 0
 
+        self.label_funcs = {}
         self.labels = {}
         if labels is not None:
             self.labels = labels
@@ -138,20 +141,18 @@ class Pentiga_n(object):
 
     def set_dist_center(self, dist_center):
         """Sets distance from center of parent image component object.
-        :param dist_center: tuple of 2 ints -
+        :param dist_center: tuple of 2 ints - pixel distance from parent image component
         """
         self.dist_center = dist_center
 
     def get_dist_center(self):
+        """Gets distance from center of parent image component object.
+        :return: tuple of 2 ints - pixel distance from parent image component
+        """
         return self.dist_center
 
-    def get_structure(self):
-        if self.bands is None:
-            return self.structure
-        else:
-            return self.structure[:, :, self.bands]
 
-    def gen_ellipsoid(self, stats=False, save_str=False, **kwargs):
+    def gen_ellipsoid(self, save_str=False, **kwargs):
         """
         Wrapper for skimage.draw.ellipsoid function to create base structure of given pentiga object
 
@@ -160,11 +161,11 @@ class Pentiga_n(object):
 
         :return: None - data stored in object
         """
-        a, b, c = self._sma
-        structure = ellipsoid(a, b, c, **kwargs, levelset=True)
-
-        if stats:
-            self.stats = ellipsoid_stats(a, b, c)
+        a, b = self.get_sma()
+        bands = self.get_bands()
+        structure = np.zeros((a*2+1, b*2+1, bands))
+        scale_func = self.get_scale_func()
+        structure = np.fromfunction()
 
         if save_str:
             self.structure = structure
@@ -197,8 +198,8 @@ class Pentiga_n(object):
                  labels_  - 2d array of labels (if return_labels=True)
         """
         base = self.gen_ellipsoid()
-        d0, d1, d2 = self.structure.shape
-        print(self.structure.shape)
+        d0, d1, d2 = base.shape
+        print(base.shape)
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
 
         # base_img = self.structure[:, :, :bands]
@@ -214,10 +215,10 @@ class Pentiga_n(object):
             labels_[rr0, cc0] = self.name
 
         if self.bands is None:
-            base_img[rr0, cc0, :] += self.structure[rr0, cc0, :]
+            base_img[rr0, cc0, :] += base[rr0, cc0, :]
         else:
             base_b = self.bands
-            base_img[rr0, cc0, base_b] += self.structure[rr0, cc0, base_b]
+            base_img[rr0, cc0, base_b] += base[rr0, cc0, base_b]
 
 
 
@@ -229,7 +230,8 @@ class Pentiga_n(object):
             # od0, od1, od2 = obj.structure.shape
             n_obj = self.sub_structures[obj]
             n_obj_b = n_obj.bands
-            nd0, nd1, nd2 = n_obj.structure.shape
+            n_obj_base = n_obj.gen_ellipsoid()
+            nd0, nd1, nd2 = n_obj_base.shape
             nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
             nrr, ncc, bb = n_obj.get_sma()
@@ -239,7 +241,7 @@ class Pentiga_n(object):
             r, c = nr + r0, nc + c0
             rr0, cc0 = ellipse(r, c, nrr, ncc, shape=(d0, d1))
 
-            base_img[rr0, cc0, n_obj_b] += n_obj.structure[nrr0, ncc0, n_obj_b]
+            base_img[rr0, cc0, n_obj_b] += n_obj_base[nrr0, ncc0, n_obj_b]
             if return_labels:
                 n_l = "," + n_obj.get_name()
                 labels_[rr0, cc0] += n_l
@@ -269,10 +271,8 @@ class Pentiga_n(object):
         else:
             self.sub_structures[sub_name] = obj
 
-    def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0),
-                          bands=None, stats=False):
-        """
-        Generates another Pentiga object as a sub-structure and store it
+    def gen_sub_structure(self, ell_sma, name=None, dist_center=(0, 0), bands=None):
+        """Generates another Pentiga object as a sub-structure and store it
 
         :param ell_sma: tuple of 3 ints - semi-major axes lengths for new ellipsoid structure
         :param name: string - name of new structure, if None default name will be generated..
@@ -280,9 +280,6 @@ class Pentiga_n(object):
         :param dist_center: tuple of ints - new structure center distance from parent pentiga
         :param bands: Not used atm, will later be combined with scaling-addition functions
                       to detail structure's effect and brightness across the spectrum
-        :param stats: bool - for computing the elipsoid stats, can always be done later
-
-        :return: None - sub structure is added to self.sub_structure dictionary
         """
 
         a0, b0, c0 = self._sma
@@ -293,7 +290,7 @@ class Pentiga_n(object):
 
         if a > a0 or b > b0 or c > c0:
             raise Exception("semi-major axes of sub-structures must be less-than or equal to primary ellipsoid axes")
-        s_ell = Pentiga_n(name, ell_sma, bands=bands, stats=stats, is_base=False, is_substructure=True)
+        s_ell = Pentiga_n(name, ell_sma, bands=bands, is_substructure=True)
 
         c_b = self.get_center()
         s_ell.set_center((dist_center[0] + c_b[0], dist_center[1] + c_b[1]))
@@ -301,97 +298,34 @@ class Pentiga_n(object):
 
         self.sub_structures[name] = s_ell
 
-        if not self.is_base:
-            self.is_base = True
+    # TODO: replace/repurpose add_func functions
+    def set_scale_func(self, func):
+        self.scale_func = func
 
-    # Basic version
-    # Add scaling instructions instead of basic linear tuples
-    def scale_substructure(self, names, scales):
+    def get_scale_func(self):
+        return self.scale_func
 
-        for name in names:
-            n_ell = self.sub_structures[name].structure
-            scale = scales[name]
-            n_ell *= scale[0]
-            n_ell += scale[1]
-            self.sub_structures[name].structure = n_ell
-            self.sub_scales[name] = scale
-
-# TODO: remove redundant functions and generalized to
+    # TODO: remove redundant functions and generalized to
     # add_func, add_func_bandwise, and add_func_coordwise
     # use generalization with scale_substructure above to pass
     # instruction sets for multi-structure change
-    def add_structure(self, add):
-        """
-        Basic addition across structure array
-
-        :param add: int/float - number to add across structure
-
-        :return: None - value added to self.structure
-        """
-        self.structure += add
-
-    def mult_structure(self, mult):
-        """
-        Basic multiplication across structure array
-
-        :param mult: int/float - number to multiply across structure
-
-        :return: None - value added to self.structure
-        """
-        self.structure *= mult
-
-    def scale_structure(self, mult, add):
-        self.mult_structure(mult)
-        self.add_structure(add)
-
-    def add_linear(self, a, b, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i + b)
-
-    def add_quadratic(self, a, b, c, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i**2 + b*i + c)
-
-    def add_cubic(self, a, b, c, d, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*i**3 + b*i**2 + c*i + d)
-
-    def add_logarithmic(self, a, b, c, d, bands):
-        for i in range(bands[0], bands[1]+1):
-            self.structure[:, :, i] += (a*np.log(b*(i+1) + c) + d)
-
     def add_func_coordwise(self, func, rr, cc):
-        """
-        Alter brightness values by adding from specified function arrays of coordinates
+        """Adds to brightness values
 
         :param func: input func, some f(x, y) = z
         :param rr: ndarray - list of x-coordinates
         :param cc: ndarray - list of y-coordinates
                 - x- and y-coordinates must correspond
-
-        :return: None - values added to image arrays
         """
-
         for r in rr:
             for c in cc:
                 self.structure[r, c, :] += func(r, c)
 
-    def compose_func_coor(self):
-        func_mats = []
-        coor_funcs = self.get_coor_funcs()
-        shape = self.get_shape()
-        for key in coor_funcs.keys():
-            func = coor_funcs[key]
-            func_mat = np.fromfunction(func, shape)
-
     def add_func_bandwise(self, func, bands):
-        """
-        Alter brightness values by adding from specified function with band as input
+        """Alter brightness values by adding from specified function with band as input
 
         :param func: input func, some f(x) = y
         :param bands: int, tuple, list, or ndarray representing band indices
-
-        :return: None - values added to image arrays
         """
         if isinstance(bands, tuple):
             for i in range(bands[0], bands[1]+1):
@@ -410,6 +344,14 @@ class Pentiga_n(object):
             for r, c, in rr, cc:
                 self.structure[r, c, band] += func(r, c, band)
 
+    # def compose_func_coor(self):
+    #     func_mats = []
+    #     coor_funcs = self.get_coor_funcs()
+    #     shape = self.get_shape()
+    #     for key in coor_funcs.keys():
+    #         func = coor_funcs[key]
+    #         func_mat = np.fromfunction(func, shape)
+
     def gen_ell_stats(self):
         a, b, c = self._sma
         self.stats = ellipsoid_stats(a, b, c)
@@ -417,13 +359,15 @@ class Pentiga_n(object):
     def add_label(self, key, label):
         self.labels[key] = label
 
+    def remove_label(self, key):
+        del self.labels[key]
+
     def set_labels(self, labels):
         self.labels = labels
 
-    #TODO: implement use_pix_avg and use_pix_var
+    #TODO: implement use_pix_avg and use_pix_var, pix_band_avg, pix_band_var
     def gen_wt_label(self, wt_func, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
-        """
-        Function for generating continuous labels of weight explicitly or within a
+        """Function for generating continuous labels of weight explicitly or within a
         distribution versus structure and substructure stats
         :param wt_func: mathematical function - takes pixel count and weight to generate weight label
         :param structs: list of keys - sub structures to include in weight label computation
@@ -452,8 +396,7 @@ class Pentiga_n(object):
     #TODO: implement use_pix_avg and use_pix_var and base "weighting"
     def gen_lp_labels(self, lp_func, palm_func, lino_func, olei_func, stea_func,
                       base_wt, structs=None, str_wts=None, use_pix_avg=False, use_pix_var=False):
-        """
-        Function for generating continuous labels of lipids explicitly or within a
+        """Function for generating continuous labels of lipids explicitly or within a
         distribution versus structure and substructure stats.
         Kernel weight must be assigned first. Use gen_wt_label.
         :param lp_func: mathematical func - takes pixel count and weight to generate
