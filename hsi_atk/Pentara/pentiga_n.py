@@ -162,12 +162,13 @@ class Pentiga_n(object):
         struct_shape = (a*2+1, b*2+1, bands)
         scale_func = self.get_scale_func()
         structure = np.fromfunction(scale_func, struct_shape)
+        rr, cc = ellipse(20, 20, a, b, shape=struct_shape[:2])
 
         if save_str:
-            self.structure = structure
-            return structure
+            self.structure = structure[rr, cc, :]
+            return structure[rr, cc, :]
         else:
-            return structure
+            return structure[rr, cc, :]
 
     def gen_img_area(self, pix_area=1):
         """Get's image area by n_pixels of object and area of pixels.
@@ -200,7 +201,7 @@ class Pentiga_n(object):
         base_img = np.zeros((d0, d1, d2))
 
         # if bands < d2:
-        rr, cc, bb = self._sma
+        rr, cc = self._sma
         rr0, cc0 = ellipse(r0, c0, rr, cc, shape=(d0, d1))
 
         labels_ = np.empty((d0, d1), dtype=object)
@@ -210,8 +211,10 @@ class Pentiga_n(object):
 
         if self.bands is None:
             base_img[rr0, cc0, :] += base[rr0, cc0, :]
+        elif isinstance(self.bands, int):
+            base_img[rr0, cc0, :] += base[rr0, cc0, :]
         else:
-            base_b = self.bands
+            base_b = self.bands - 1
             base_img[rr0, cc0, base_b] += base[rr0, cc0, base_b]
 
 
@@ -228,7 +231,7 @@ class Pentiga_n(object):
             nd0, nd1, nd2 = n_obj_base.shape
             nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
-            nrr, ncc, bb = n_obj.get_sma()
+            nrr, ncc = n_obj.get_sma()
             nrr0, ncc0 = ellipse(nr0, nc0, nrr, ncc, shape=(nd0, nd1))
 
             nr, nc = n_obj.get_dist_center()
