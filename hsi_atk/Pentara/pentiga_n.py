@@ -1,5 +1,5 @@
 import numpy as np
-from skimage.draw import ellipse, ellipsoid, ellipsoid_stats
+from skimage.draw import ellipse
 
 
 class Pentiga_n(object):
