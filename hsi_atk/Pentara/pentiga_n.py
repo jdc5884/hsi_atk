@@ -162,13 +162,16 @@ class Pentiga_n(object):
         struct_shape = (a*2+1, b*2+1, bands)
         scale_func = self.get_scale_func()
         structure = np.fromfunction(scale_func, struct_shape)
-        rr, cc = ellipse(20, 20, a, b, shape=struct_shape[:2])
+        # rr, cc = ellipse(20, 20, a, b, shape=struct_shape[:2])
 
         if save_str:
-            self.structure = structure[rr, cc, :]
-            return structure[rr, cc, :]
+            self.structure = structure
+            return structure
+            # self.structure = structure[rr, cc, :]
+            # return structure[rr, cc, :]
         else:
-            return structure[rr, cc, :]
+            # return structure[rr, cc, :]
+            return structure
 
     def gen_img_area(self, pix_area=1):
         """Get's image area by n_pixels of object and area of pixels.
