@@ -159,6 +159,7 @@ class Pentiga_n(object):
 
         :param save_str: bool - whether or not to save image array to object
         """
+        self.gen_npix()
         a, b = self.get_sma()
         bands = self.get_bands()
         struct_shape = (a*2+1, b*2+1, bands)
