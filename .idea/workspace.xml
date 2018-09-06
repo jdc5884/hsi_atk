@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Updated README clarifying purpose of library">
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Fixed return line in gen_structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" afterDir="false" />
     </list>
     <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="">
       <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" afterDir="false" />
@@ -39,15 +40,15 @@
         <counts>
           <entry key="Python Console" value="5876" />
           <entry key="md" value="1670" />
-          <entry key="py" value="19462" />
-          <entry key="txt" value="1380" />
+          <entry key="py" value="20038" />
+          <entry key="txt" value="1503" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="1380" />
-          <entry key="Python" value="25338" />
+          <entry key="PLAIN_TEXT" value="1503" />
+          <entry key="Python" value="25914" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -56,7 +57,7 @@
           <entry key="html" value="2" />
           <entry key="md" value="2" />
           <entry key="png" value="1" />
-          <entry key="py" value="24" />
+          <entry key="py" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -65,7 +66,7 @@
           <entry key="Image" value="1" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="24" />
+          <entry key="Python" value="25" />
         </counts>
       </usages-collector>
     </session>
@@ -75,14 +76,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+            <state relative-caret-position="165">
+              <caret line="447" column="18" selection-start-line="447" selection-start-column="18" selection-end-line="447" selection-end-column="18" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1535722852925" expanded="true" signature="1935:2067" ph="..." />
-                <marker date="1535722852925" expanded="true" signature="2617:2782" ph="..." />
-                <marker date="1535722852925" expanded="true" signature="10556:10593" ph="..." />
-                <marker date="1535722852925" expanded="true" signature="12612:12647" ph="..." />
+                <marker date="1536250049222" expanded="true" signature="1941:2073" ph="..." />
+                <marker date="1536250049222" expanded="true" signature="2623:2788" ph="..." />
+                <marker date="1536250049222" expanded="true" signature="10717:10754" ph="..." />
+                <marker date="1536250049222" expanded="true" signature="12773:12808" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="341" column="4" lean-forward="true" selection-start-line="341" selection-start-column="4" selection-end-line="375" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="66" />
+            <state relative-caret-position="241">
+              <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -100,11 +113,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="670">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
-                <marker date="1535687428330" expanded="true" signature="192:472" ph="..." />
+                <marker date="1536249738460" expanded="true" signature="792:1057" ph="..." />
               </folding>
             </state>
           </provider>
@@ -171,7 +184,6 @@
         <option value="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" />
         <option value="$PROJECT_DIR$/hsi_atk/weight_logger.py" />
         <option value="$PROJECT_DIR$/hsi_atk/cnn_model.py" />
@@ -181,6 +193,7 @@
         <option value="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/pentiga_scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" />
       </list>
     </option>
@@ -194,12 +207,27 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
       <ranges>
-        <range start1="1" end1="2" start2="1" end2="2" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="228" end1="230" start2="228" end2="230" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
+        <range start1="37" end1="39" start2="37" end2="39" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="127" end1="127" start2="127" end2="129" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="231" end1="233" start2="233" end2="235" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
+        <range start1="243" end1="244" start2="245" end2="246" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="356" end1="359" start2="358" end2="365" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="360" end1="361" start2="366" end2="366" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="372" end1="373" start2="377" end2="379" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="376" end1="379" start2="382" end2="384" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="380" end1="381" start2="385" end2="391" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="383" end1="383" start2="393" end2="394" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="385" end1="388" start2="396" end2="399" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="419" end1="424" start2="430" end2="435" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="432" end1="437" start2="443" end2="448" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="439" end1="444" start2="450" end2="455" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="446" end1="450" start2="457" end2="478" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
+        <range start1="502" end1="502" start2="530" end2="623" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
       </ranges>
     </file>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="779" />
     <option name="y" value="23" />
     <option name="width" value="1141" />
     <option name="height" value="1127" />
@@ -291,6 +319,12 @@
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Pentara" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -797,7 +831,21 @@
       <option name="project" value="LOCAL" />
       <updated>1535722830314</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="removed unused imports">
+      <created>1535722879432</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1535722879432</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Fixed return line in gen_structure">
+      <created>1535723336880</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1535723336880</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -842,7 +890,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1141" height="1127" extended-state="0" />
+    <frame x="779" y="23" width="1141" height="1127" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17925386" />
@@ -859,13 +907,13 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49635038" weight="0.24011858" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50364965" side_tool="true" weight="0.24703558" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.15650591" side_tool="true" visible="true" weight="0.24703558" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32905138" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.49635038" visible="true" weight="0.24703558" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.84349406" visible="true" weight="0.24703558" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.7419951" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.74067336" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" x="0" y="0" width="205" height="977" id="Documentation" order="6" sideWeight="0.50070524" side_tool="true" weight="0.3299285" />
@@ -905,8 +953,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Testing clustering functions and viewing images with skhyper Process.view()" />
-    <MESSAGE value="Further testing with clustering on real data. TODO: read in hsi's to 4d array and perform clustering and recording statistics. TODO: Generate new labels from cluster statistics, and test vs real labels." />
     <MESSAGE value="Changes to pentiga objects to conserve memory usage and improve variability of generator. Removed redundancies with scaling and labeling functions. Added more getter and setter functions for attributes, removed redundant or unnecessary attributes. Changes reflected in _tests and _scratch. More testing TODO" />
     <MESSAGE value="Fixed commenting and __init__ params to reflect previous commit changes." />
     <MESSAGE value="More testing clustering on real images, and analyzing vs labels." />
@@ -930,7 +976,9 @@
     <MESSAGE value="Fixes to comments, removed some unused functions, fixed some functions for different image generation." />
     <MESSAGE value="Changes for shape+function based image generation." />
     <MESSAGE value="Updated README clarifying purpose of library" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated README clarifying purpose of library" />
+    <MESSAGE value="removed unused imports" />
+    <MESSAGE value="Fixed return line in gen_structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed return line in gen_structure" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hsi-atk/tmp/__init__.py" />
@@ -1072,16 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="350" column="51" selection-start-line="350" selection-start-column="51" selection-end-line="350" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1229,34 +1267,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_scratch.py">
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="66" />
+        <state relative-caret-position="98">
+          <caret line="341" column="4" lean-forward="true" selection-start-line="341" selection-start-column="4" selection-end-line="375" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="670">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
-            <marker date="1535687428330" expanded="true" signature="192:472" ph="..." />
+            <marker date="1536249738460" expanded="true" signature="792:1057" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        <state relative-caret-position="165">
+          <caret line="447" column="18" selection-start-line="447" selection-start-column="18" selection-end-line="447" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1535722852925" expanded="true" signature="1935:2067" ph="..." />
-            <marker date="1535722852925" expanded="true" signature="2617:2782" ph="..." />
-            <marker date="1535722852925" expanded="true" signature="10556:10593" ph="..." />
-            <marker date="1535722852925" expanded="true" signature="12612:12647" ph="..." />
+            <marker date="1536250049222" expanded="true" signature="1941:2073" ph="..." />
+            <marker date="1536250049222" expanded="true" signature="2623:2788" ph="..." />
+            <marker date="1536250049222" expanded="true" signature="10717:10754" ph="..." />
+            <marker date="1536250049222" expanded="true" signature="12773:12808" ph="..." />
           </folding>
         </state>
       </provider>
