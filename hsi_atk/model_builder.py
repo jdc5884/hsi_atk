@@ -7,10 +7,11 @@ from keras.constraints import min_max_norm
 def build_cnn_cont(n_out=3):
     model = models.Sequential()
 
-    model.add(convolutional.SeparableConv2D(filters=16, kernel_size=7, strides=5, activation='relu'))
-    model.add(convolutional.SeparableConv2D(filters=32, kernel_size=7, strides=3, activation='relu'))
+    model.add(convolutional.ZeroPadding2D(padding=1))
+    model.add(convolutional.SeparableConv2D(filters=16, kernel_size=7, strides=5, activation='relu', depth_multiplier=3))
+    model.add(convolutional.SeparableConv2D(filters=32, kernel_size=7, strides=3, activation='relu', depth_multiplier=2))
     model.add(convolutional.MaxPooling2D(pool_size=2))
-    model.add(convolutional.SeparableConv2D(filters=16, kernel_size=2, strides=2, activation='relu'))
+    model.add(convolutional.SeparableConv2D(filters=16, kernel_size=2, strides=2, activation='relu', depth_multiplier=2))
     model.add(convolutional.MaxPooling2D(pool_size=2))
     # model.add(core.Flatten())
     # model.add(core.Dense(256, activation='relu')
@@ -40,6 +41,7 @@ def build_cnn_cont(n_out=3):
     model.add(core.Dropout(.5))
     model.add(core.Dense(64, activation='relu'))
     model.add(core.Dense(n_out, activation='relu'))
+    model.add(core.Dense(n_out, activation='linear'))
     model.compile(optimizer=optimizers.Adam(lr=1.0), loss='mean_squared_error')
     # if continuous:
     #     model.add(core.Dense(n_out))

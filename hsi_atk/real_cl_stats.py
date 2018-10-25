@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from hsi_atk.dataset import open_hsi_bil
+from hsi_atk.utils.dataset import open_hsi_bil
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -11,7 +11,6 @@ from sklearn.preprocessing import StandardScaler
 from skhyper.cluster import KMeans as hKMeans
 from skhyper.decomposition import PCA as hPCA
 from skhyper.process import Process
-from skhyper.svm import SVC as hSVC
 from skimage.filters import threshold_otsu
 
 

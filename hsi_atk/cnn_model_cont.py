@@ -6,6 +6,9 @@ from sklearn.metrics import mean_squared_error, confusion_matrix, accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from keras import backend
 from keras.preprocessing.image import ImageDataGenerator
+# from keras.callbacks import EarlyStopping
+from weight_logger import WeightsLogger
+from model_builder import build_cnn_cont
 
 
 local_project_path = '/'
@@ -49,9 +52,6 @@ training_idx, test_idx = indices[:36], indices[36:]
 X_train, X_test = images[training_idx, :, :, :], images[test_idx, :, :, :]
 y_train, y_test = y[training_idx], y[test_idx]
 
-
-from hsi_atk.model_builder import build_cnn_cont
-
 model = build_cnn_cont(n_out=len(label_cols))
 
 # datagen = ImageDataGenerator(
@@ -72,9 +72,9 @@ model = build_cnn_cont(n_out=len(label_cols))
 history = model.fit(
     x=X_train,
     y=y_train,
-    batch_size=36,
+    batch_size=6,
     epochs=10,
-    # callbacks=[WeightsLogger(root_path=local_project_path)]
+    callbacks=[WeightsLogger(root_path="/Users/tensorstrings/hsi_atk/hsi_atk/hsi_atk/data")]
 )
 
 predictions = model.predict(
@@ -82,11 +82,11 @@ predictions = model.predict(
     batch_size=10,
 )
 
-print(accuracy_score(y_test, predictions))
-print(confusion_matrix(y_test, predictions))
-# print(mean_squared_error(y_test[0], predictions[0]))
-# print(mean_squared_error(y_test[1], predictions[1]))
-# print(mean_squared_error(y_test[2], predictions[2]))
+# print(accuracy_score(y_test, predictions))
+# print(confusion_matrix(y_test, predictions))
+print(mean_squared_error(y_test[0], predictions[0]))
+print(mean_squared_error(y_test[1], predictions[1]))
+print(mean_squared_error(y_test[2], predictions[2]))
 # print(mean_squared_error(y_test[3], predictions[3]))
 # print(mean_squared_error(y_test[4], predictions[4]))
 # print(mean_squared_error(y_test[5], predictions[5]))
