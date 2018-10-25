@@ -232,8 +232,8 @@ class Pentiga_n(object):
         for obj in objects:
             # od0, od1, od2 = obj.structure.shape
             n_obj = self.sub_structures[obj]
-            n_obj_b = n_obj.bands
-            n_obj_base = n_obj.gen_ellipsoid()
+            n_obj_b = n_obj.get_bands() - 1
+            n_obj_base = n_obj.gen_structure()
             nd0, nd1, nd2 = n_obj_base.shape
             nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
