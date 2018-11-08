@@ -19,7 +19,7 @@ class Dataset:
 
         self.input = input_folder   # parent input folder
         self.output = output_folder # parent output folder
-        self.format = file_format   # whether loading .bil or .h files/datasets
+        self.format = file_format   # whether writing .bil or .h5 files/datasets
         self.labels = lbl_file      # .csv file containing experimental labels
         self.genos = geno           # genotypes of interest, also used as folder indexing
         self.packet = packet        # seed packet, used for experimental data and file indexing
@@ -92,6 +92,15 @@ class Dataset:
 
         return foi
 
+    def writeDataset(self, name, data):
+        file = 'file'  # placeholder
+        hf = h5py.File(file, 'w')
+        hf.create_dataset(name, data=data)
+
+        pass
+
+    def writeDataGroup(self, d_file, g_name, data):
+        pass
 
 
 # pass as list of tuples to make 1 for loop generating file
