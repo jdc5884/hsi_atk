@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Scratch file building toy datasets from pentiga_n objects.">
-      <change afterPath="$PROJECT_DIR$/hsi_atk/utils/pickly.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/HypPy/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
     </list>
@@ -48,17 +49,17 @@
           <entry key="image_mask" value="678" />
           <entry key="md" value="1670" />
           <entry key="pickle_tst" value="23" />
-          <entry key="py" value="36142" />
+          <entry key="py" value="36794" />
           <entry key="pyw" value="29" />
-          <entry key="txt" value="2807" />
+          <entry key="txt" value="2851" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSV" value="15" />
           <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="2811" />
-          <entry key="Python" value="43665" />
+          <entry key="PLAIN_TEXT" value="2855" />
+          <entry key="Python" value="44317" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -68,7 +69,7 @@
           <entry key="html" value="2" />
           <entry key="md" value="2" />
           <entry key="png" value="7" />
-          <entry key="py" value="86" />
+          <entry key="py" value="89" />
           <entry key="pyw" value="1" />
           <entry key="sta" value="1" />
           <entry key="txt" value="1" />
@@ -81,7 +82,7 @@
           <entry key="Image" value="7" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="87" />
+          <entry key="Python" value="90" />
         </counts>
       </usages-collector>
     </session>
@@ -131,14 +132,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="764">
+            <state relative-caret-position="811">
               <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2715">
+              <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -179,7 +198,6 @@
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentara.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita_tools.py" />
         <option value="$PROJECT_DIR$/hsi_atk/dataset_simple.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py" />
         <option value="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
@@ -214,6 +232,7 @@
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/fipy_scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/pickle_tst.py" />
         <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py" />
       </list>
     </option>
   </component>
@@ -554,13 +573,6 @@
       <option name="presentableId" value="Default" />
       <updated>1529078384365</updated>
     </task>
-    <task id="LOCAL-00007" summary="Additional testing for Pentiga functions. Modifications to pentiga functions and additional documentation. Added additional test arrays in hsi_atk/test_data for pentiga tests. Fixed loadBIL from /dataset.py">
-      <created>1530035266430</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1530035266430</updated>
-    </task>
     <task id="LOCAL-00008" summary="Minor restructuring. Started functions for Pentiga labels.">
       <created>1530723196349</created>
       <option name="number" value="00008" />
@@ -897,7 +909,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540487423484</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="simple functions to save and load objects">
+      <created>1541699464891</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1541699464892</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1005,7 +1024,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="More fixes to functions calls and params." />
     <MESSAGE value="Additional building with decomposition and preprocessing along with variable organization." />
     <MESSAGE value="Building cnn_model for multi-label predictions." />
     <MESSAGE value="Refactoring generators for more efficient and versatile storage and generation of KT simulated and labeled images." />
@@ -1030,15 +1048,10 @@
     <MESSAGE value="misc testing" />
     <MESSAGE value="Adding utility options for commandline tools and file I/O" />
     <MESSAGE value="indexing and naming convention edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="indexing and naming convention edits" />
+    <MESSAGE value="simple functions to save and load objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="simple functions to save and load objects" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hsi_atk/docs/_build/html/_static/file.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/docs/_build/html/search.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/docs/_build/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1055,13 +1068,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/contours.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/plot3var.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1391,11 +1397,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
+        <state relative-caret-position="811">
           <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2715">
+          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
         </state>
       </provider>
     </entry>
