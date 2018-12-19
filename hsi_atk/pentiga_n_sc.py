@@ -78,3 +78,4 @@ def pent_n_gen(name, sma1, sma2, pent_dict):
     lp = pent_n.gen_lp_labels()
     return image, wt, lp, pent_n
 
+# img, wt, lp, pent = pent_n_gen("pent", (22,23), (10,5), {})
