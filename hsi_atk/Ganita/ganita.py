@@ -1,14 +1,13 @@
-
+import numpy as np
 
 
 class Ganita:
 
-    def __init__(self, lbl_list):
-        '''
+    def __init__(self, args):
+        self._chr = {}
+        self._chr_rgs = {}
 
-        :param lbl_list: array of strings, number, or hashable object (column headers)
+    def add_chr(self, name, chr_range, chr_length):
+        self._chr[name] = np.random.rand(chr_range[0], chr_range[1], chr_length)
+        self._chr_rgs[name] = chr_range
 
-        '''
-        self.lbl_list = lbl_list
-
-        pass
