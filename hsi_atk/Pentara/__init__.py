@@ -1,5 +1,5 @@
-from hsi_atk.Pentara.pentiga import Pentiga
-from hsi_atk.Pentara.pentara import Pentara
+from hsi_atk.Pentara import pentiga, pentiga_n
+from hsi_atk.Pentara import pentara, pentara_n
 
 
-__all__ = ['Pentiga', 'Pentara']
+__all__ = ['pentiga', 'pentara', 'pentiga_n', 'pentara_n']

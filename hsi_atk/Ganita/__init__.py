@@ -1,2 +1,4 @@
-# author David Ruddell
-# contact: dr1236@uncw.edu, dlruddell@gmail.com
+from hsi_atk.Ganita.ganita import Ganita
+
+
+__all__ = ['Ganita']
