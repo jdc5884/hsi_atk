@@ -5,6 +5,8 @@ setup(
 
     version='0.0.4a',
 
+    package_dir = {'hsi_atk': 'hsi_atk'},
+
     packages=['hsi_atk',
               'hsi_atk.utils',
               'hsi_atk.Pentara',
