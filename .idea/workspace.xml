@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Scratch file building toy datasets from pentiga_n objects.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Moratikara/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Moratikara/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Moratikara/moratikara.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Moratikara/moratikara.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" afterDir="false" />
     </list>
@@ -61,7 +52,7 @@
           <entry key="py" value="48597" />
           <entry key="pyw" value="29" />
           <entry key="scratch" value="196" />
-          <entry key="txt" value="3215" />
+          <entry key="txt" value="3369" />
           <entry key="yml" value="116" />
         </counts>
       </usages-collector>
@@ -69,7 +60,7 @@
         <counts>
           <entry key="CSV" value="15" />
           <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="3219" />
+          <entry key="PLAIN_TEXT" value="3373" />
           <entry key="Python" value="57458" />
           <entry key="YAML" value="116" />
         </counts>
@@ -238,24 +229,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/hsi_atk/scratch.py">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="1" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="2" end1="13" start2="2" end2="13" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="45" end1="45" start2="45" end2="48" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="46" end1="49" start2="49" end2="50" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="50" end1="51" start2="51" end2="54" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="52" end1="52" start2="55" end2="60" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="53" end1="60" start2="61" end2="69" changelist="ca0d8dc1-f406-469d-a21a-19fa62333eff" />
-        <range start1="61" end1="62" start2="70" end2="72" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
-        <range start1="74" end1="80" start2="84" end2="91" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
-        <range start1="81" end1="81" start2="92" end2="93" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
-        <range start1="82" end1="83" start2="94" end2="95" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
-        <range start1="85" end1="86" start2="97" end2="99" changelist="6d7891c5-c099-454e-b3e2-d44617e592fa" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="37" />
@@ -568,41 +541,6 @@
       <option name="presentableId" value="Default" />
       <updated>1529078384365</updated>
     </task>
-    <task id="LOCAL-00017" summary="Added get_name() function for pentiga objects. Fixed some documentation in functions and for params. Added return_labels feature to compose() functions to return labeled array for presence of objects in generated image.">
-      <created>1531510517627</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1531510517627</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Testing clustering functions and viewing images with skhyper Process.view()">
-      <created>1531510565423</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1531510565423</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Further testing with clustering on real data. TODO: read in hsi's to 4d array and perform clustering and recording statistics. TODO: Generate new labels from cluster statistics, and test vs real labels.">
-      <created>1531510669543</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1531510669543</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Changes to pentiga objects to conserve memory usage and improve variability of generator. Removed redundancies with scaling and labeling functions. Added more getter and setter functions for attributes, removed redundant or unnecessary attributes. Changes reflected in _tests and _scratch. More testing TODO">
-      <created>1532449989184</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1532449989184</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Fixed commenting and __init__ params to reflect previous commit changes.">
-      <created>1532450125429</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1532450125429</updated>
-    </task>
     <task id="LOCAL-00022" summary="More testing clustering on real images, and analyzing vs labels.">
       <created>1532450259709</created>
       <option name="number" value="00022" />
@@ -911,7 +849,42 @@
       <option name="project" value="LOCAL" />
       <updated>1542834210627</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Added init fixes">
+      <created>1545239923994</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1545239923995</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fixed unexpected EOF">
+      <created>1545239965987</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1545239965987</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Some minor changes to ganita objects">
+      <created>1545240001475</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1545240001475</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Editing edge detection and segmentation of image">
+      <created>1545240036084</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1545240036085</updated>
+    </task>
+    <task id="LOCAL-00070" summary="More scratch experimentation">
+      <created>1545240065022</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1545240065022</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -957,6 +930,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="37" y="46" width="1042" height="1137" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1018,11 +992,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored gen_ellipsoid to gen_structure" />
-    <MESSAGE value="Fixes to comments, removed some unused functions, fixed some functions for different image generation." />
-    <MESSAGE value="Changes for shape+function based image generation." />
-    <MESSAGE value="Updated README clarifying purpose of library" />
-    <MESSAGE value="removed unused imports" />
     <MESSAGE value="Fixed return line in gen_structure" />
     <MESSAGE value="Merged with pentiga label generators." />
     <MESSAGE value="Experimenting with pentiga_n object and label generation" />
@@ -1043,7 +1012,12 @@
     <MESSAGE value="object for bounding box generation and other util/image processing features" />
     <MESSAGE value="update init manifest" />
     <MESSAGE value="Working on build/install features for package portability and usage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on build/install features for package portability and usage." />
+    <MESSAGE value="Added init fixes" />
+    <MESSAGE value="fixed unexpected EOF" />
+    <MESSAGE value="Some minor changes to ganita objects" />
+    <MESSAGE value="Editing edge detection and segmentation of image" />
+    <MESSAGE value="More scratch experimentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="More scratch experimentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
