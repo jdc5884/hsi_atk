@@ -200,7 +200,7 @@ class Pentiga_n(object):
         """
         base = self.gen_structure()
         d0, d1, d2 = base.shape
-        print(base.shape)
+        # print(base.shape)
         r0, c0 = np.floor(d0/2), np.floor(d1/2)
 
         # base_img = self.structure[:, :, :bands]
@@ -221,33 +221,32 @@ class Pentiga_n(object):
             base_img[rr0, cc0, :] += base[rr0, cc0, :]
         else:
             base_b = self.bands - 1
-            base_img[rr0, cc0, base_b] += base[rr0, cc0, base_b]
+            base_img[rr0, cc0, base_b] += base[rr0, cc0, :base_b]
 
 
 
-        if objects is None:
+        if objects is not None:
             objects = self.sub_structures.keys()
 
+            for obj in objects:
+                # od0, od1, od2 = obj.structure.shape
+                n_obj = self.sub_structures[obj]
+                n_obj_b = n_obj.get_bands() - 1
+                n_obj_base = n_obj.gen_structure()
+                nd0, nd1, nd2 = n_obj_base.shape
+                nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
 
-        for obj in objects:
-            # od0, od1, od2 = obj.structure.shape
-            n_obj = self.sub_structures[obj]
-            n_obj_b = n_obj.get_bands() - 1
-            n_obj_base = n_obj.gen_structure()
-            nd0, nd1, nd2 = n_obj_base.shape
-            nr0, nc0 = np.floor(nd0/2), np.floor(nd1/2)
+                nrr, ncc = n_obj.get_sma()
+                nrr0, ncc0 = ellipse(nr0, nc0, nrr, ncc, shape=(nd0, nd1))
 
-            nrr, ncc = n_obj.get_sma()
-            nrr0, ncc0 = ellipse(nr0, nc0, nrr, ncc, shape=(nd0, nd1))
+                nr, nc = n_obj.get_dist_center()
+                r, c = nr + r0, nc + c0
+                rr0, cc0 = ellipse(r, c, nrr, ncc, shape=(d0, d1))
 
-            nr, nc = n_obj.get_dist_center()
-            r, c = nr + r0, nc + c0
-            rr0, cc0 = ellipse(r, c, nrr, ncc, shape=(d0, d1))
-
-            base_img[rr0, cc0, :] += n_obj_base[nrr0, ncc0, :]
-            if return_labels:
-                n_l = "," + n_obj.get_name()
-                labels_[rr0, cc0] += n_l
+                base_img[rr0, cc0, :] += n_obj_base[nrr0, ncc0, :]
+                if return_labels:
+                    n_l = "," + n_obj.get_name()
+                    labels_[rr0, cc0] += n_l
 
         if return_labels:
             return base_img, labels_
