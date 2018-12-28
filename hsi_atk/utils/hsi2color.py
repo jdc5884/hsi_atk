@@ -21,7 +21,7 @@ def hsi2gray(img):
     gray = np.mean(img, axis=2)
     return gray
 
-def hsi2color(img, color_rngs=_RGB_RNG, wavelengths=_WAVELENGTHS, scale_in=4095, scale_out=255, scale=True):
+def hsi2color(img, color_rngs=_RGB_RNG, wavelengths=_WAVELENGTHS, scale_in=4095, scale_out=255, scale=True, out_type=int):
     images = []
 
     for rng in color_rngs:
@@ -32,6 +32,11 @@ def hsi2color(img, color_rngs=_RGB_RNG, wavelengths=_WAVELENGTHS, scale_in=4095,
 
     if scale:
         return rgb*scale_out
+
+    if out_type is int:
+        np.floor(rgb)
+
+    rgb.astype(out_type)
 
     return rgb
 

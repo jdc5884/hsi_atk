@@ -4,7 +4,7 @@ from keras.constraints import min_max_norm
 
 
 
-def build_cnn_cont(n_out=3):
+def build_cnn_cont(n_out=6):
     model = models.Sequential()
 
     model.add(convolutional.ZeroPadding2D(padding=1))

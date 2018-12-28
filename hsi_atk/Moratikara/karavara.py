@@ -1,8 +1,7 @@
+import cv2
 import numpy as np
 import scipy.ndimage as ndi
-from skimage.filters import threshold_otsu, sobel
-from skimage.feature import canny
-from skimage.morphology import watershed
+from skimage.filters import threshold_otsu
 from skimage.segmentation import chan_vese
 
 from hsi_atk.utils.hsi2color import hsi2color, hsi2gray
@@ -39,6 +38,22 @@ class Karavara:
 
     def get_hsi(self):
         return self._img
+
+    def get_contours(self):
+        img = self.get_rgb()
+        ref_gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        ret, thresh = cv2.threshold(ref_gray, 127, 255, 0)
+        im2, contours, hierarchy = cv2.findContours(thresh.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        return contours
+
+    def get_ref_contour(self):
+        img = self.get_rgb()
+        contours = self.get_contours()
+        img_area = img.shape[0] * img.shape[1]
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if 0.05 < area/float(img_area) < 0.8:
+                return contour
 
     def find_edges_seg(self):
         """
