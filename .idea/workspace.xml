@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Fixed setup.py install (added package_dir) and placed higher in hierarchy">
-      <change afterPath="$PROJECT_DIR$/Notebooks/.ipynb_checkpoints/SimpleSimAndEval-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb" afterDir="false" />
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Better convergent model, and different train/test partitioning.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/model_builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" afterDir="false" />
     </list>
     <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="">
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
@@ -56,7 +50,7 @@
           <entry key="py" value="50081" />
           <entry key="pyw" value="29" />
           <entry key="scratch" value="196" />
-          <entry key="txt" value="3613" />
+          <entry key="txt" value="3884" />
           <entry key="yml" value="116" />
         </counts>
       </usages-collector>
@@ -64,7 +58,7 @@
         <counts>
           <entry key="CSV" value="15" />
           <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="3617" />
+          <entry key="PLAIN_TEXT" value="3888" />
           <entry key="Python" value="58982" />
           <entry key="YAML" value="116" />
         </counts>
@@ -76,7 +70,7 @@
           <entry key="html" value="2" />
           <entry key="md" value="2" />
           <entry key="png" value="8" />
-          <entry key="py" value="153" />
+          <entry key="py" value="154" />
           <entry key="pyw" value="1" />
           <entry key="sta" value="1" />
           <entry key="txt" value="6" />
@@ -90,7 +84,7 @@
           <entry key="Image" value="8" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="154" />
+          <entry key="Python" value="155" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -116,7 +110,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-39">
@@ -131,10 +125,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="35" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
+            <state relative-caret-position="178">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+              <folding>
+                <element signature="e#14#32#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -147,7 +153,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="555">
               <caret line="37" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
@@ -343,47 +349,12 @@
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Ganita" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Pentara" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Sasatari" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="Notebooks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Notebooks" type="462c0819:PsiDirectoryNode" />
-              <item name=".ipynb_checkpoints" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -592,34 +563,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529078384365</updated>
-    </task>
-    <task id="LOCAL-00024" summary="More fixes to functions calls, functions, params, and comments. Planning move to ellipse basis, with functions defining spectral dimensions+brightness instead of ellipsoid basis.">
-      <created>1532451108477</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1532451108477</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Fixes to basic_gen().">
-      <created>1532451179533</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1532451179533</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Function param input edit">
-      <created>1532974485509</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1532974485509</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Modified clustering to deal with memory issues of skhyper clustering. Added grabbing of statistics of classes.">
-      <created>1532974659256</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1532974659257</updated>
     </task>
     <task id="LOCAL-00028" summary="Added comments and docs to functions. Added optional filtering for funcs. Altered class stats to return in more hierarchal dict. Added functions to unify independent clustering of images. Started predict function, and reorder classes in cluster dict function. Added TODOs.">
       <created>1533743020199</created>
@@ -936,7 +879,35 @@
       <option name="project" value="LOCAL" />
       <updated>1545240181283</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Got rid of annoying print statement.">
+      <created>1546021134299</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1546021134300</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Example usage notebooks">
+      <created>1546021168278</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1546021168278</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Refactored output types to work with matplot lib and other tools (integer pixel values, need to add 0..1 scaled float output rgb also).">
+      <created>1546021243491</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1546021243491</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Better convergent model, and different train/test partitioning.">
+      <created>1546043551734</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1546043551734</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -996,8 +967,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49501246" visible="true" weight="0.23972602" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.19642857" side_tool="true" weight="0.2446184" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.71442986" visible="true" weight="0.23972602" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.28557014" side_tool="true" weight="0.23972602" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32905138" />
       <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8035714" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1043,10 +1014,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Experimenting with pentiga_n object and label generation" />
-    <MESSAGE value="n_pix updates on gen_struct call" />
-    <MESSAGE value="Training/testing NN models" />
-    <MESSAGE value="Building NN models. RMSE of current model &lt; 0.01 for some labels." />
     <MESSAGE value="Scratch file building toy datasets from pentiga_n objects." />
     <MESSAGE value="misc testing" />
     <MESSAGE value="Adding utility options for commandline tools and file I/O" />
@@ -1068,7 +1035,11 @@
     <MESSAGE value="More scratch experimentation" />
     <MESSAGE value="Edited red range global, and added a 4-band output to include averaged infrared bands ontop of RGB. Still need to formalize RGB translation." />
     <MESSAGE value="Fixed setup.py install (added package_dir) and placed higher in hierarchy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed setup.py install (added package_dir) and placed higher in hierarchy" />
+    <MESSAGE value="Got rid of annoying print statement." />
+    <MESSAGE value="Example usage notebooks" />
+    <MESSAGE value="Refactored output types to work with matplot lib and other tools (integer pixel values, need to add 0..1 scaled float output rgb also)." />
+    <MESSAGE value="Better convergent model, and different train/test partitioning." />
+    <option name="LAST_COMMIT_MESSAGE" value="Better convergent model, and different train/test partitioning." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1303,13 +1274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/ganita.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1321,6 +1285,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
           <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1545249951804" expanded="true" signature="1240:1490" ph="..." />
+            <marker date="1545249951804" expanded="true" signature="1705:1770" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1328,6 +1297,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="56" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1335,13 +1307,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="46" column="50" selection-start-line="46" selection-start-column="50" selection-end-line="46" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -1360,16 +1325,6 @@
         <state>
           <folding>
             <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1398,6 +1353,33 @@
             <marker date="1545248478179" expanded="true" signature="2494:2544" ph="..." />
             <marker date="1545248478179" expanded="true" signature="2981:2986" ph="..." />
             <marker date="1545248478179" expanded="true" signature="3600:3605" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="22" lean-forward="true" selection-start-line="28" selection-start-column="22" selection-end-line="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
