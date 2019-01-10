@@ -27,6 +27,8 @@ setup(
     author_email='dlruddell@gmail.com',
 
     install_requires=['numpy>=1.14.2',
+                      'pandas>=0.23.0',
+                      'keras>=2.2.0',
                       'scipy>=1.1.0',
                       'scikit-learn>=0.19.1',
                       'scikit-image>=0.14.0',
