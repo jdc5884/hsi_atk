@@ -44,24 +44,41 @@ import numpy as np
 # print(confusion_matrix(Y_test[4], Y_preds[4]))
 
 from hsi_atk.utils.dataset import open_hsi_bil
-from hsi_atk.utils.hsi2color import hsi2color, hsi2color4, hsi2gray
-from skimage.segmentation import chan_vese as seger
+# from hsi_atk.utils.hsi2color import hsi2color, hsi2color4, hsi2gray
+# from skimage.segmentation import chan_vese as seger
 
 img_ = open_hsi_bil("../Data/32.control.bil")
 
-hsi_rgb = hsi2color(img_, scale=False)
-hsi_rgbp = hsi2color4(img_)
-gray = hsi2gray(img_)
+Fs = []
+for i in range(240):
+    F = np.fft.fftn(img_[:,:,i])
+    F_mag = np.abs(F)
+    F_mag = np.fft.fftshift(F_mag)
+    Fs.append(F_mag)
 
-gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
-gseg = ~ gseg
-rr, cc = np.where(gseg)
-hsi_rgb_mask = hsi_rgb.copy()
-hsi_rgb_mask[rr,cc,:] *= 0
+Fs = np.stack(Fs, axis=-1)
 
 import matplotlib.pyplot as plt
-plt.imshow(hsi_rgb_mask)
-plt.show()
+
+f, ax = plt.subplots()
+ax.imshow(np.log(1+F_mag), cmap='viridis',)
+f.show()
+
+### Testing rgb converter and segmentation
+
+# hsi_rgb = hsi2color(img_, scale=False)
+# hsi_rgbp = hsi2color4(img_)
+# gray = hsi2gray(img_)
+#
+# gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
+# gseg = ~ gseg
+# rr, cc = np.where(gseg)
+# hsi_rgb_mask = hsi_rgb.copy()
+# hsi_rgb_mask[rr,cc,:] *= 0
+#
+# import matplotlib.pyplot as plt
+# plt.imshow(hsi_rgb_mask)
+# plt.show()
 # plt.figure(1)
 # plt.imshow(hsi_rgb_mask)
 # seg = seger(hsi_rgb)

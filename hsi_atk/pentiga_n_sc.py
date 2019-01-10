@@ -14,13 +14,15 @@ def scale_fn(x, y, z):
 def nfunc(x, y, z):
     return 10. * np.sin(.01 * x - 1) + np.cos(.05 * x - 5) + 10 + \
            10. * -np.cos(.01 * y - 1) + np.cos(.05 * y - 5) + 10 + \
-           10. * np.sin(.05 * z - 1) * np.cos(.05 * z - 5) + 200 + z**1.15 + 300*z*np.sin(60*z*np.pi*np.sin(x*y*10*np.pi))
+           10. * np.sin(.05 * z - 1) * np.cos(.05 * z - 5) + 200 + \
+           z**1.15 + 300*z*np.sin(60*z*np.pi*np.sin(x*y*10*np.pi))
 
 
 def nfunc_par(x, y, z, a=.02, a0=.04, b=.02, b0=.04, c=.03, c0=.04, h0=0, h1=0, h2=50):
     return 10. * np.sin(a * x - 1) + np.cos(a0 * x - 5) + h0 + \
            10. * -np.cos(b * y - 1) + np.cos(b0 * y - 5) + h1 + \
-           10. * np.sin(c * z - 1) * np.cos(c0 * z - 5) + h2 + z**1.25 + 50*z*np.sin(30*z*np.pi*np.sin(x*y*10*np.pi))
+           10. * np.sin(c * z - 1) * np.cos(c0 * z - 5) + h2 + \
+           z**1.25 + 50*z*np.sin(30*z*np.pi*np.sin(x*y*10*np.pi))
 
 
 def nfunc_fn(x, y, z):
@@ -78,4 +80,9 @@ def pent_n_gen(name, sma1, sma2, pent_dict):
     lp = pent_n.gen_lp_labels()
     return image, wt, lp, pent_n
 
-# img, wt, lp, pent = pent_n_gen("pent", (22,23), (10,5), {})
+img, wt, lp, pent = pent_n_gen("pent", (22,23), (10,5), {})
+
+from skhyper.process import Process
+
+X = Process(img)
+X.view()
