@@ -1,112 +1,66 @@
-import h5py
+import h5py as h5
 import os
 import numpy as np
 import pandas as pd
 import rasterio
 
 
-class Dataset:
+class Dataset():
     """Class for file I/O of stored datasets"""
 
-    def __init__(self, input_folder, file_format, output_folder, lbl_file=None,
-                 geno=None, packet=None, treatment=None):
+    def __init__(self, h5_file, mode='r'):
+        self.file_name = h5_file
+        self.mode = mode
+        self.hf = h5.File(h5_file, mode=mode)
 
-        if not input_folder.endswith('/'):
-            input_folder = input_folder + '/'  # ensuring folder path ends with '/' for
-                                               # path appending
-        if not output_folder.endswith('/'):
-            output_folder = output_folder + '/'
+    def get_hf(self):
+        return self.hf
 
-        self.input = input_folder   # parent input folder
-        self.output = output_folder # parent output folder
-        self.format = file_format   # whether writing .bil or .h5 files/datasets
-        self.labels = lbl_file      # .csv file containing experimental labels
-        self.genos = geno           # genotypes of interest, also used as folder indexing
-        self.packet = packet        # seed packet, used for experimental data and file indexing
-        self.treat = treatment      # hormonal treatment used for experimental and file indexing
-        self.images = None          # used to hold hsi image arrays temporarily, though usually are just returned
-                                    # can be singular 4-D array or list of arrays (referring to numpy array)
+    def get_mode(self):
+        return self.mode
 
-    def loadBILFile(self, folder, file, format=1):
-        """Load image array from .bil file
-        :param file_path: string - path to .bil file (requires .bil.hdr file in same directory)
-        :param file: string - packet#.treatment.bil file string
-        :param format: 0 or 1 - corresponds to bands first or bands last
-                                default is bands last (format=1)
-        :return: numpy array of image in shape (lines, cols, bands)
+    def write_group(self, group_name, group_path='/'):
         """
-        raw = rasterio.open(folder+file)
-        img = np.array(raw.read())
+        Create group in h5 file by a specified path
+        :param group_name: string - end of path group name
+        :param group_path: string - path through root -> group -> subgroups -> etc
+        :return: None
+        """
+        if "w" in self.get_mode():
+            hf = self.get_hf()
+            group_name = group_path + group_name
+            hf.create_group(group_name)
+        else:
+            print("Not in write mode!")
 
-        if format == 0:
-            return img  # return bands first format of image
+    def write_dataset(self, dataset_name, data, group_path='/', autochunk=False):
+        """
+        Create dataset in h5 file by specified group path
+        :param dataset_name: string - name of dataset. Ex: "raw_images"
+        :param data: numpy ndarray - data to be stored in dataset
+        :param group_path: string - path to group. Ex: "/images/raw", "/labels/genotype"
+        :param autochunk: boolean - whether or not to allow h5 to auto chunk. Helpful for larger dataset access performance
+        :return: None
+        """
+        if "w" in self.get_mode():
+            hf = self.get_hf()
+            group = hf[group_path]
+            group.create_dataset(dataset_name, data=data, chunks=autochunk)
+        else:
+            print("Not in write mode!")
 
-        img = img.swapaxes(0, 2).swapaxes(0, 1)
-        return img  # returns bands last format of image
 
-    def composeBILFiles(self, stacked=True):
-        """Composes hsi image arrays into single 4-D array."""
-        images = []
-        if self.genos is not None:
-            for geno in self.genos:
-                images.append(self.getBILFiles(geno))
-            if stacked:
-                return np.array(images)
-            return images
+class HSI_Dataset(Dataset):
 
-        # Getting all genotypes if self.genos is None
-        all_genos = os.listdir(self.input)
-        for geno in all_genos:
-            images.append(self.getBILFiles(geno))
-        if stacked:
-            return np.array(images)
-        return images
+    def __init__(self, h5_file, mode='r'):
+        super().__init__(h5_file=h5_file, mode=mode)
 
-    def getBILFiles(self, geno):
-        """Gets list of files in folders.
-        Hyperspectral files organized in folders by genotype.
-        Should be passed folder of specific genotype."""
-        geno_path = self.input+geno
-        children = os.listdir(geno_path)  # list of files in folder
-        foi = []  # files of interest
-        packet = self.packet
-        treatment = self.treat
-
-        for child in children:
-            if not child.endswith('.bil'):
-                continue                # passing files not ending in .bil
-
-            childl = child.lower()      # enforcing all lower case
-            csplit = childl.split('.')  # splitting packet#.treatment.bil format
-            if packet is None and treatment is None:
-                foi.append(child)  # gets all files of geno
-            elif csplit[0] in packet and treatment is None:
-                foi.append(child)  # gets all treatments of geno.packet
-            elif packet is None and csplit[1] in treatment:
-                foi.append(child)  # gets all packets of geno.treatment
-            elif csplit[0] in packet and csplit[1] in treatment:
-                foi.append(child)  # gets all files of geno.packet.treatment
-
-        if len(foi) == 0:
-            raise Exception("No files matching this criteria!")
-
-        return foi
-
-    def writeDataset(self, name, data):
-        file = 'file'  # placeholder
-        hf = h5py.File(file, 'w')
-        hf.create_dataset(name, data=data)
-
-        pass
-
-    def writeDataGroup(self, d_file, g_name, data):
-        pass
 
 
 # pass as list of tuples to make 1 for loop generating file
-def build_dataset(file, pentaras):
+def build_pent_dataset(file, pentaras):
 
-    hf = h5py.File(file, 'w')
+    hf = h5.File(file, 'w')
     g0 = hf.create_group('images')
     g1 = hf.create_group('labels')
     # g2 = g1.create_group('kernels')
@@ -130,9 +84,9 @@ def build_dataset(file, pentaras):
 
 
 # Don't really need unless one wants to load into separate dicts
-def enum_dataset(file):
+def enum_pent_dataset(file):
 
-    hf = h5py.File(file, 'r')
+    hf = h5.File(file, 'r')
 
     data_i = hf['images'].keys()
     label_i = hf['labels'].keys()
@@ -163,6 +117,9 @@ def open_hsi_bil(file_path):
     img = img.swapaxes(0, 2).swapaxes(0, 1)
     return img
 
+
+def write_h5(file_path, group):
+    hf = h5.File(file_path, 'w')
 
 # def load_hsi_bil_folder(dir_path, packet=None, hormone=None, geno=None):
 #     """
