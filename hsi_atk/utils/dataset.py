@@ -106,6 +106,33 @@ def enum_pent_dataset(file):
     return data_d, label_d
 
 
+def convert_bil_h5(file_path, img_paths, geno):
+    """
+    Writes set of images into h5 file organized by /group/img
+    in the format /geno/packet#.hormone
+    :param file_path:
+    :param img_paths:
+    :param geno:
+    :return:
+    """
+    hf = h5.File(file_path, 'w-')
+
+    for gene in geno:
+        group = hf.create_group(gene)
+
+        for file in img_paths:
+
+            if gene in file:
+                img = open_hsi_bil(file)
+                name_idx = file.find(gene) + len(gene+'/')
+                cut_idx = file.find(".bil")
+                dset_name = file[name_idx:cut_idx]
+                group.create_dataset(dset_name, data=img, chunks=True)
+
+    hf.close()
+
+
+
 def open_hsi_bil(file_path):
     """
     Load image array from .bil file
@@ -118,8 +145,39 @@ def open_hsi_bil(file_path):
     return img
 
 
-def write_h5(file_path, group):
-    hf = h5.File(file_path, 'w')
+def enum_hsi_files(dir_path, geno=None, hormone=None, packet=None, return_geno=True):
+    """
+    Return list of file paths for .bil files of HS images.
+    Expects images to be stored in /root_path/geno/packet#.hormone.bil
+    :param dir_path: string - parent directory of images
+    :param geno: string - genotype(s) of interest. Ex. 'B73', ['B73', 'CML103'], etc. None selects all
+    :param hormone: string - hormone treatment in question. Ex. 'control', 'GA', ['CONTROL', 'GA', 'PAC+GA']
+    :param packet: string or int - packet # of seed selection
+    :return: list of strings - file paths to HS images
+    """
+    image_paths = []
+    geno_list = []
+    genos = os.listdir(dir_path)  # gets subdirectories named by genotype
+
+    for g in genos:
+
+        if geno is None or (g in geno or g == geno):
+            g_path = dir_path+'/'+g+'/'
+            geno_list.append(g)
+            gimages = os.listdir(g_path)
+            nimages = []
+            for img in gimages:
+                if img.endswith(".bil"):  # not including .bil.hdr files
+                    nimages.append(g_path+img)
+            image_paths.extend(nimages)
+
+        else:
+            pass
+
+    if return_geno:
+        return image_paths, geno_list
+
+    return image_paths
 
 # def load_hsi_bil_folder(dir_path, packet=None, hormone=None, geno=None):
 #     """
