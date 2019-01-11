@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Scratch testing">
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="fixing and adding package requirements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="">
@@ -40,7 +41,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="GA_sc" value="625" />
-          <entry key="Python Console" value="6897" />
+          <entry key="Python Console" value="8226" />
           <entry key="csv" value="15" />
           <entry key="dummy" value="4" />
           <entry key="hsi2color" value="374" />
@@ -48,10 +49,10 @@
           <entry key="kernel_g_sc" value="269" />
           <entry key="md" value="1670" />
           <entry key="pickle_tst" value="23" />
-          <entry key="py" value="57647" />
+          <entry key="py" value="59396" />
           <entry key="pyw" value="29" />
           <entry key="scratch" value="206" />
-          <entry key="txt" value="3976" />
+          <entry key="txt" value="4045" />
           <entry key="yml" value="116" />
         </counts>
       </usages-collector>
@@ -59,8 +60,8 @@
         <counts>
           <entry key="CSV" value="15" />
           <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="3980" />
-          <entry key="Python" value="66748" />
+          <entry key="PLAIN_TEXT" value="4049" />
+          <entry key="Python" value="69826" />
           <entry key="YAML" value="116" />
         </counts>
       </usages-collector>
@@ -111,7 +112,7 @@
         <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="639">
-              <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+              <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <marker date="1546897099105" expanded="true" signature="444:445" ph="..." />
@@ -128,28 +129,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="512">
+              <caret line="169" column="72" selection-start-line="169" selection-start-column="72" selection-end-line="169" selection-end-column="72" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
-                <marker date="1547146715327" expanded="true" signature="368:399" ph="..." />
-                <marker date="1547146715327" expanded="true" signature="1697:1798" ph="..." />
-                <marker date="1547146715327" expanded="true" signature="3479:3514" ph="..." />
+                <marker date="1547237870156" expanded="true" signature="368:399" ph="..." />
+                <marker date="1547237870156" expanded="true" signature="1697:1798" ph="..." />
+                <marker date="1547237870156" expanded="true" signature="3323:3766" ph="..." />
+                <marker date="1547237870156" expanded="true" signature="5358:5383" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+            <state relative-caret-position="570">
+              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
             <state relative-caret-position="480">
@@ -176,7 +178,7 @@
         <entry file="file://$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -259,8 +261,8 @@
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/ga_base.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Inception.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
       </list>
     </option>
   </component>
@@ -410,15 +412,15 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Data" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Data/B73" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/hsi_atk/utils" />
       <recent name="$PROJECT_DIR$/hyppy3" />
       <recent name="$PROJECT_DIR$/hsi_atk/test_data" />
-      <recent name="$PROJECT_DIR$/hsi_atk" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -588,20 +590,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529078384365</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Refactoring generators for more efficient and versatile storage and generation of KT simulated and labeled images.">
-      <created>1534298430267</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1534298430267</updated>
-    </task>
-    <task id="LOCAL-00033" summary="CNN model for continuous variables">
-      <created>1534341422570</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1534341422570</updated>
     </task>
     <task id="LOCAL-00034" summary="conv3d-&gt;conv2d. Need to update parameters and ensure multi-class learning/prediction.">
       <created>1534341475079</created>
@@ -932,7 +920,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547151369483</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="adding package requirements">
+      <created>1547154113608</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1547154113608</updated>
+    </task>
+    <task id="LOCAL-00082" summary="fixing and adding package requirements">
+      <created>1547156935659</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1547156935659</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -996,7 +998,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.71442986" weight="0.23972602" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.28557014" side_tool="true" weight="0.23972602" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32876712" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8035714" weight="0.29158512" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8035714" visible="true" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1040,8 +1042,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="indexing and naming convention edits" />
-    <MESSAGE value="simple functions to save and load objects" />
     <MESSAGE value="simple hsi to rgb converter. can work for other color compositions as well" />
     <MESSAGE value="Refactoring pentara to manage pentiga trials" />
     <MESSAGE value="Adding some dataset write functions" />
@@ -1065,7 +1065,9 @@
     <MESSAGE value="Adding class features" />
     <MESSAGE value="Updating IO classes for convenience" />
     <MESSAGE value="Scratch testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scratch testing" />
+    <MESSAGE value="adding package requirements" />
+    <MESSAGE value="fixing and adding package requirements" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing and adding package requirements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1245,6 +1247,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1363,31 +1368,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1547146715327" expanded="true" signature="368:399" ph="..." />
-            <marker date="1547146715327" expanded="true" signature="1697:1798" ph="..." />
-            <marker date="1547146715327" expanded="true" signature="3479:3514" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Inception.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2670">
@@ -1403,7 +1383,7 @@
     <entry file="file://$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1413,7 +1393,7 @@
     <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="639">
-          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <marker date="1546897099105" expanded="true" signature="444:445" ph="..." />
@@ -1455,8 +1435,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        <state relative-caret-position="570">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="169" column="72" selection-start-line="169" selection-start-column="72" selection-end-line="169" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <marker date="1547237870156" expanded="true" signature="368:399" ph="..." />
+            <marker date="1547237870156" expanded="true" signature="1697:1798" ph="..." />
+            <marker date="1547237870156" expanded="true" signature="3323:3766" ph="..." />
+            <marker date="1547237870156" expanded="true" signature="5358:5383" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
         </state>
       </provider>
     </entry>
