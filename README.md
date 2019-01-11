@@ -16,14 +16,19 @@ that is being used for some I/O of the dataset currently being worked on.
 The explicit requirements are:
 ```'numpy>=1.14.2',
    'scipy>=1.1.0',
+   'pandas>=0.23.0',
    'scikit-learn>=0.19.1',
    'scikit-image>=0.14.0',
    'scikit-hyper>=0.0.2',
    'tensorflow>=1.8.0',
    'rasterio>=0.36.0',
+   'gdal>=2.2.4',
+   'libgdal>=2.2.4',
    'h5py>=2.8.0'
 ```
 As you will see in setup.py of this repo.
+Was also recently experiencing issues while setting up this environment for someone else, specifically with 
+the rasterio->gdal->libgdal dependency stack. This issue is currently being worked on.
 
 ### Installing
 ```
