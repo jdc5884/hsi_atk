@@ -1,24 +1,85 @@
 import numpy as np
-from skhyper import process
+# from skhyper import process
 
 
-class Sasatari(process.Process):
+# class Sasatari(process.Process):
 
-    def __init__(self, X, scale=True):
-        process.Process.__init__(self, X, scale)
-        # self.histo = np.histogram(X, bins=np.arange(0, 256))
-        self.update()
+    # def __init__(self, X, scale=True):
+    #     process.Process.__init__(self, X, scale)
+    #     # self.histo = np.histogram(X, bins=np.arange(0, 256))
+    #     self.update()
 
+class Sasatari(object):
 
-    def alt_frame(self, face, scale=True):
-        n_X = alt_view(self.data, face)
+    def __init__(self, raw, dec_mode="PCA", seg_mode="thresh", seg_shape="rectangle",
+                 dset=None, dset_path=None):
+        # Analysis data members
+        self.RAW = RAW              # raw pixel-cube of HSI
+        self.RGB = None             # rgb mask of HSI, looking to deprecate in favor of RGBI
+        self.RGBI = None            # rgbi mask of HSI (4th layer in image average IR bands)
+        self.GRAY = None            # grayscale of HSI
+        self.GRAYV = None           # grayscale of visible spectrum
+        self.GRAYIR = None          # grayscale of IR bands
+        self.SEGS = None            # segmentation maps
+        self.OBJ_COUNT = None       # separated objects found by segmentation maps
 
-        sas = Sasatari(n_X, scale=scale)
-        return sas
+        # Options setting data members
+        self.DEC_MODE = dec_mode    # Decomposition mode (PCA, etc.)
+        self.SEG_MODE = seg_mode    # Segmentation mode (contour matching, bounding boxes, etc.)
+        self.SEG_SHAPE = seg_shape  # Shape to fit in segmentation (rectangle, ellipse, etc. not required for some modes)
+        self.DSET = dset            # Dataset h5py.File object
+        self.DSET_PATH = dset_path  # Path to dataset (/.../mydataset.h5)
 
+    def get_raw(self):
+        return self.RAW
 
-    def img_means(self):
-        return np.mean(self.data, 2)
+    def set_raw(self, raw):
+        self.RAW = raw
+
+    def get_rgb(self):
+        return self.RGB
+
+    def get_rgbv(self):
+        return self.RGBV
+
+    def get_rgbir(self):
+        return self.RGBIR
+
+    def get_segs(self):
+        return self.SEGS
+
+    def get_obj_count(self):
+        return self.OBJ_COUNT
+
+    def get_dec_mode(self):
+        return self.DEC_MODE
+
+    def set_dec_mode(self, dec_mode):
+        self.DEC_MODE = dec_mode
+
+    def get_seg_mode(self):
+        return self.SEG_MODE
+
+    def set_seg_mode(self, seg_mode):
+        self.SEG_MODE = seg_mode
+
+    def get_seg_shape(self):
+        return self.SEG_SHAPE
+
+    def set_seg_shape(self, seg_shape):
+        self.SEG_SHAPE = seg_shape
+
+    def get_dset(self):
+        return self.DSET
+
+    def set_dset(self, dset):
+        self.DSET = dset
+
+    def get_dset_path(self):
+        return self.DSET_PATH
+
+    def set_dset_path(self, dset_path):
+        self.DSET_PATH = dset_path
 
 
 def alt_view(X, face, transpose=False, trp_axes=0):

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="fixing and adding package requirements">
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="adding some simply IO methods for translating our current dataset. Need to beef up the class interaction for analysis pipelines">
+      <change beforePath="$PROJECT_DIR$/.idea/hsi_atk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hsi_atk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
-    <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="">
-      <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
-    </list>
+    <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,93 +17,36 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_in_pentiga_tests_py.coverage" NAME="Nosetests in pentiga_tests.py Coverage Results" MODIFIED="1530032850354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk/tests" />
     <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_in_pentiga_scratch_py.coverage" NAME="Nosetests in pentiga_scratch.py Coverage Results" MODIFIED="1529950643149" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk" />
     <SUITE FILE_PATH="coverage/hsi_atk$kernel_g_sc.coverage" NAME="kernel_g_sc Coverage Results" MODIFIED="1543639348965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk/Ganita" />
+    <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_in_pentiga_tests_py.coverage" NAME="Nosetests in pentiga_tests.py Coverage Results" MODIFIED="1530032850354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk/tests" />
     <SUITE FILE_PATH="coverage/hsi_atk$pentiga_scratch.coverage" NAME="pentiga_scratch Coverage Results" MODIFIED="1531413847138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk" />
     <SUITE FILE_PATH="coverage/hsi_atk$Nosetests_for_pentiga_tests_PentigaUnittest_test_compose.coverage" NAME="Nosetests for pentiga_tests.PentigaUnittest.test_compose Coverage Results" MODIFIED="1530032503451" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/hsi_atk/tests" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1568738773">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="17" />
-          <entry key="project.open.time.1" value="3" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.30" value="1" />
-          <entry key="project.open.time.5" value="8" />
-          <entry key="project.open.time.6" value="3" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="21" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="GA_sc" value="625" />
-          <entry key="Python Console" value="8226" />
-          <entry key="csv" value="15" />
-          <entry key="dummy" value="4" />
-          <entry key="hsi2color" value="374" />
-          <entry key="image_mask" value="678" />
-          <entry key="kernel_g_sc" value="269" />
-          <entry key="md" value="1670" />
-          <entry key="pickle_tst" value="23" />
-          <entry key="py" value="59396" />
-          <entry key="pyw" value="29" />
-          <entry key="scratch" value="206" />
-          <entry key="txt" value="4045" />
-          <entry key="yml" value="116" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSV" value="15" />
-          <entry key="Markdown" value="1670" />
-          <entry key="PLAIN_TEXT" value="4049" />
-          <entry key="Python" value="69826" />
-          <entry key="YAML" value="116" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="Makefile" value="1" />
-          <entry key="csv" value="5" />
-          <entry key="html" value="2" />
-          <entry key="ipynb" value="2" />
-          <entry key="md" value="3" />
-          <entry key="png" value="8" />
-          <entry key="py" value="175" />
-          <entry key="pyw" value="1" />
-          <entry key="sta" value="1" />
-          <entry key="txt" value="6" />
-          <entry key="yml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSV" value="5" />
-          <entry key="HTML" value="2" />
-          <entry key="IPNB" value="2" />
-          <entry key="Image" value="8" />
-          <entry key="Markdown" value="3" />
-          <entry key="PLAIN_TEXT" value="8" />
-          <entry key="Python" value="176" />
-          <entry key="YAML" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/ganita.py">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="425">
+              <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
               <folding>
-                <marker date="1546881984973" expanded="true" signature="544:646" ph="..." />
+                <element signature="e#14#32#0" expanded="true" />
+                <element signature="e#33#54#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-7">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+              <folding>
+                <marker date="1545248478179" expanded="true" signature="2494:2544" ph="..." />
+                <marker date="1545248478179" expanded="true" signature="2981:2986" ph="..." />
+                <marker date="1545248478179" expanded="true" signature="3600:3605" ph="..." />
               </folding>
             </state>
           </provider>
@@ -111,7 +55,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
+            <state relative-caret-position="735">
               <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -129,33 +73,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="169" column="72" selection-start-line="169" selection-start-column="72" selection-end-line="169" selection-end-column="72" />
+            <state relative-caret-position="3390">
+              <caret line="226" selection-start-line="226" selection-end-line="226" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
-                <marker date="1547237870156" expanded="true" signature="368:399" ph="..." />
-                <marker date="1547237870156" expanded="true" signature="1697:1798" ph="..." />
-                <marker date="1547237870156" expanded="true" signature="3323:3766" ph="..." />
-                <marker date="1547237870156" expanded="true" signature="5358:5383" ph="..." />
+                <marker date="1549739469850" expanded="true" signature="368:399" ph="..." />
+                <marker date="1549739469850" expanded="true" signature="3081:3084" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
+        <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+            <state>
+              <caret column="13" selection-start-column="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -163,32 +105,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hsi_atk/Inception.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2670">
+            <state relative-caret-position="945">
               <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <marker date="1546965545516" expanded="true" signature="1955:2892" ph="..." />
-                <marker date="1546965545516" expanded="true" signature="2917:13214" ph="..." />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -207,12 +131,12 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
         <option value="$PROJECT_DIR$/hsi_atk/real_cl_stats.py" />
         <option value="$PROJECT_DIR$/hsi_atk/weight_logger.py" />
@@ -255,27 +179,21 @@
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py" />
         <option value="$PROJECT_DIR$/hsi_atk/GA_sc.py" />
         <option value="$PROJECT_DIR$/hsi_atk/pentiga_n_sc.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/ganita.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/ga_base.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Inception.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="183" />
     <option name="y" value="23" />
-    <option name="width" value="1495" />
+    <option name="width" value="1033" />
     <option name="height" value="1137" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -364,19 +282,13 @@
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+              <item name="B73" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Moratikara" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
-              <item name="Pentara" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
@@ -528,6 +440,9 @@
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -590,20 +505,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1529078384365</updated>
-    </task>
-    <task id="LOCAL-00034" summary="conv3d-&gt;conv2d. Need to update parameters and ensure multi-class learning/prediction.">
-      <created>1534341475079</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1534341475079</updated>
-    </task>
-    <task id="LOCAL-00035" summary="h5py to read and write image much faster than .bil raster files.">
-      <created>1534341525468</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1534341525468</updated>
+      <workItem from="1547562557786" duration="2400000" />
+      <workItem from="1548884877744" duration="133000" />
+      <workItem from="1549820835304" duration="7289000" />
     </task>
     <task id="LOCAL-00036" summary="Updated docs and functions">
       <created>1534352517150</created>
@@ -934,7 +838,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547156935659</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="fixing package requirements, pip can't find libgdal">
+      <created>1547238447799</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1547238447800</updated>
+    </task>
+    <task id="LOCAL-00084" summary="adding some simply IO methods for translating our current dataset. Need to beef up the class interaction for analysis pipelines">
+      <created>1547238512290</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1547238512290</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -969,6 +887,9 @@
       <configuration name="Nosetests in pentiga_tests.py" configurationId="tests" />
     </history-entry>
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9822000" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -979,10 +900,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="183" y="23" width="1495" height="1137" extended-state="0" />
+    <frame x="0" y="23" width="1033" height="1137" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15898141" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20887992" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -995,14 +916,14 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.71442986" weight="0.23972602" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.28557014" side_tool="true" weight="0.23972602" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7150723" weight="0.23972602" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.26325247" side_tool="true" weight="0.29158512" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32876712" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8035714" visible="true" weight="0.29158512" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.7367475" visible="true" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.6492891" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.4992948" weight="0.57618564" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" x="0" y="0" width="205" height="977" id="Documentation" order="6" sideWeight="0.50070524" side_tool="true" weight="0.3299285" />
@@ -1037,13 +958,22 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="simple hsi to rgb converter. can work for other color compositions as well" />
-    <MESSAGE value="Refactoring pentara to manage pentiga trials" />
     <MESSAGE value="Adding some dataset write functions" />
     <MESSAGE value=".travis" />
     <MESSAGE value="travis lang" />
@@ -1067,7 +997,9 @@
     <MESSAGE value="Scratch testing" />
     <MESSAGE value="adding package requirements" />
     <MESSAGE value="fixing and adding package requirements" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing and adding package requirements" />
+    <MESSAGE value="fixing package requirements, pip can't find libgdal" />
+    <MESSAGE value="adding some simply IO methods for translating our current dataset. Need to beef up the class interaction for analysis pipelines" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding some simply IO methods for translating our current dataset. Need to beef up the class interaction for analysis pipelines" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1081,20 +1013,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27945">
-          <caret line="1887" selection-start-line="1887" selection-end-line="1887" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="21" lean-forward="true" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py" />
     <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentara_tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1138,20 +1057,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/site-packages/numpy/core/shape_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="356" selection-start-line="356" selection-end-line="356" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="319" selection-start-line="319" selection-end-line="319" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/site-packages/numpy/core/shape_base.py" />
+    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/codecs.py" />
     <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1187,9 +1094,6 @@
           <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/pix_scratch.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1253,18 +1157,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1545249951804" expanded="true" signature="1240:1490" ph="..." />
-            <marker date="1545249951804" expanded="true" signature="1705:1770" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model_cont.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -1292,18 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <marker date="1545248478179" expanded="true" signature="2494:2544" ph="..." />
-            <marker date="1545248478179" expanded="true" signature="2981:2986" ph="..." />
-            <marker date="1545248478179" expanded="true" signature="3600:3605" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1485">
@@ -1317,17 +1197,6 @@
           <caret line="24" column="65" lean-forward="true" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="636">
-          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-            <marker date="1546542645736" expanded="true" signature="1746:1857" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1368,31 +1237,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Inception.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2670">
-          <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <marker date="1546965545516" expanded="true" signature="1955:2892" ph="..." />
-            <marker date="1546965545516" expanded="true" signature="2917:13214" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/gan_based.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
+        <state relative-caret-position="735">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -1402,6 +1256,93 @@
             <marker date="1546897099105" expanded="true" signature="2533:3409" ph="..." />
             <marker date="1546897099105" expanded="true" signature="2588:3409" ph="..." />
             <marker date="1546897099105" expanded="true" signature="3429:3438" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <marker date="1545248478179" expanded="true" signature="2494:2544" ph="..." />
+            <marker date="1545248478179" expanded="true" signature="2981:2986" ph="..." />
+            <marker date="1545248478179" expanded="true" signature="3600:3605" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/pix_scratch.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3390">
+          <caret line="226" selection-start-line="226" selection-end-line="226" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <marker date="1549739469850" expanded="true" signature="368:399" ph="..." />
+            <marker date="1549739469850" expanded="true" signature="3081:3084" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/moratikara.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Inception.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1546965545516" expanded="true" signature="1955:2892" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1416,53 +1357,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/moratikara.py">
+    <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga_n.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="169" column="72" selection-start-line="169" selection-start-column="72" selection-end-line="169" selection-end-column="72" />
+        <state relative-caret-position="425">
+          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1547237870156" expanded="true" signature="368:399" ph="..." />
-            <marker date="1547237870156" expanded="true" signature="1697:1798" ph="..." />
-            <marker date="1547237870156" expanded="true" signature="3323:3766" ph="..." />
-            <marker date="1547237870156" expanded="true" signature="5358:5383" ph="..." />
+            <element signature="e#14#32#0" expanded="true" />
+            <element signature="e#33#54#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
