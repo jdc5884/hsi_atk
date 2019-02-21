@@ -180,6 +180,8 @@ def write_metadata(hf_group, img_path):
     pass
 
 
+#TODO: sort image paths by genotype (should already be done by appending order) and make iteration more greedy
+#TODO: add existing dataset conditional handlers
 def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
     """
     Writes set of images into h5 file organized by /group/img
@@ -192,9 +194,26 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
     hf = h5.File(file_path, 'a')
 
     for gene in geno:
-        group = hf.create_group(gene)
+        if gene not in hf.keys():
+            group = hf.create_group(gene)
+        else:
+            group = hf[gene]
 
         for file in img_paths:
+            f = os.path.basename(file)
+            packet, hormone, ext = f.split(".")
+
+            if hormone not in group.keys():
+                horm = group.create_group(hormone)
+                pac = horm.create_group(packet)
+            else:
+                horm = group[hormone]
+                if packet not in horm.keys():
+                    pac = horm.create_group(packet)
+                else:
+                    pac = horm[packet]
+
+
 
             if gene in file:
                 img = open_hsi_bil(file)
@@ -244,7 +263,9 @@ def enum_hsi_files(dir_path, return_geno=True):
         nimages = []
         for img in gimages:
             if img.endswith(".bil"):  # not including .bil.hdr files
-                nimages.append(g_path+img)
+                img = img.lower()
+                img_p = g_path+img
+                nimages.append(img_p)
 
         image_paths.extend(nimages)
 
