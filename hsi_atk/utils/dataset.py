@@ -168,7 +168,7 @@ def enum_pent_dataset(file):
     return data_d, label_d
 
 
-def write_metdata(hf_group, img_path):
+def write_metadata(hf_group, img_path):
     """
     Writes metadata of hsi into h5 file in specified format.
 
