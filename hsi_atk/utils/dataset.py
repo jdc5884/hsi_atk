@@ -189,7 +189,7 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
     :param geno:
     :return:
     """
-    hf = h5.File(file_path, 'w-')
+    hf = h5.File(file_path, 'a')
 
     for gene in geno:
         group = hf.create_group(gene)
@@ -219,7 +219,7 @@ def open_hsi_bil(file_path):
     return img
 
 
-def enum_hsi_files(dir_path, geno=None, hormone=None, packet=None, return_geno=True):
+def enum_hsi_files(dir_path, return_geno=True):
     """
     Return list of file paths for .bil files of HS images.
 
@@ -238,19 +238,15 @@ def enum_hsi_files(dir_path, geno=None, hormone=None, packet=None, return_geno=T
     genos = os.listdir(dir_path)  # gets subdirectories named by genotype
 
     for g in genos:
+        g_path = dir_path+'/'+g+'/'
+        geno_list.append(g)
+        gimages = os.listdir(g_path)
+        nimages = []
+        for img in gimages:
+            if img.endswith(".bil"):  # not including .bil.hdr files
+                nimages.append(g_path+img)
 
-        if geno is None or (g in geno or g == geno):
-            g_path = dir_path+'/'+g+'/'
-            geno_list.append(g)
-            gimages = os.listdir(g_path)
-            nimages = []
-            for img in gimages:
-                if img.endswith(".bil"):  # not including .bil.hdr files
-                    nimages.append(g_path+img)
-            image_paths.extend(nimages)
-
-        else:
-            pass
+        image_paths.extend(nimages)
 
     if return_geno:
         return image_paths, geno_list
