@@ -8,7 +8,7 @@ import rasterio
 class Dataset():
     """Class for file I/O of stored datasets"""
 
-    def __init__(self, h5_file, mode='r'):
+    def __init__(self, h5_file, mode='a'):
         self.file_name = h5_file
         self.mode = mode
         self.hf = h5.File(h5_file, mode=mode)
@@ -18,6 +18,41 @@ class Dataset():
 
     def get_mode(self):
         return self.mode
+
+    #TODO: fix hf manifest list generator
+    def get_hf_mfest(self, prefix='', groups=[], dsets=[]):
+        """
+        Generates and returns list of group and dataset instances in hdf5 file as separate lists
+        """
+        hf = self.get_hf()
+        for key in hf.keys():
+            item = hf[key]
+            path = '{}/{}'.format(prefix, key)
+            if isinstance(item, h5.Dataset):
+                dsets.append(path)
+            elif isinstance(item, h5.Group):
+                groups.append(path)
+                g, d = self.get_hf_mfest(prefix=path)
+                groups.extend(g)
+                dsets.extend(d)
+        return groups, dsets
+
+
+    def get_dset_mfest(self):
+        """
+        Generates and returns list of dataset instances in hdf5 file
+        """
+        f = self.get_hf()
+        names = f.visititems(list_dataset)
+        return names
+
+    def get_group_mfest(self):
+        """
+        Generates and returns list of group instances in hdf5 file
+        """
+        f = self.get_hf()
+        names = f.visititems(list_group)
+        return names
 
     def write_group(self, group_name, group_path='/'):
         """
@@ -31,9 +66,9 @@ class Dataset():
             group_name = group_path + group_name
             hf.create_group(group_name)
         else:
-            print("Not in write mode!")
+            print("Not in write mode! Group not written!")
 
-    def write_dataset(self, dataset_name, data, group_path='/', autochunk=False):
+    def write_dataset(self, dataset_name, data, group_path='/', autochunk=True):
         """
         Create dataset in h5 file by specified group path
         :param dataset_name: string - name of dataset. Ex: "raw_images"
@@ -50,11 +85,38 @@ class Dataset():
             print("Not in write mode!")
 
 
-class HSI_Dataset(Dataset):
+class HSIDataset(Dataset):
 
-    def __init__(self, h5_file, mode='r'):
+    def __init__(self, h5_file, mode='a'):
         super().__init__(h5_file=h5_file, mode=mode)
 
+
+class KernelHSIDset(Dataset):
+
+    def __init__(self, h5_file, genotypes=('B73','CML103'), mode='a'):
+        super().__init__(h5_file=h5_file, mode=mode)
+        self.genotypes=genotypes
+        self.init_group_structure()
+
+    def init_group_structure(self):
+        hf = self.get_hf()
+        for geno in self.get_genos():
+            self.write_group(geno)
+
+    def get_genos(self):
+        return self.genotypes
+
+
+def list_dataset(name, node):
+    dsets = []
+    if isinstance(node, h5.Dataset):
+        dsets.append(name)
+
+
+def list_group(name, node):
+    groups = []
+    if isinstance(node, h5.Group):
+        groups.append(name)
 
 
 # pass as list of tuples to make 1 for loop generating file
@@ -106,7 +168,19 @@ def enum_pent_dataset(file):
     return data_d, label_d
 
 
-def convert_bil_h5(file_path, img_paths, geno):
+def write_metdata(hf_group, img_path):
+    """
+    Writes metadata of hsi into h5 file in specified format.
+
+    :param hf_group: h5 file group - expected to be open in h5 file open in a write mode.
+    :param img_path: string - path to image file. Expecting the metadata to be stored horizontally.
+    :return: None
+    """
+
+    pass
+
+
+def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
     """
     Writes set of images into h5 file organized by /group/img
     in the format /geno/packet#.hormone
@@ -148,7 +222,11 @@ def open_hsi_bil(file_path):
 def enum_hsi_files(dir_path, geno=None, hormone=None, packet=None, return_geno=True):
     """
     Return list of file paths for .bil files of HS images.
-    Expects images to be stored in /root_path/geno/packet#.hormone.bil
+
+    Expects images to be stored in "/root_path/geno/packet#.hormone.bil". It may also be of interest to acquire paths
+    to the metadata .hdr files. For now, we will assume they are the same path as the reference image except with
+    .hdr appended.
+
     :param dir_path: string - parent directory of images
     :param geno: string - genotype(s) of interest. Ex. 'B73', ['B73', 'CML103'], etc. None selects all
     :param hormone: string - hormone treatment in question. Ex. 'control', 'GA', ['CONTROL', 'GA', 'PAC+GA']
@@ -178,6 +256,8 @@ def enum_hsi_files(dir_path, geno=None, hormone=None, packet=None, return_geno=T
         return image_paths, geno_list
 
     return image_paths
+
+
 
 # def load_hsi_bil_folder(dir_path, packet=None, hormone=None, geno=None):
 #     """
