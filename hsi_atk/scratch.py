@@ -1,5 +1,14 @@
 # import time
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as cm
+from mpl_toolkits.mplot3d import Axes3D
+import h5py as h5
+from hsi_atk.utils.hsi2color import hsi2color
+
+from hsi_atk.utils.dataset import open_hsi_bil
+from hsi_atk.utils.hsi2color import hsi2color, hsi2color4, hsi2gray
+from skimage.segmentation import chan_vese as seger
 # import pandas as pd
 # import scipy as sp
 # from scipy import ndimage as ndi
@@ -12,6 +21,30 @@ import numpy as np
 # from sklearn.multiclass import OneVsRestClassifier
 # from sklearn.preprocessing import LabelEncoder
 
+
+img_ = open_hsi_bil("../Data/B73/32.control.bil")
+
+import random
+chars = '0123456789ABCDEF'
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+gray = hsi2gray(img_)
+
+gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
+gseg = ~ gseg
+rr, cc = np.where(gseg)
+
+for i in range(0, 240):
+	ys = img_[rr, cc, i]
+	hist, bins = np.histogram(ys, bins=50)
+	c = '#'+''.join(random.sample(chars,6))
+
+	xs = (bins[:-1] + bins[1:])/2
+	ax.bar(xs[12:], hist[12:], zs=(i*2.042), zdir='y', alpha=0.8, color=c, ec=c)
+
+plt.show()
 
 # data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
 #
@@ -43,38 +76,79 @@ import numpy as np
 # print(confusion_matrix(Y_test[3], Y_preds[3]))
 # print(confusion_matrix(Y_test[4], Y_preds[4]))
 
-from hsi_atk.utils.dataset import open_hsi_bil
-# from hsi_atk.utils.hsi2color import hsi2color, hsi2color4, hsi2gray
-# from skimage.segmentation import chan_vese as seger
+# hf0 = h5.File("../Data/all_labels.h5", "r")
 
-img_ = open_hsi_bil("../Data/32.control.bil")
 
-Fs = []
-for i in range(240):
-    F = np.fft.fftn(img_[:,:,i])
-    F_mag = np.abs(F)
-    F_mag = np.fft.fftshift(F_mag)
-    Fs.append(F_mag)
 
-Fs = np.stack(Fs, axis=-1)
+# stacked_hists = []
+# stacked_bwise = []
+# for i in range(5):
 
-import matplotlib.pyplot as plt
+	# data = hf0["raw4d"][i,:,:,:]
 
-f, ax = plt.subplots()
-ax.imshow(np.log(1+F_mag), cmap='viridis',)
-f.show()
+	# plt.hist(data[:,:,220], bins='auto')
+	# plt.show()
+
+	# input("Next..")
+
+	# hists = []
+	# pband = []
+
+	# for j in range(240):
+	# 	plt.hist(data[:,:,i], bins=100)
+	# 	plt.show()
+	# 	input("Pass")
+		# hist, bins = np.histogram(a=data[:,:,j], bins=800, range=(0.0,4095.0))
+		# hists.append(hist)
+
+	# hists = np.stack(hists, axis=-1)
+
+	# for i in range(800):
+	# 	bcount_per_band, bins = np.histogram(a=hists[i, :], bins=100)
+	# 	pband.append(bcount_per_band)
+
+	# pband = np.stack(pband, axis=-1)
+
+	# stacked_hists.append(hists)
+	# stacked_bwise.append(pband)
+
+
+
+# stacked_hists = np.stack(stacked_hists, axis=-1)
+# print(stacked_hists.shape)
+# stacked_bwise = np.stack(stacked_bwise, axis=-1)
+# print(stacked_bwise.shape)
+
+# for i in range(5):
+# 	color = hsi2color(data[i,:,:,:])
+# 	plt.imshow(color)
+# 	plt.show()
+# 	input("Pause..")
 
 ### Testing rgb converter and segmentation
 
-# hsi_rgb = hsi2color(img_, scale=False)
+# gray = hsi2color(img_, scale=False, out_type=float)
+# f = np.fft.fft2(img_[:, 70:570,:])
+# fshift = np.fft.fftshift(f)
+# magnitude_spectrum = 20*np.log(np.abs(fshift))
+# magnitude_spectrum = np.mean(magnitude_spectrum, axis=2)
+
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+
+# x = np.linspace(0,499,500)
+# y = np.linspace(0,639,640)
+# z = np.linspace(0,239,240)
+
+# X, Y = np.meshgrid(x,x)
+
+# c = np.random.standard_normal(640)
+
+# ax.plot_surface(X,Y,magnitude_spectrum[:500,:500])
+# plt.show()
+
 # hsi_rgbp = hsi2color4(img_)
-# gray = hsi2gray(img_)
-#
-# gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
-# gseg = ~ gseg
-# rr, cc = np.where(gseg)
-# hsi_rgb_mask = hsi_rgb.copy()
-# hsi_rgb_mask[rr,cc,:] *= 0
+
 #
 # import matplotlib.pyplot as plt
 # plt.imshow(hsi_rgb_mask)
@@ -85,7 +159,8 @@ f.show()
 # seg2 = seger(hsi_rgbp)
 
 
-from skhyper.process import Process
+# from skhyper.process import Process
+# from skhyper.decomposition import PCA
 # from skhyper.cluster import KMeans
 # mdl = KMeans(8)
 #
@@ -98,18 +173,21 @@ from skhyper.process import Process
 # rr0, cc0 = np.where(nreg0)
 # img_[rr0, cc0, :] *= 0
 #
-time_p = time.time()
-X = Process(img_)
-time_proc = time.time()
-print("Time to process img... ", (time_proc-time_p))
-print(X.var_image)
-print(X.var_spectrum)
+# time_p = time.time()
+# X = Process(img_)
+# X.view()
+# time_proc = time.time()
+# print("Time to process img... ", (time_proc-time_p))
+# print(X.var_image)
+# print(X.var_spectrum)
 #
+# mdl = PCA(50, copy=False)
 # time_inf = time.time()
-# mdl.fit(X)
+# mdl.fit_transform(X)
 # time_fit = time.time()
 # print("Time to fit img... ", (time_fit-time_inf))
-#
+# mdl.plot_statistics()
+
 # X.view()
 
 
