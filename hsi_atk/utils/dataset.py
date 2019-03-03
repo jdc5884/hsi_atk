@@ -168,6 +168,7 @@ def enum_pent_dataset(file):
     return data_d, label_d
 
 
+#TODO: conditionals for loop with string splitting
 def write_metadata(hf_group, img_path):
     """
     Writes metadata of hsi into h5 file in specified format.
@@ -176,13 +177,18 @@ def write_metadata(hf_group, img_path):
     :param img_path: string - path to image file. Expecting the metadata to be stored horizontally.
     :return: None
     """
+    meta = hf_group.create_group('metadata')
+    metadata = img_path + '.hdr'
+    meta_file = open(metadata, 'r')
+    for line in meta_file.readlines()[1:-1]:  # indexing to 1 to skip "ENVI" line
+        id, dt = line.split('=')
+        id.strip()
+        dt.strip()
+        meta.create_dataset(name=id, data=dt)
 
-    pass
 
-
-#TODO: sort image paths by genotype (should already be done by appending order) and make iteration more greedy
-#TODO: add existing dataset conditional handlers
-def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
+#TODO: uniform metadata option
+def convert_bil_h5(file_path, img_paths, geno, store_metadata=False):
     """
     Writes set of images into h5 file organized by /group/img
     in the format /geno/packet#.hormone
@@ -199,7 +205,9 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
         else:
             group = hf[gene]
 
-        for file in img_paths:
+        sub_img_paths = [path for path in img_paths if gene in path]
+
+        for file in sub_img_paths:
             f = os.path.basename(file)
             packet, hormone, ext = f.split(".")
 
@@ -213,14 +221,15 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=True):
                 else:
                     pac = horm[packet]
 
-
-
-            if gene in file:
-                img = open_hsi_bil(file)
-                name_idx = file.find(gene) + len(gene+'/')
-                cut_idx = file.find(".bil")
-                dset_name = file[name_idx:cut_idx]
-                group.create_dataset(dset_name, data=img, chunks=True)
+            img_paths.remove(file)
+            img = open_hsi_bil(file)
+            name_idx = file.find(gene) + len(gene+'/')
+            cut_idx = file.find(".bil")
+            dset_name = file[name_idx:cut_idx]
+            # if dset_name not in pac.keys():
+            pac.create_dataset(dset_name, data=img, chunks=True)
+            if store_metadata:
+                write_metadata(pac, file)
 
     hf.close()
 
