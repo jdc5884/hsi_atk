@@ -31,6 +31,10 @@ Was also recently experiencing issues while setting up this environment for some
 the rasterio->gdal->libgdal dependency stack. This issue is currently being worked on.
 
 ### Installing
+
+One issue with installing some of the dependencies leads me to recommend that you first build a 
+python 2.x version and `pip install rasterio` with this python. Then create a virtual environment
+for a python 3.6 or 3.7 version `pyenv virtualenv <version> <venv-name>`.
 ```
 git clone --single-branch --branch rebuild-kspec https://github.com/tensor-strings/hsi_atk
 cd hsi_atk
