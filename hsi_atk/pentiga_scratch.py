@@ -85,10 +85,3 @@ pent0.set_olei_fn(olei_func)
 pent0.set_stea_fn(stea_func)
 
 pent0.gen_lp_labels()
-
-from skhyper.cluster import KMeans
-from skhyper.process import Process
-
-X = Process(n_img0)
-mdl = KMeans(5)
-mdl.fit(X)
