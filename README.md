@@ -34,7 +34,9 @@ the rasterio->gdal->libgdal dependency stack. This issue is currently being work
 
 One issue with installing some of the dependencies leads me to recommend that you first build a 
 python 2.x version and `pip install rasterio` with this python. Then create a virtual environment
-for a python 3.6 or 3.7 version `pyenv virtualenv <version> <venv-name>`.
+for a python 3.6 or 3.7 version `pyenv virtualenv <version> <venv-name>`. You can then complete the
+step of install rasterio, gdal, etc by `pyenv activate <venv-name>`
+`pip install rasterio`.
 ```
 git clone --single-branch --branch rebuild-kspec https://github.com/tensor-strings/hsi_atk
 cd hsi_atk
