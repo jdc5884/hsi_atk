@@ -28,7 +28,6 @@ setup(
 
     install_requires=['numpy>=1.14.2',
                       'pandas>=0.23.0',
-                      'gdal>=2.2.4',
                       'keras>=2.2.0',
                       'scipy>=1.1.0',
                       'scikit-learn>=0.19.1',
