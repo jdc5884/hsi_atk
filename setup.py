@@ -10,6 +10,7 @@ setup(
     packages=['hsi_atk',
               'hsi_atk.utils',
               'hsi_atk.Pentara',
+              'hsi_atk.Pentiga',
               'hsi_atk.Sasatari',
               'hsi_atk.Ganita',
               'hsi_atk.Moratikara'],
