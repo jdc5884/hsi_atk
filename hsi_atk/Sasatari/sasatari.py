@@ -14,7 +14,7 @@ class Sasatari(object):
     def __init__(self, raw, dec_mode="PCA", seg_mode="thresh", seg_shape="rectangle",
                  dset=None, dset_path=None):
         # Analysis data members
-        self.RAW = RAW              # raw pixel-cube of HSI
+        self.RAW = raw              # raw pixel-cube of HSI
         self.RGB = None             # rgb mask of HSI, looking to deprecate in favor of RGBI
         self.RGBI = None            # rgbi mask of HSI (4th layer in image average IR bands)
         self.GRAY = None            # grayscale of HSI
