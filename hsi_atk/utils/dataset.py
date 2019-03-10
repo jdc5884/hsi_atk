@@ -118,27 +118,31 @@ class KernelHSIDset(Dataset):
     def add_group_mfest(self, group):
         self.group_mfest.append(group)
 
+    def set_group_mfest(self, groups):
+        self.group_mfest = groups
+
     def get_genos(self):
         return self.genos
+
+    def add_geno(self, geno):
+        self.genos.append(geno)
 
     def get_hormones(self):
         return self.hormones
 
-    def get_raws(self):  # , geno=None, hormone=None, packet=None):
+    def add_horm(self, horm):
+        self.hormones.append(horm)
+
+    def get_raws(self, as_img_cube=True):  # , geno=None, hormone=None, packet=None):
         """Returns 4D image cube of hsi's with list of image name identifiers"""
         hf = self.get_hf()
         # if geno is None:
         raws = [raw for raw in hf['RAW'].keys()]
-        # elif geno is type(list):
-        #     raws = [raw for raw in hf['RAW'].keys() if any(gene in raw for gene in geno)]
-        # elif geno is type(str):
-        #     raws = [raw for raw in hf['RAW'].keys() if geno in raw]
-        # else:
-        #     raws = []
-        #     print('WARNING! No images selected')
 
         images = [hf['RAW'][image] for image in raws]
-        return image_cube(images), raws
+        if as_img_cube:
+            return image_cube(images), raws
+        return images
 
 
 def image_cube(images):
@@ -234,7 +238,10 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=False):
     :return:
     """
     hf = h5.File(file_path, 'a')
-    raw = hf.create_group("RAW")
+    if "RAW" not in hf.keys():
+        raw = hf.create_group("RAW")
+    else:
+        raw = hf["RAW"]
     img_tup = []
 
     for gene in geno:
@@ -243,40 +250,40 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=False):
         # else:
         #     group = hf[gene]
 
-        sub_img_paths = [(gene,path) for path in img_paths if gene in path]
-        img_tup.extend(sub_img_paths)
+        sub_img_paths = [path for path in img_paths if gene in path]
+        # img_tup.extend(sub_img_paths)
 
 
-    for file in img_tup:
-        f = os.path.basename(file[1])
-        name = f[:-4]
-        name = file[0] + "." + name
+        for file in sub_img_paths:
+            f = os.path.basename(file)
+            name = f[:-4]
+            name = gene + "." + name
 
-        #TODO: simplify group structure?
+            #TODO: simplify group structure?
 
-        # if hormone not in group.keys():
-        #     horm = group.create_group(hormone)
-        #     pac = horm.create_group(packet)
-        # else:
-        #     horm = group[hormone]
-        #     if packet not in horm.keys():
-        #         pac = horm.create_group(packet)
-        #     else:
-        #         pac = horm[packet]
+            # if hormone not in group.keys():
+            #     horm = group.create_group(hormone)
+            #     pac = horm.create_group(packet)
+            # else:
+            #     horm = group[hormone]
+            #     if packet not in horm.keys():
+            #         pac = horm.create_group(packet)
+            #     else:
+            #         pac = horm[packet]
 
-        img_tup.remove(file)
-        img = open_hsi_bil(file[1])
-        # name_idx = file.find(gene) + len(gene+'/')
-        # cut_idx = file.find(".bil")
-        #TODO: removing packet number from dset name?
+            img = open_hsi_bil(file)
+            # name_idx = file.find(gene) + len(gene+'/')
+            # cut_idx = file.find(".bil")
+            #TODO: removing packet number from dset name?
 
-        # dset_name = file[name_idx:cut_idx]
-        # if dset_name not in pac.keys():
-        print("writing data for %s" % name)
-        raw.create_dataset(name, data=img, chunks=True)
-        print("done")
-        # if store_metadata:
-        #     write_metadata(pac, file)
+            # dset_name = file[name_idx:cut_idx]
+            # if dset_name not in pac.keys():
+            print("writing data for %s" % name)
+            raw.create_dataset(name, data=img, chunks=True)
+            print("done")
+            # if store_metadata:
+            #     write_metadata(pac, file)
+            # img_tup.remove(file)
 
     hf.close()
 
@@ -294,7 +301,7 @@ def open_hsi_bil(file_path):
     return img
 
 
-def enum_hsi_files(dir_path, return_geno=True):
+def enum_hsi_files(dir_path, geno=None, return_geno=True):
     """
     Return list of file paths for .bil files of HS images.
 
@@ -331,6 +338,25 @@ def enum_hsi_files(dir_path, return_geno=True):
     return image_paths
 
 
+def spec_bil_to_h5(df, hf_path, dir_path):
+    flist = []
+    glist = []
+    for index, row in df.iterrows():
+        name = str(row['Packet #']) + '.' + str(row['Hormone']).lower() + '.bil'
+        fs = str(row['Genotype'])
+        if fs == 'B73':
+            flist.append(name)
+        elif fs == 'CML103':
+            glist.append(name)
+        else:
+            pass
+    # files = enum_hsi_files(dir_path)
+    # b73 = [file for file in files if any(s in file for s in flist) and 'B73' in file]
+    # cml103 = [file for file in files if any(s in file for s in glist) and 'Cml103' in file]
+    # b73.extend(cml103)
+
+    # convert_bil_h5(hf_path, b73, ['B73','Cml103'])
+    return flist, glist
 
 # def load_hsi_bil_folder(dir_path, packet=None, hormone=None, geno=None):
 #     """
