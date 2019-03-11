@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Added note about issues installing rasterio/gdal to readme.">
-      <change beforePath="$PROJECT_DIR$/.idea/hsi_atk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hsi_atk.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
     </list>
@@ -24,23 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
-              <folding>
-                <element signature="e#14#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Developing/pipeline/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="64" selection-start-line="64" selection-end-line="64" />
+            <state relative-caret-position="569">
+              <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -51,8 +39,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Developing/simulation/probabalistic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+            <state relative-caret-position="261">
+              <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+              <folding>
+                <element signature="e#14#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Developing/simulation/sim_scratch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="83" selection-start-line="23" selection-start-column="83" selection-end-line="23" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Developing/preprocessing/preprocessing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -79,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hsi_atk/label_cov.py" />
         <option value="$PROJECT_DIR$/hsi_atk/spectral_scratch.py" />
         <option value="$PROJECT_DIR$/HypPy/tkHypPy.pyw" />
         <option value="$PROJECT_DIR$/hsi_atk/utils/convert2color.py" />
@@ -125,11 +154,12 @@
         <option value="$PROJECT_DIR$/Developing/tests/pipeline_tests.py" />
         <option value="$PROJECT_DIR$/Developing/simulation/simulation.py" />
         <option value="$PROJECT_DIR$/Developing/model/model_builder.py" />
-        <option value="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" />
         <option value="$PROJECT_DIR$/Developing/pipeline/pipeline.py" />
         <option value="$PROJECT_DIR$/Developing/simulation/probabalistic.py" />
+        <option value="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" />
       </list>
     </option>
   </component>
@@ -237,6 +267,12 @@
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="exploratory" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -261,6 +297,12 @@
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -273,6 +315,12 @@
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="Ganita" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Pentara" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
@@ -337,7 +385,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.scratch">
+  <component name="RunManager" selected="Python.sim_scratch">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -352,28 +400,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="cnn_model_cont" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="hsi_atk" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -415,6 +441,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sim_scratch" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="hsi_atk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Developing/simulation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -468,19 +513,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.cnn_model_cont" />
       <item itemvalue="Python.pentiga_n_sc" />
       <item itemvalue="Python.scratch" />
       <item itemvalue="Python.stockvis" />
       <item itemvalue="Python.write_h5" />
+      <item itemvalue="Python.sim_scratch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.sim_scratch" />
         <item itemvalue="Python.scratch" />
         <item itemvalue="Python.write_h5" />
         <item itemvalue="Python.stockvis" />
         <item itemvalue="Python.pentiga_n_sc" />
-        <item itemvalue="Python.cnn_model_cont" />
       </list>
     </recent_temporary>
   </component>
@@ -509,14 +554,7 @@
       <workItem from="1551829114853" duration="10000" />
       <workItem from="1551972418370" duration="5070000" />
       <workItem from="1552166451821" duration="12087000" />
-      <workItem from="1552271998780" duration="13043000" />
-    </task>
-    <task id="LOCAL-00051" summary="Building NN models. RMSE of current model &lt; 0.01 for some labels.">
-      <created>1538765865000</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1538765865000</updated>
+      <workItem from="1552271998780" duration="22587000" />
     </task>
     <task id="LOCAL-00052" summary="Scratch file building toy datasets from pentiga_n objects.">
       <created>1538765891617</created>
@@ -854,7 +892,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552248686629</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Developing refactor">
+      <created>1552320951472</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1552320951473</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -890,7 +935,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80024000" />
+    <option name="totallyTimeSpent" value="89568000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -920,7 +965,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7150723" weight="0.23972602" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2655427" side_tool="true" weight="0.29158512" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.7344573" visible="true" weight="0.29158512" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.7344573" visible="true" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -975,7 +1020,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got rid of annoying print statement." />
     <MESSAGE value="Example usage notebooks" />
     <MESSAGE value="Refactored output types to work with matplot lib and other tools (integer pixel values, need to add 0..1 scaled float output rgb also)." />
     <MESSAGE value="Better convergent model, and different train/test partitioning." />
@@ -1000,7 +1044,8 @@
     <MESSAGE value="Some simplification to bil -&gt; h5 dataset rewriting. Added some features to dataset classes. spec_bil_to_h5 temp function for rewriting the labeled dataset." />
     <MESSAGE value="Getting started on dataset function and class tests." />
     <MESSAGE value="Fixed input reference, but much is to be refactored anyway." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed input reference, but much is to be refactored anyway." />
+    <MESSAGE value="Developing refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Developing refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1014,16 +1059,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/contours.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/image_mask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/commandline.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
@@ -1393,13 +1428,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/exploratory/explore.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/pipeline/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
       <provider editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
       </provider>
       <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+        <state relative-caret-position="345">
+          <caret line="23" column="83" selection-start-line="23" selection-start-column="83" selection-end-line="23" selection-end-column="83" />
         </state>
       </provider>
       <provider editor-type-id="text-editor">
@@ -1408,37 +1456,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Developing/preprocessing/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Developing/pipeline/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="64" selection-start-line="64" selection-end-line="64" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Developing/simulation/probabalistic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
+        <state relative-caret-position="261">
+          <caret line="26" column="30" lean-forward="true" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/preprocessing/preprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
+        <state relative-caret-position="225">
+          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
             <element signature="e#14#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/sim_scratch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
