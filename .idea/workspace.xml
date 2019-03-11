@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Added note about issues installing rasterio/gdal to readme.">
-      <change afterPath="$PROJECT_DIR$/hsi_atk/tests/dataset_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/hsi_atk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/hsi_atk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/Sasatari/sasatari.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
     </list>
@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+            <state relative-caret-position="448">
+              <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
               <folding>
                 <element signature="e#14#32#0" expanded="true" />
               </folding>
@@ -37,27 +37,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/tests/pentiga_tests.py">
+        <entry file="file://$PROJECT_DIR$/Developing/pipeline/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="86" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="86" />
+            <state relative-caret-position="542">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
+        <entry file="file://$PROJECT_DIR$/Developing/simulation/probabalistic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-222">
-              <caret line="144" column="21" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-                <marker date="1552168657455" expanded="true" signature="368:399" ph="..." />
-                <marker date="1552168657455" expanded="true" signature="4828:4831" ph="..." />
-              </folding>
+            <state relative-caret-position="302">
+              <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -84,15 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hsi_atk/cnn_model.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/docs/conf.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/Pentara/plot3var.py" />
-        <option value="$PROJECT_DIR$/Data/headers3mgperml.csv" />
-        <option value="$PROJECT_DIR$/hsi_atk/model_shape_hist.txt" />
-        <option value="$PROJECT_DIR$/hsi_atk/ImageGen.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/cnn_model_cont.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/cnn_pent_n_test.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/tf_multilabel_model.py" />
         <option value="$PROJECT_DIR$/hsi_atk/label_cov.py" />
         <option value="$PROJECT_DIR$/hsi_atk/spectral_scratch.py" />
         <option value="$PROJECT_DIR$/HypPy/tkHypPy.pyw" />
@@ -129,19 +115,28 @@
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/__init__.py" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/utils/write_h5.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
         <option value="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" />
         <option value="$PROJECT_DIR$/hsi_atk/tests/dataset_tests.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/utils/write_h5.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/utils/dataset.py" />
+        <option value="$PROJECT_DIR$/Developing/model/model.py" />
+        <option value="$PROJECT_DIR$/Developing/util/dataset.py" />
+        <option value="$PROJECT_DIR$/Developing/pipeline/simulation_template.json" />
+        <option value="$PROJECT_DIR$/Developing/tests/pipeline_tests.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/simulation.py" />
+        <option value="$PROJECT_DIR$/Developing/model/model_builder.py" />
+        <option value="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" />
+        <option value="$PROJECT_DIR$/Developing/pipeline/pipeline.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/probabalistic.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="929" />
+    <option name="x" value="703" />
     <option name="y" value="23" />
-    <option name="width" value="991" />
+    <option name="width" value="1217" />
     <option name="height" value="1137" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -232,6 +227,41 @@
               <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
               <item name="Data" type="462c0819:PsiDirectoryNode" />
               <item name="B73" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="pipeline" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="preprocessing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="simulation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hsi_atk" type="462c0819:PsiDirectoryNode" />
+              <item name="Developing" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hsi_atk" type="b2602c69:ProjectViewProjectNode" />
@@ -419,6 +449,9 @@
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk/utils" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -475,28 +508,8 @@
       <workItem from="1551828718946" duration="368000" />
       <workItem from="1551829114853" duration="10000" />
       <workItem from="1551972418370" duration="5070000" />
-      <workItem from="1552166451821" duration="8317000" />
-    </task>
-    <task id="LOCAL-00048" summary="Experimenting with pentiga_n object and label generation">
-      <created>1536250362164</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1536250362164</updated>
-    </task>
-    <task id="LOCAL-00049" summary="n_pix updates on gen_struct call">
-      <created>1536264343258</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1536264343258</updated>
-    </task>
-    <task id="LOCAL-00050" summary="Training/testing NN models">
-      <created>1538765812201</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1538765812202</updated>
+      <workItem from="1552166451821" duration="12087000" />
+      <workItem from="1552271998780" duration="13043000" />
     </task>
     <task id="LOCAL-00051" summary="Building NN models. RMSE of current model &lt; 0.01 for some labels.">
       <created>1538765865000</created>
@@ -820,7 +833,28 @@
       <option name="project" value="LOCAL" />
       <updated>1551829035546</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Some simplification to bil -&gt; h5 dataset rewriting. Added some features to dataset classes. spec_bil_to_h5 temp function for rewriting the labeled dataset.">
+      <created>1552248588440</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1552248588441</updated>
+    </task>
+    <task id="LOCAL-00098" summary="Getting started on dataset function and class tests.">
+      <created>1552248619254</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1552248619254</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Fixed input reference, but much is to be refactored anyway.">
+      <created>1552248686629</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1552248686629</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -856,7 +890,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63211000" />
+    <option name="totallyTimeSpent" value="80024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -868,10 +902,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="929" y="23" width="991" height="1137" extended-state="0" />
-    <editor active="true" />
+    <frame x="703" y="23" width="1217" height="1137" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25711274" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2119149" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -887,11 +920,11 @@
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7150723" weight="0.23972602" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2655427" side_tool="true" weight="0.29158512" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32876712" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.7344573" weight="0.29158512" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.7344573" visible="true" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49585634" weight="0.60800844" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.49585634" weight="0.6076596" />
       <window_info anchor="right" id="R Graphics" order="4" />
       <window_info anchor="right" id="R Packages" order="5" />
       <window_info anchor="right" x="0" y="0" width="205" height="977" id="Documentation" order="6" sideWeight="0.50414366" side_tool="true" weight="0.3930453" />
@@ -942,9 +975,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="More scratch experimentation" />
-    <MESSAGE value="Edited red range global, and added a 4-band output to include averaged infrared bands ontop of RGB. Still need to formalize RGB translation." />
-    <MESSAGE value="Fixed setup.py install (added package_dir) and placed higher in hierarchy" />
     <MESSAGE value="Got rid of annoying print statement." />
     <MESSAGE value="Example usage notebooks" />
     <MESSAGE value="Refactored output types to work with matplot lib and other tools (integer pixel values, need to add 0..1 scaled float output rgb also)." />
@@ -967,7 +997,10 @@
     <MESSAGE value="Added note about issues installing rasterio/gdal to readme." />
     <MESSAGE value="Starting refactoring process" />
     <MESSAGE value="Added features to kernelhsidset and methods in file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added features to kernelhsidset and methods in file" />
+    <MESSAGE value="Some simplification to bil -&gt; h5 dataset rewriting. Added some features to dataset classes. spec_bil_to_h5 temp function for rewriting the labeled dataset." />
+    <MESSAGE value="Getting started on dataset function and class tests." />
+    <MESSAGE value="Fixed input reference, but much is to be refactored anyway." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed input reference, but much is to be refactored anyway." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -981,50 +1014,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hsi_atk/hsi_atk.egg-info/requires.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/hsi_atk.egg-info/SOURCES.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/hilbert.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/thresholdcuts.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="50" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/site-packages/numpy/core/shape_base.py" />
-    <entry file="file:///anaconda3/envs/hsi/lib/python3.6/codecs.py" />
-    <entry file="file://$PROJECT_DIR$/hsi_atk/cnn_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" selection-start-line="11" selection-end-line="91" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/kernel_g_sc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Ganita/kernel_g.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="45" selection-start-line="113" selection-start-column="45" selection-end-line="113" selection-end-column="45" />
-          <folding>
-            <marker date="1543652566585" expanded="true" signature="1149:1185" ph="..." />
-            <marker date="1543652566585" expanded="true" signature="1207:1241" ph="..." />
-            <marker date="1543652566585" expanded="true" signature="1487:1523" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/contours.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1271,21 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
@@ -1311,16 +1285,6 @@
           <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/write_h5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1363,20 +1327,115 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
-          <caret line="144" column="21" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
+        <state relative-caret-position="2505">
+          <caret line="167" lean-forward="true" selection-start-line="167" selection-end-line="167" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
-            <marker date="1552168657455" expanded="true" signature="368:399" ph="..." />
-            <marker date="1552168657455" expanded="true" signature="4828:4831" ph="..." />
+            <marker date="1552250455152" expanded="true" signature="368:399" ph="..." />
+            <marker date="1552250455152" expanded="true" signature="4967:4970" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/write_h5.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/pipeline/simulation_template.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/tests/pipeline_tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/util/dataset.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/model/model_builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/model/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/simulation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Data/headers3mgperml.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="103" selection-start-line="32" selection-start-column="103" selection-end-line="32" selection-end-column="103" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/preprocessing/preprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/pipeline/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/probabalistic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="50" column="33" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+        <state relative-caret-position="448">
+          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
           <folding>
             <element signature="e#14#32#0" expanded="true" />
           </folding>

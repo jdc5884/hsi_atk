@@ -1,0 +1,23 @@
+{
+  "name": "SimulationAnalysisPipeline",
+  "inputs": {
+    "nBands": 240,
+    "bandWidth": 2.072,
+    "bandStart": 393.910,
+    "bandEnd": 889.118
+  },
+  "parameters": {
+    "dlPipeline": true,
+    "exploratoryAnalysis": true,
+    "exploratoryType": ["histogram-bandwise","kmeans","spectral"],
+    "preprocessing": true,
+    "preprocessingType": ["filter-lp"],
+    "simulation": true,
+    "nObj": 15,
+    "objShape": "ellipse",
+    "nObjLayers": 7,
+    "bgColor": "black",
+    "noise": true,
+    "noiseMu": 100
+  }
+}
