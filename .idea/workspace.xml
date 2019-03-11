@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Added note about issues installing rasterio/gdal to readme.">
-      <change afterPath="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/dataset.py" afterDir="false" />
     </list>
@@ -60,8 +59,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Developing/simulation/sim_scratch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="510">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Developing/simulation/ensemble_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -109,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hsi_atk/spectral_scratch.py" />
         <option value="$PROJECT_DIR$/HypPy/tkHypPy.pyw" />
         <option value="$PROJECT_DIR$/hsi_atk/utils/convert2color.py" />
         <option value="$PROJECT_DIR$/hsi_atk/image_mask.py" />
@@ -159,6 +175,7 @@
         <option value="$PROJECT_DIR$/Developing/preprocessing/preprocessing.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
         <option value="$PROJECT_DIR$/hsi_atk/scratch.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/ensemble_test.py" />
         <option value="$PROJECT_DIR$/Developing/simulation/sim_scratch.py" />
       </list>
     </option>
@@ -434,6 +451,9 @@
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hsi_atk" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -453,6 +473,9 @@
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Developing/simulation" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -554,14 +577,7 @@
       <workItem from="1551829114853" duration="10000" />
       <workItem from="1551972418370" duration="5070000" />
       <workItem from="1552166451821" duration="12087000" />
-      <workItem from="1552271998780" duration="22587000" />
-    </task>
-    <task id="LOCAL-00052" summary="Scratch file building toy datasets from pentiga_n objects.">
-      <created>1538765891617</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1538765891617</updated>
+      <workItem from="1552271998780" duration="23953000" />
     </task>
     <task id="LOCAL-00053" summary="misc testing">
       <created>1540487323526</created>
@@ -899,7 +915,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552320951473</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Added note about issues installing rasterio/gdal to readme.">
+      <created>1552332291345</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1552332291345</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -935,7 +958,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89568000" />
+    <option name="totallyTimeSpent" value="90934000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -948,8 +971,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="703" y="23" width="1217" height="1137" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2119149" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2119149" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1038,14 +1062,14 @@
     <MESSAGE value="Plotting layered histograms" />
     <MESSAGE value="removed experimentation with scikit-hyper" />
     <MESSAGE value="added write_metadata funciton. Completed and simplified convert_bil_h5 function for writing hsi's files from bil to h5" />
-    <MESSAGE value="Added note about issues installing rasterio/gdal to readme." />
     <MESSAGE value="Starting refactoring process" />
     <MESSAGE value="Added features to kernelhsidset and methods in file" />
     <MESSAGE value="Some simplification to bil -&gt; h5 dataset rewriting. Added some features to dataset classes. spec_bil_to_h5 temp function for rewriting the labeled dataset." />
     <MESSAGE value="Getting started on dataset function and class tests." />
     <MESSAGE value="Fixed input reference, but much is to be refactored anyway." />
     <MESSAGE value="Developing refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="Developing refactor" />
+    <MESSAGE value="Added note about issues installing rasterio/gdal to readme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added note about issues installing rasterio/gdal to readme." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1059,13 +1083,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/commandline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/pickly.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1279,13 +1296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentara.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-488">
@@ -1470,6 +1480,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/ensemble_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/scratch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1480,10 +1497,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Developing/simulation/sim_scratch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="510">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
