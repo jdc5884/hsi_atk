@@ -1,7 +1,7 @@
 __author__ = "David Ruddell"
 __credits__ = ["David Ruddell"]
 __license__ = "GPL"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __status__ = "Development"
 
 import numpy as np
@@ -11,6 +11,11 @@ from hsi_atk.utils.hsi2color import hsi2gray
 
 
 def filter_seg(AOI):
+    """Runs simple chan_vese segmentaion and return segmented coordinates. May need to apply
+    negation depending on the objects in image.
+    AOI - ndarray of dim 2 or 3 (image or image subsection)
+    returns rr,cc - 1darrays representing coordinate maps"""
+
     gray = hsi2gray(AOI)
     gseg = chan_vese(gray, mu=.99)
     rr,cc = np.where(gseg)
@@ -18,6 +23,14 @@ def filter_seg(AOI):
 
 
 def fit_ply(AOI, rr, cc, bands=240, deg=5):
+    """Fits a polynomial of specified degree across spectral WF of pixels in coordinate map
+    specified by rr,cc.
+    AOI - ndarray of dim 2 or 3 (image or image subsection)
+    rr,cc - 1darrays representing coordinate maps
+    bands - int number of bandwidths in pixel WFs
+    deg - int degree of polynomial to be fit
+    returns plys - 2darray of polynomial coefficients in specified region of image"""
+
     plys = []
     t = np.linspace(0,bands-1,bands)
     for i in range(rr.size):
@@ -30,12 +43,21 @@ def fit_ply(AOI, rr, cc, bands=240, deg=5):
 
 
 def cluster_map(AOI, rr, cc, n_clusters=8):
+    """Applies KMeans clustering to separate segmentation map into n_clusters classes.
+    AOI - ndarray of dim 2 or 3 (image or image subsection)
+    rr,cc - 1darrays representing coordinate maps
+    n_clusters - int number of classes to cluster
+    returns 1darray of ints representing classes
+    NOTE: labels_ indices will match rr,cc indices as well as plys labels (when both using same rr,cc)"""
+
     mdl = KMeans(n_clusters=n_clusters)
     mdl.fit(AOI[rr,cc,:])
     return mdl.labels_
 
 
 def get_ply_stats(labels, plys, n_clusters=8):
+    """Finds averages and standard deviations of coefficients
+    for a set of polynomials with respect to a class map (cluster labels)"""
     ply_stats = {}
     for i in range(n_clusters):
         ply_stats[i] = {}
