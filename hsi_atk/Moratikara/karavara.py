@@ -26,9 +26,9 @@ class Karavara:
     def fit(self, img, copy_img=True):
         if copy_img:
             self._img = img
-        self._gray = np.mean(img, axis=2)
+        self._gray = hsi2gray(img)
         self._rgb = hsi2color(img)
-        self.find_edges_seg()
+        self.edges = self.find_edges_seg()
 
     def get_gray(self):
         return self._gray
