@@ -159,6 +159,13 @@ def list_group(name, node):
         print(name)
 
 
+def rename_dset_upper(hf, hf_dset):
+    name = hf_dset.name
+    name_upper = name.upper()
+    hf[name_upper] = hf[name]
+    del hf[name]
+
+
 # pass as list of tuples to make 1 for loop generating file
 def build_pent_dataset(file, pentaras):
 
@@ -242,7 +249,6 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=False):
         raw = hf.create_group("RAW")
     else:
         raw = hf["RAW"]
-    img_tup = []
 
     for gene in geno:
         # if gene not in hf.keys():
@@ -258,6 +264,7 @@ def convert_bil_h5(file_path, img_paths, geno, store_metadata=False):
             f = os.path.basename(file)
             name = f[:-4]
             name = gene + "." + name
+            name = name.upper()
 
             #TODO: simplify group structure?
 
