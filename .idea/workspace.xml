@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Added note about issues installing rasterio/gdal to readme.">
-      <change afterPath="$PROJECT_DIR$/Developing/simulation/hierarchical.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Developing/simulation/histogram_matching.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Developing/exploratory/model_extraction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/exploratory/model_extraction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Developing/simulation/hierarchical.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/simulation/hierarchical.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Developing/simulation/simple_sim.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/simulation/simple_sim.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" afterDir="false" />
     </list>
     <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +32,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-2869">
-                    <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+                  <state relative-caret-position="120">
+                    <caret line="9" column="127" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="127" />
                   </state>
                 </provider>
               </entry>
@@ -56,14 +57,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Developing/simulation/simple_sim.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="63" column="39" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+            <state relative-caret-position="746">
+              <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
               <folding>
                 <element signature="e#131#149#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Developing/simulation/histogram_matching.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="50" selection-start-column="50" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -82,11 +92,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Developing/simulation/hierarchical.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="15" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
+            <state relative-caret-position="-5070">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+              <folding>
+                <element signature="e#131#149#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1150">
+              <caret line="162" column="23" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+                <marker date="1552250455152" expanded="true" signature="368:399" ph="..." />
+                <marker date="1552250455152" expanded="true" signature="4967:4970" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,8 +121,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Developing/exploratory/model_extraction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="85" selection-end-column="32" />
+            <state relative-caret-position="422">
+              <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
               <folding>
                 <element signature="e#131#149#0" expanded="true" />
               </folding>
@@ -125,7 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/hsi_atk/pickle_tst.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Pentara/pentara_n.py" />
         <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/hsi_atk/Moratikara/thresholdcuts.txt" />
@@ -172,10 +198,11 @@
         <option value="$PROJECT_DIR$/Developing/simulation/simulation.py" />
         <option value="$PROJECT_DIR$/Developing/pipeline/pipeline.py" />
         <option value="$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py" />
+        <option value="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/histogram_matching.py" />
+        <option value="$PROJECT_DIR$/Developing/simulation/simple_sim.py" />
         <option value="$PROJECT_DIR$/Developing/exploratory/model_extraction.py" />
         <option value="$PROJECT_DIR$/Developing/simulation/hierarchical.py" />
-        <option value="$PROJECT_DIR$/hsi_atk/utils/hsi2color.py" />
-        <option value="$PROJECT_DIR$/Developing/simulation/simple_sim.py" />
       </list>
     </option>
   </component>
@@ -571,28 +598,7 @@
       <workItem from="1552166451821" duration="12087000" />
       <workItem from="1552271998780" duration="23953000" />
       <workItem from="1552346483775" duration="11977000" />
-      <workItem from="1552916737407" duration="37731000" />
-    </task>
-    <task id="LOCAL-00061" summary="travis lang">
-      <created>1541707975687</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1541707975687</updated>
-    </task>
-    <task id="LOCAL-00062" summary="lang update">
-      <created>1541708238691</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1541708238691</updated>
-    </task>
-    <task id="LOCAL-00063" summary="object for bounding box generation and other util/image processing features">
-      <created>1542834111620</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1542834111621</updated>
+      <workItem from="1552916737407" duration="41234000" />
     </task>
     <task id="LOCAL-00064" summary="update init manifest">
       <created>1542834168551</created>
@@ -916,7 +922,28 @@
       <option name="project" value="LOCAL" />
       <updated>1553377442354</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="added some methods for the simple simulation feature map construction, and testing in if __name__">
+      <created>1553455165527</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1553455165528</updated>
+    </task>
+    <task id="LOCAL-00111" summary="working on hierarchical structuring">
+      <created>1553455215594</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1553455215594</updated>
+    </task>
+    <task id="LOCAL-00112" summary="output as scaled floats as default seems to work best atm">
+      <created>1553455243900</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1553455243900</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -952,7 +979,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140642000" />
+    <option name="totallyTimeSpent" value="144145000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -967,7 +994,7 @@
     <frame x="0" y="23" width="1039" height="1137" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25877634" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25877634" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1038,9 +1065,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixing package requirements, pip can't find libgdal" />
-    <MESSAGE value="adding some simply IO methods for translating our current dataset. Need to beef up the class interaction for analysis pipelines" />
-    <MESSAGE value="Deprecated skhyper" />
     <MESSAGE value="adding methods for standardized .bil -&gt; .h5 conversion" />
     <MESSAGE value="rename" />
     <MESSAGE value="enum_hsi_files method refactor, changed hdf5 file accessing options." />
@@ -1063,7 +1087,10 @@
     <MESSAGE value="Some changes to alt preprocessing routines before refactoring" />
     <MESSAGE value="Added dataset renaming. Sticking with all upper conventions" />
     <MESSAGE value="Adding docstrings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding docstrings" />
+    <MESSAGE value="added some methods for the simple simulation feature map construction, and testing in if __name__" />
+    <MESSAGE value="working on hierarchical structuring" />
+    <MESSAGE value="output as scaled floats as default seems to work best atm" />
+    <option name="LAST_COMMIT_MESSAGE" value="output as scaled floats as default seems to work best atm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1077,9 +1104,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hsi_atk/model_shape_hist.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/pix_scratch.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1440,18 +1464,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1879">
-          <caret line="162" column="23" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1552250455152" expanded="true" signature="368:399" ph="..." />
-            <marker date="1552250455152" expanded="true" signature="4967:4970" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/Moratikara/karavara.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -1472,30 +1484,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2869">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Developing/simulation/hierarchical.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="15" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Developing/exploratory/model_extraction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="82" column="4" selection-start-line="82" selection-start-column="4" selection-end-line="85" selection-end-column="32" />
-          <folding>
-            <element signature="e#131#149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hsi_atk/utils/hsi2color.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
@@ -1508,10 +1496,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/exploratory/model_extraction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
+          <folding>
+            <element signature="e#131#149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Developing/simulation/simple_sim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="63" column="39" selection-start-line="63" selection-start-column="39" selection-end-line="63" selection-end-column="39" />
+        <state relative-caret-position="746">
+          <caret line="52" column="51" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
+          <folding>
+            <element signature="e#131#149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/utils/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1150">
+          <caret line="162" column="23" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+            <marker date="1552250455152" expanded="true" signature="368:399" ph="..." />
+            <marker date="1552250455152" expanded="true" signature="4967:4970" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hsi_atk/Pentara/pentiga.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="127" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/histogram_matching.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="50" selection-start-column="50" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Developing/simulation/hierarchical.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5070">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
           <folding>
             <element signature="e#131#149#0" expanded="true" />
           </folding>
