@@ -71,11 +71,16 @@ def get_ply_stats(labels, plys, n_clusters=8):
     return ply_stats
 
 
-def fit_ply_mdl(AOI,deg=5,n_clusters=8):
+def fit_ply_mdl(AOI,deg=5,n_clusters=8, return_counts=False):
     rr, cc = filter_seg(AOI)
     plys = fit_ply(AOI, rr, cc, deg=deg)
     labels = cluster_map(AOI, rr, cc, n_clusters=n_clusters)
     ply_stats = get_ply_stats(labels, plys, n_clusters=n_clusters)
+    if return_counts:
+        for i in range(n_clusters):
+            count = (labels == i).sum()
+            ply_stats[i]['count'] = count
+        return ply_stats
     return ply_stats
 
 
