@@ -19,10 +19,6 @@ def gen_brightness_func(coefs, sigma=None):
     return brightness
 
 
-def gen_class_pix(brightnessfunc, shape):
-    return np.fromfunction(brightnessfunc,shape)
-
-
 def compose(bfuncs, shape, smas, centers, rots=None):
     base = np.zeros(shape)
     x,y,z = shape
@@ -50,10 +46,11 @@ if __name__ == '__main__':
     from Developing.exploratory.model_extraction import fit_ply_mdl
     from hsi_atk.utils.hsi2color import hsi2color
     from hsi_atk.utils.dataset import open_hsi_bil
+    from Developing.simulation.histogram_matching import match_histograms
 
     img = open_hsi_bil("../../Data/B73/32.control.bil")
     AOI = img[88:178, 461:536, :]
-    ply_stats = fit_ply_mdl(AOI)
+    ply_stats = fit_ply_mdl(AOI, return_counts=True)
     coefs = ply_stats[3]['mean'].reshape(6)
     sigma = ply_stats[3]['std'].reshape(6)
     # coefs = np.random.rand(6)
@@ -62,7 +59,14 @@ if __name__ == '__main__':
     img = compose([bfunc],(40,40,240),[(15,12)],[(21,25)])
     from skimage.util import random_noise
     img_ = np.random.randn(40,40,240)*400
+    rr,cc = ellipse(21,25,15,12,(40,40))
+    # rr0,cc0 = ellipse(15,12,15,12,(np.ceil(15*2),np.ceil(12*2)))
+    ref_ = AOI[25:65, 25:65, :]
+    ref = np.zeros((40,40,240))
+    ref[rr,cc,:] = ref_[rr,cc,:]
+    ref = np.add(ref,img_.copy())
     img = np.add(img,img_)
+    img = match_histograms(img,ref,multichannel=True)
     # img2 = compose([bfunc], (40, 40, 40), [(15, 12)], [(21, 25)], [.3])
 
     color = hsi2color(img, scale=False, out_type=float)
