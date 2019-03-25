@@ -21,9 +21,6 @@ The explicit requirements are:
    'scikit-image>=0.14.0',
    'scikit-hyper>=0.0.2',
    'tensorflow>=1.8.0',
-   'rasterio>=0.36.0',
-   'gdal>=2.2.4',
-   'libgdal>=2.2.4',
    'h5py>=2.8.0'
 ```
 As you will see in setup.py of this repo.
