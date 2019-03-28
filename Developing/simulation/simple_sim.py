@@ -5,18 +5,71 @@ __version__ = "0.0.2"
 __status__ = "Development"
 
 import numpy as np
+from sympy import poly
+from sympy.abc import z
 from skimage.draw import ellipse
 
 
-def gen_brightness_func(coefs, sigma=None):
+def gen_brightness_func(coefs, center, sigma=None):
     deg = coefs.size - 1
+    switch = {0: poly0,
+              1: poly1,
+              2: poly2,
+              3: poly3,
+              4: poly4,
+              5: poly5}
     if sigma is None:
-        brightness = lambda x, y, z: sum(coefs[i] * z ** (deg - i) for i in range(deg + 1))
+        brightness = switch[deg](coefs, center)
     else:
         def brightness(x,y,z):
             rand_shift = np.add(coefs, sigma/3) #np.multiply(np.random.randn(coefs.size), sigma))
             return sum([rand_shift[i]*z**(deg-i) for i in range(deg+1)])
     return brightness
+
+
+def poly0(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0])
+    return poly
+
+
+def poly1(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0]*z**2 + coefs[1]*z + coefs[2])
+    return poly
+
+
+def poly2(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0]*z**2 + coefs[1]*z + coefs[2])
+    return poly
+
+
+def poly3(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0]*z**3 + coefs[1]*z**2 + coefs[2]*z +
+                coefs[3])
+    return poly
+
+
+def poly4(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0]*z**4 + coefs[1]*z**3 + coefs[2]*z**2 +
+                coefs[3]*z + coefs[4])
+    return poly
+
+
+def poly5(coefs, center):
+    def poly(x,y,z):
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+               (coefs[0]*z**5 + coefs[1]*z**4 + coefs[2]*z**3 +
+                coefs[3]*z**2 + coefs[4]*z + coefs[5])
+    return poly
 
 
 def compose(bfuncs, shape, smas, centers, rots=None):

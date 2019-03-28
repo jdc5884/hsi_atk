@@ -1,14 +1,16 @@
 # import time
 import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import matplotlib as cm
-from mpl_toolkits.mplot3d import Axes3D
 import h5py as h5
 from hsi_atk.utils.hsi2color import hsi2color
 
 from hsi_atk.utils.dataset import open_hsi_bil
 from hsi_atk.utils.hsi2color import hsi2color, hsi2color4, hsi2gray
 from skimage.segmentation import chan_vese as seger
+
+# from dask import delayed as dl
 # import pandas as pd
 # import scipy as sp
 # from scipy import ndimage as ndi
@@ -22,29 +24,90 @@ from skimage.segmentation import chan_vese as seger
 # from sklearn.preprocessing import LabelEncoder
 
 
-img_ = open_hsi_bil("../Data/B73/32.control.bil")
+# @dl
+def read_img(hf_dset):
+    return hf_dset[:,:,:]
+
+# @dl
+def img_hist(img):
+    return np.histogram(img)
+
+# @dl
+def img_seg(img):
+    return seger(img, mu=.99, extended_output=True)
+
+# @dl
+def img_gray(img):
+    return hsi2gray(img)
+
+# @dl
+def filter_mask(gseg):
+    # gseg = ~ gseg
+    return np.where(gseg)
+
 
 import random
 chars = '0123456789ABCDEF'
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+# fig = plt.figure()
+# ax = fig.add_subplot(111)#, projection='3d')
 
-gray = hsi2gray(img_)
 
-gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
-gseg = ~ gseg
-rr, cc = np.where(gseg)
+# hf = h5.File("/Volumes/RuddellD/hsi/labeled_set.h5", 'r')
+# hists = []
+# for key in hf['RAW'].keys():
+# im = read_img(hf['RAW/B73.32.control'])
 
-for i in range(0, 240):
-	ys = img_[rr, cc, i]
-	hist, bins = np.histogram(ys, bins=50)
-	c = '#'+''.join(random.sample(chars,6))
+# img_gray = img_gray(im)
+# gseg, phi, energies = seger(img_gray, mu=.99, extended_output=True)
+# gseg = ~ gseg
+# rr, cc = filter_mask(gseg)
+# imghists = []
+# for i in range(240):
+#     fig = plt.figure()
+#     ax = fig.add_subplot(111)
+#     hist, bins = np.histogram(im[rr,cc,i], bins=128)
+#     c = '#' + ''.join(random.sample(chars, 6))
+#     # bins = np.linspace(0,30000,128)
+#     # ax.bar3d(im[rr,cc,i].ravel(), bins, zs=i, zdir='y', alpha=0.8, color=c, ec=c)
+#     xs = (bins[:-1] + bins[1:]) / 2
+#     ax.bar(xs, hist, alpha=0.8, color=c, ec=c)
+#     # ax.bar(xs,hist)
+#     # imghists.append(hist)
+# # hists.append(imghists)
+#
+#     plt.show()
+#     input()
 
-	xs = (bins[:-1] + bins[1:])/2
-	ax.bar(xs[12:], hist[12:], zs=(i*2.042), zdir='y', alpha=0.8, color=c, ec=c)
+# img_ = open_hsi_bil("../Data/B73/32.control.bil")
 
-plt.show()
+
+
+# for his in hists:
+#     hist, bins = his
+#     c = '#'+''.join(random.sample(chars,6))
+#
+#     xs = (bins[:-1] + bins[1:])/2
+#     ax.bar(xs[12:], hist[12:], zs=(i*2.042), zdir='y', alpha=0.8, color=c, ec=c)
+
+# plt.show()
+
+# gray = hsi2gray(img_)
+#
+# gseg, phi, energies = seger(gray, mu=.99, extended_output=True)
+# gseg = ~ gseg
+# rr, cc = np.where(gseg)
+#
+# aoe = img_[rr,cc,:]
+# aoe = aoe.reshape(rr.size, 240)
+# print(aoe.shape)
+#
+# a=0
+#
+# ft = np.fft.fft(aoe)
+# freq = np.fft.fftfreq(240)
+# plt.plot(freq, ft.real[a], freq, ft[a].imag)
+# plt.show()
 
 # data = pd.read_csv('../Data/headers3mgperml.csv', sep=',')
 #
