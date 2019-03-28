@@ -66,7 +66,7 @@ def poly4(coefs, center):
 
 def poly5(coefs, center):
     def poly(x,y,z):
-        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+        return (1+np.cos(0.25 * np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
                (coefs[0]*z**5 + coefs[1]*z**4 + coefs[2]*z**3 +
                 coefs[3]*z**2 + coefs[4]*z + coefs[5])
     return poly
@@ -96,6 +96,10 @@ def compose(bfuncs, shape, smas, centers, rots=None):
 
 
 if __name__ == '__main__':
+    # import sys
+    # print('Python %s on %s' % (sys.version, sys.platform))
+    # sys.path.extend(['/Users/tensorstrings/hsi_atk/hsi_atk'])
+
     from Developing.exploratory.model_extraction import fit_ply_mdl
     from hsi_atk.utils.hsi2color import hsi2color
     from hsi_atk.utils.dataset import open_hsi_bil
@@ -107,11 +111,11 @@ if __name__ == '__main__':
     coefs = ply_stats[3]['mean'].reshape(6)
     sigma = ply_stats[3]['std'].reshape(6)
     # coefs = np.random.rand(6)
-    bfunc = gen_brightness_func(coefs, sigma)
+    bfunc = gen_brightness_func(coefs, (15,15))
     # bfunc = gen_brightness_func(coefs)
     img = compose([bfunc],(40,40,240),[(15,12)],[(21,25)])
     from skimage.util import random_noise
-    img_ = np.random.randn(40,40,240)*400
+    img_ = np.random.randn(40,40,240)*350
     rr,cc = ellipse(21,25,15,12,(40,40))
     # rr0,cc0 = ellipse(15,12,15,12,(np.ceil(15*2),np.ceil(12*2)))
     ref_ = AOI[25:65, 25:65, :]
