@@ -5,8 +5,8 @@ __version__ = "0.0.2"
 __status__ = "Development"
 
 import numpy as np
-from sympy import poly
-from sympy.abc import z
+# from sympy import poly
+# from sympy.abc import z
 from skimage.draw import ellipse
 
 
@@ -66,7 +66,7 @@ def poly4(coefs, center):
 
 def poly5(coefs, center):
     def poly(x,y,z):
-        return (1+np.cos(0.25 * np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
+        return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2)/4)/10) * \
                (coefs[0]*z**5 + coefs[1]*z**4 + coefs[2]*z**3 +
                 coefs[3]*z**2 + coefs[4]*z + coefs[5])
     return poly
@@ -108,26 +108,28 @@ if __name__ == '__main__':
     img = open_hsi_bil("../../Data/B73/32.control.bil")
     AOI = img[88:178, 461:536, :]
     ply_stats = fit_ply_mdl(AOI, return_counts=True)
-    coefs = ply_stats[3]['mean'].reshape(6)
-    sigma = ply_stats[3]['std'].reshape(6)
-    # coefs = np.random.rand(6)
-    bfunc = gen_brightness_func(coefs, (15,15))
-    # bfunc = gen_brightness_func(coefs)
-    img = compose([bfunc],(40,40,240),[(15,12)],[(21,25)])
-    from skimage.util import random_noise
-    img_ = np.random.randn(40,40,240)*350
-    rr,cc = ellipse(21,25,15,12,(40,40))
-    # rr0,cc0 = ellipse(15,12,15,12,(np.ceil(15*2),np.ceil(12*2)))
-    ref_ = AOI[25:65, 25:65, :]
-    ref = np.zeros((40,40,240))
-    ref[rr,cc,:] = ref_[rr,cc,:]
-    ref = np.add(ref,img_.copy())
-    img = np.add(img,img_)
-    img = match_histograms(img,ref,multichannel=True)
-    # img2 = compose([bfunc], (40, 40, 40), [(15, 12)], [(21, 25)], [.3])
 
-    color = hsi2color(img, scale=False, out_type=float)
-    import matplotlib.pyplot as plt
-    plt.imshow(color)
-    plt.show()
+    def plt(cl):
+        coefs = ply_stats[cl]['mean'].reshape(6)
+        sigma = ply_stats[cl]['std'].reshape(6)
+        # coefs = np.random.rand(6)
+        bfunc = gen_brightness_func(coefs, (15,15))
+        # bfunc = gen_brightness_func(coefs)
+        img = compose([bfunc],(40,40,240),[(15,12)],[(21,25)])
+        from skimage.util import random_noise
+        img_ = np.random.randn(40,40,240)*100
+        rr,cc = ellipse(21,25,15,12,(40,40))
+        # rr0,cc0 = ellipse(15,12,15,12,(np.ceil(15*2),np.ceil(12*2)))
+        ref_ = AOI[25:65, 25:65, :]
+        ref = np.zeros((40,40,240))
+        ref[rr,cc,:] = ref_[rr,cc,:]
+        ref = np.add(ref,img_.copy())
+        img = np.add(img,img_)
+        # img = match_histograms(img,ref,multichannel=True)
+        # img2 = compose([bfunc], (40, 40, 40), [(15, 12)], [(21, 25)], [.3])
+
+        color = hsi2color(img, scale=False, out_type=float)
+        import matplotlib.pyplot as plt
+        plt.imshow(color)
+        plt.show()
 

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Added note about issues installing rasterio/gdal to readme.">
+    <list default="true" id="ca0d8dc1-f406-469d-a21a-19fa62333eff" name="Default" comment="Adding centers to constructors and scaled radial basis scaling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Developing/simulation/simple_sim.py" beforeDir="false" afterPath="$PROJECT_DIR$/Developing/simulation/simple_sim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/SimpleSimAndEval.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hsi_atk/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hsi_atk/scratch.py" afterDir="false" />
     </list>
     <list id="6d7891c5-c099-454e-b3e2-d44617e592fa" name="refactored gen_ellipsoid to gen_structure" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Developing/simulation/simple_sim.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="883">
-              <caret line="66" column="25" lean-forward="true" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+            <state relative-caret-position="92">
+              <caret line="102" column="32" lean-forward="true" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
               <folding>
                 <element signature="e#131#149#0" expanded="true" />
               </folding>
@@ -538,9 +536,6 @@
       <module name="hsi_atk" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Developing/simulation" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -602,21 +597,7 @@
       <workItem from="1552346483775" duration="11977000" />
       <workItem from="1552916737407" duration="42081000" />
       <workItem from="1553722235493" duration="1225000" />
-      <workItem from="1553724283422" duration="1818000" />
-    </task>
-    <task id="LOCAL-00069" summary="Editing edge detection and segmentation of image">
-      <created>1545240036084</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1545240036085</updated>
-    </task>
-    <task id="LOCAL-00070" summary="More scratch experimentation">
-      <created>1545240065022</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1545240065022</updated>
+      <workItem from="1553724283422" duration="4706000" />
     </task>
     <task id="LOCAL-00071" summary="Edited red range global, and added a 4-band output to include averaged infrared bands ontop of RGB. Still need to formalize RGB translation.">
       <created>1545240137233</created>
@@ -947,7 +928,21 @@
       <option name="project" value="LOCAL" />
       <updated>1553531079961</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="Added switch based polynomial functions">
+      <created>1553815801787</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1553815801788</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Adding centers to constructors and scaled radial basis scaling">
+      <created>1553817568708</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1553817568708</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -983,7 +978,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148035000" />
+    <option name="totallyTimeSpent" value="150923000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -996,6 +991,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1039" height="1137" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26880643" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1011,9 +1007,9 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7150723" weight="0.23972602" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2668004" side_tool="true" weight="0.29158512" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.2678034" side_tool="true" weight="0.29158512" />
       <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.49843588" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="13" sideWeight="0.7331996" visible="true" weight="0.29158512" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.73219657" visible="true" weight="0.29158512" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1068,8 +1064,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed experimentation with scikit-hyper" />
-    <MESSAGE value="added write_metadata funciton. Completed and simplified convert_bil_h5 function for writing hsi's files from bil to h5" />
     <MESSAGE value="Starting refactoring process" />
     <MESSAGE value="Added features to kernelhsidset and methods in file" />
     <MESSAGE value="Some simplification to bil -&gt; h5 dataset rewriting. Added some features to dataset classes. spec_bil_to_h5 temp function for rewriting the labeled dataset." />
@@ -1093,7 +1087,9 @@
     <MESSAGE value="From skimage to use until the dev branch is rolled out" />
     <MESSAGE value="Making simple varied feature maps" />
     <MESSAGE value="Deprecated some dependencies" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deprecated some dependencies" />
+    <MESSAGE value="Added switch based polynomial functions" />
+    <MESSAGE value="Adding centers to constructors and scaled radial basis scaling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding centers to constructors and scaled radial basis scaling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1547,8 +1543,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Developing/simulation/simple_sim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="883">
-          <caret line="66" column="25" lean-forward="true" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
+        <state relative-caret-position="92">
+          <caret line="102" column="32" lean-forward="true" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
           <folding>
             <element signature="e#131#149#0" expanded="true" />
           </folding>
