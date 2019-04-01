@@ -19,6 +19,7 @@ _RGB_PLUS = [_RED_RANGE, _GREEN_RANGE, _BLUE_RANGE, _IFR]
 
 def hsi2gray(img):
     gray = np.mean(img, axis=2)
+    gray /= np.max(gray.ravel())
     return gray
 
 def hsi2color(img, color_rngs=_RGB_RNG, wavelengths=_WAVELENGTHS, scale_in=4095, scale_out=255, scale=False, out_type=float):
