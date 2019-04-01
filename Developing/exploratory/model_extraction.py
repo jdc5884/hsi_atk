@@ -104,14 +104,14 @@ def fit_ply_mdl(AOI,deg=5,n_clusters=8, return_counts=False):
 
 
 if __name__ == '__main__':
-    from hsi_atk.utils.dataset import open_hsi_bil
+    # from hsi_atk.utils.dataset import open_hsi_bil
     import matplotlib.pyplot as plt
     import h5py as h5
     hf = h5.File("/Volumes/RuddellD/hsi/labeled_set.h5", 'r')
     img = hf['RAW/B73.32.control'][:,:,:]
     # img = open_hsi_bil("../../Data/B73/32.control.bil")
-    # AOI = img[88:178,461:536,:]
-    # ply_stats = fit_ply_mdl(AOI)
+    AOI = img[88:178,461:536,:]
+    ply_stats = fit_ply_mdl(AOI)
     gray = hsi2gray(img)
     # denoised = filters.median(gray, selem=np.ones((5,5)))
     #
@@ -127,13 +127,13 @@ if __name__ == '__main__':
     labels = morphology.watershed(-dt, markers)
     #
     regions = measure.regionprops(labels, intensity_image=gray)
-    points = np.hstack((regions[:,1], regions[:,0]))
+    # points = np.hstack((regions[:,1], regions[:,0]))
     # region_means = [r.mean_intensity for r in regions]
     # plt.imshow(color.label2rgb(labels,image=gray))
     # plt.hist(region_means)
 
     # edges = feature.canny(gray, sigma=4)
     # points = np.array(np.nonzero(edges)).T
-    model_robust, inliers = measure.ransac(points, measure.EllipseModel, min_samples=3,
-                                           residual_threshold=2, max_trials=5000)
+    # model_robust, inliers = measure.ransac(points, measure.EllipseModel, min_samples=3,
+    #                                        residual_threshold=2, max_trials=5000)
     # plt.show()
