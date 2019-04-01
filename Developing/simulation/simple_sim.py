@@ -27,6 +27,25 @@ def gen_brightness_func(coefs, center, sigma=None):
     return brightness
 
 
+def get_rand_rot():
+    rots = [0, np.pi/2, np.pi, 3*np.pi/2]
+    idx = np.random.randint(0,4)
+    return rots[idx]
+
+
+def get_rand_sma(min, max):
+    sma = np.random.randint(min, max+1, 2)
+    return sma
+
+
+def get_rand_center(shape, sma, n_object):
+
+    return None
+
+
+# def
+
+
 def poly0(coefs, center):
     def poly(x,y,z):
         return (1+np.cos(np.sqrt((x-center[0])**2 + (y-center[1])**2))/10) * \
@@ -108,6 +127,8 @@ if __name__ == '__main__':
     img = open_hsi_bil("../../Data/B73/32.control.bil")
     AOI = img[88:178, 461:536, :]
     ply_stats = fit_ply_mdl(AOI, return_counts=True)
+
+    coefs = [ply_stats[cl]['mean'].reshape(6) for cl in ply_stats.keys()]
 
     def plt(cl):
         coefs = ply_stats[cl]['mean'].reshape(6)
