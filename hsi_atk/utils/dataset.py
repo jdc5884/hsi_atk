@@ -333,7 +333,7 @@ def enum_hsi_files(dir_path, geno=None, return_geno=True):
         nimages = []
         for img in gimages:
             if img.endswith(".bil"):  # not including .bil.hdr files
-                img = img.lower()
+                img = img.upper()
                 img_p = g_path+img
                 nimages.append(img_p)
 
@@ -344,13 +344,13 @@ def enum_hsi_files(dir_path, geno=None, return_geno=True):
 
     return image_paths
 
-
+#TODO: remove hf_path and rename function (this function will not write the h5 file
 def spec_bil_to_h5(df, hf_path, dir_path):
     flist = []
     glist = []
     for index, row in df.iterrows():
-        name = str(row['Packet #']) + '.' + str(row['Hormone']).lower() + '.bil'
-        fs = str(row['Genotype'])
+        name = str(row['Packet #']) + '.' + str(row['Hormone']).upper() + '.bil'
+        fs = str(row['Genotype']).upper()
         if fs == 'B73':
             flist.append(name)
         elif fs == 'CML103':
