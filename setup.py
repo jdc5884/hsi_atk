@@ -8,6 +8,7 @@ setup(
     package_dir = {'hsi_atk': 'hsi_atk'},
 
     packages=['hsi_atk',
+              'hsi_atk.augmentation',
               'hsi_atk.exploratory',
               'hsi_atk.model',
               'hsi_atk.pipeline',
