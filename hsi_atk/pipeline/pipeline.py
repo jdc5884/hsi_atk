@@ -1,7 +1,6 @@
-import argparse, os, time
+import argparse
 
-from Developing.simulation import simulation
-
+from hsi_atk.simulation import simulation
 
 __author__ = "David Ruddell"
 __credits__ = ["David Ruddell", "Michael Suggs"]

@@ -1,7 +1,3 @@
-import numpy as np
-
-from Developing.simulation import probabalistic
-
 __author__ = "David Ruddell"
 __credits__ = ["David Ruddell"]
 __license__ = "GPL"

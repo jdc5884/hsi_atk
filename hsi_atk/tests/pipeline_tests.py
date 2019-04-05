@@ -1,7 +1,7 @@
 import unittest
-import os, sys
+import os
 
-from Developing.pipeline import pipeline
+from hsi_atk.pipeline import pipeline
 
 
 class PipelineTest(unittest.TestCase):

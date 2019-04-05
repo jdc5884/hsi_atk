@@ -1,7 +1,7 @@
 __author__ = "David Ruddell"
 __credits__ = ["David Ruddell"]
 __license__ = "GPL"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __status__ = "Development"
 
 import numpy as np
@@ -32,8 +32,8 @@ def dist_coef(dict, mode='linear', der='down', dev=3, deg=5, nclass=8):
 
 class Hierarchical:
     """
-       HSI object to store data about image substructure and easily add or remove it
-       """
+    HSI object to store data about image substructure and easily add or remove it
+    """
 
     def __init__(self, name, ell_sma, bands=240, band_dist=2.072, copy=False, center=(0, 0), is_substructure=False,
                  labels=None):
@@ -52,6 +52,7 @@ class Hierarchical:
         :param stats: bool - to compute stats of structure (Volume, Surface Area)
         :param labels: dictionary - assigned labels of kernel
         """
+
         self.name = name
         self._sma = ell_sma
         self.bands = bands

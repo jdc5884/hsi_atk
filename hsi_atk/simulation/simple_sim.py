@@ -119,10 +119,9 @@ if __name__ == '__main__':
     # print('Python %s on %s' % (sys.version, sys.platform))
     # sys.path.extend(['/Users/tensorstrings/hsi_atk/hsi_atk'])
 
-    from Developing.exploratory.model_extraction import fit_ply_mdl
+    from hsi_atk.exploratory.model_extraction import fit_ply_mdl
     from hsi_atk.utils.hsi2color import hsi2color
     from hsi_atk.utils.dataset import open_hsi_bil
-    from Developing.simulation.histogram_matching import match_histograms
 
     img = open_hsi_bil("../../Data/B73/32.control.bil")
     AOI = img[88:178, 461:536, :]
@@ -137,7 +136,6 @@ if __name__ == '__main__':
         bfunc = gen_brightness_func(coefs, (15,15))
         # bfunc = gen_brightness_func(coefs)
         img = compose([bfunc],(40,40,240),[(15,12)],[(21,25)])
-        from skimage.util import random_noise
         img_ = np.random.randn(40,40,240)*100
         rr,cc = ellipse(21,25,15,12,(40,40))
         # rr0,cc0 = ellipse(15,12,15,12,(np.ceil(15*2),np.ceil(12*2)))
