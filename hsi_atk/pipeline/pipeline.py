@@ -1,10 +1,5 @@
 import argparse
-
 from hsi_atk.simulation import simulation
-
-__author__ = "David Ruddell"
-__credits__ = ["David Ruddell", "Michael Suggs"]
-__license__ = "GPL"
 
 
 class Pipeline:

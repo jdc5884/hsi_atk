@@ -1,17 +1,9 @@
-__author__ = "David Ruddell"
-__credits__ = ["David Ruddell"]
-__license__ = "GPL"
-__version__ = "0.0.1"
-__status__ = "Development"
-
-
 import numpy as np
 import sklearn.linear_model
 import sklearn.ensemble
 from keras import models, optimizers
 from keras.layers import core, convolutional
 from keras.constraints import min_max_norm
-
 
 
 def build_cnn_cont(n_out=6):

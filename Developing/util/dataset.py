@@ -1,9 +1,3 @@
-__author__ = "David Ruddell"
-__credits__ = ["David Ruddell"]
-__license__ = "GPL"
-__version__ = "0.0.2"
-__status__ = "Development"
-
 import h5py as h5
 import os
 import numpy as np
