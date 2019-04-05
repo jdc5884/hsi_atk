@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='hsi_atk',
 
-    version='0.0.5',
+    version='0.0.7',
 
     package_dir = {'hsi_atk': 'hsi_atk'},
 
