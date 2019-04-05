@@ -1,4 +1,4 @@
-from hsi_atk.Pentara.pentiga_n import Pentiga_n
+from archives.Pentara import Pentiga_n
 import numpy as np
 from skimage.util import random_noise
 

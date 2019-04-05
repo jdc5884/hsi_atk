@@ -1,8 +1,7 @@
-from hsi_atk import Ganita
-from hsi_atk import Moratikara
-from hsi_atk import Pentara
-from hsi_atk import Sasatari
+from archives import Sasatari, Pentara, Moratikara, Ganita
+from hsi_atk import augmentation, exploratory, model, pipeline, preprocessing, simulation
 from hsi_atk import utils
 
 
-__all__ = ['Ganita', 'Moratikara', 'Pentara', 'Sasatari', 'utils']
+__all__ = ['augmentation', 'exploratory', 'model', 'pipeline', 'preprocessing', 'simulation', 'utils',
+           'Ganita', 'Moratikara', 'Pentara', 'Sasatari']

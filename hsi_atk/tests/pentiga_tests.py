@@ -1,4 +1,4 @@
-from hsi_atk.Pentara.pentiga import Pentiga
+from archives.Pentara import Pentiga
 import numpy as np
 import unittest as ut
 

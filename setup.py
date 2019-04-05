@@ -14,11 +14,7 @@ setup(
               'hsi_atk.pipeline',
               'hsi_atk.preprocessing',
               'hsi_atk.simulation',
-              'hsi_atk.utils',
-              'hsi_atk.Pentara',
-              'hsi_atk.Sasatari',
-              'hsi_atk.Ganita',
-              'hsi_atk.Moratikara'],
+              'hsi_atk.utils'],
 
     python_requires='>=3.6.0',
 

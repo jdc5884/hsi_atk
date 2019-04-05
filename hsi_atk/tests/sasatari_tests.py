@@ -1,4 +1,3 @@
-from hsi_atk.Sasatari.sasatari import *
 import numpy as np
 
 
