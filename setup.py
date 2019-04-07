@@ -10,7 +10,7 @@ setup(
     packages=['hsi_atk',
               'hsi_atk.augmentation',
               'hsi_atk.exploratory',
-              'hsi_atk.model',
+              # 'hsi_atk.model',
               'hsi_atk.pipeline',
               'hsi_atk.preprocessing',
               'hsi_atk.simulation',
@@ -30,11 +30,11 @@ setup(
 
     install_requires=['numpy>=1.14.2',
                       'pandas>=0.23.0',
-                      'keras>=2.2.0',
+                      # 'keras>=2.2.0',
                       'scipy>=1.1.0',
                       'scikit-learn>=0.19.1',
                       'scikit-image>=0.14.0',
-                      'tensorflow>=1.8.0',
+                      # 'tensorflow>=1.8.0',
                       'rasterio>=0.36.0',
                       'h5py>=2.8.0']
 )
