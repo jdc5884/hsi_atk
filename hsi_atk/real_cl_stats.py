@@ -8,9 +8,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 # from sklearn.svm import SVR, SVC
 # from sklearn.metrics import accuracy_score
-from skhyper.cluster import KMeans as hKMeans
-from skhyper.decomposition import PCA as hPCA
-from skhyper.process import Process
+# from skhyper.cluster import KMeans as hKMeans
+# from skhyper.decomposition import PCA as hPCA
+# from skhyper.process import Process
 from skimage.filters import threshold_otsu
 
 
@@ -148,18 +148,18 @@ def apply_sc(img, with_mean=True, with_std=True):
     return scaled_img
 
 
-def load_proc(hsi_img, filter=True):
-    if filter:
-        hsi_img = filter_kernelspace(hsi_img)  # applies filter to image, zeroing out background
-    print('Processing hsi...')
-    X = Process(hsi_img)  # creates process object of image for skhyper clustering
-    return X
+# def load_proc(hsi_img, filter=True):
+#     if filter:
+#         hsi_img = filter_kernelspace(hsi_img)  # applies filter to image, zeroing out background
+#     print('Processing hsi...')
+#     X = Process(hsi_img)  # creates process object of image for skhyper clustering
+#     return X
 
 
-def get_img_pca(hsi_img_proc, n_components):
-    pca = hPCA(n_components=n_components, copy=False)
-    pca.fit_transform(hsi_img_proc)
-    return pca
+# def get_img_pca(hsi_img_proc, n_components):
+#     pca = hPCA(n_components=n_components, copy=False)
+#     pca.fit_transform(hsi_img_proc)
+#     return pca
 
 
 def get_class_stats(hsi_img, labels, unify):
@@ -228,72 +228,72 @@ def get_class_stats(hsi_img, labels, unify):
     return img_cl
 
 
-def load_cl(paths, n_clusters=8, s_scale=True, filter=False, unify=False):
-    """ Performs clustering, filtering, and other operations on images
-    :param paths: list, strings pathing to images
-    :param n_clusters: int, number of clusters
+# def load_cl(paths, n_clusters=8, s_scale=True, filter=False, unify=False):
+#     """ Performs clustering, filtering, and other operations on images
+#     :param paths: list, strings pathing to images
+#     :param n_clusters: int, number of clusters
+#
+#     :param filter: boolean, to perform filtering on images
+#     :return: dict, cluster statistics for all images in paths
+#     """
+#     print('Loading hsi...')
+#
+#     img_stats = {}
+#     means_all = []
+#
+#     image = 1
+#     for path in paths:
+#         print("Processing image: ", image)
+#         hsi = open_hsi_bil(path)
+#
+#         if filter:
+#             hsi = filter_kernelspace(hsi)
+#
+#         if s_scale:
+#             hsi = apply_sc(hsi)
+#
+#         X = Process(hsi)
+#         km = hKMeans(n_clusters, copy_x=False)
+#         km.fit(X)
+#         labels = km.labels_
+#         if unify:
+#             img_cl_stats, all_means = get_class_stats(hsi, labels, unify=unify)
+#             means_all.extend(all_means)
+#
+#         else:
+#             img_cl_stats = get_class_stats(hsi, labels, unify=unify)
+#         img_stats[path] = img_cl_stats
+#         print("Finished image: ", image)
+#         image +=1
+#
+#     if unify:
+#         u_labels = unify_labels(means_all, n_clusters)
+#         return img_stats, u_labels
+#
+#     return img_stats
 
-    :param filter: boolean, to perform filtering on images
-    :return: dict, cluster statistics for all images in paths
-    """
-    print('Loading hsi...')
 
-    img_stats = {}
-    means_all = []
-
-    image = 1
-    for path in paths:
-        print("Processing image: ", image)
-        hsi = open_hsi_bil(path)
-
-        if filter:
-            hsi = filter_kernelspace(hsi)
-
-        if s_scale:
-            hsi = apply_sc(hsi)
-
-        X = Process(hsi)
-        km = hKMeans(n_clusters, copy_x=False)
-        km.fit(X)
-        labels = km.labels_
-        if unify:
-            img_cl_stats, all_means = get_class_stats(hsi, labels, unify=unify)
-            means_all.extend(all_means)
-
-        else:
-            img_cl_stats = get_class_stats(hsi, labels, unify=unify)
-        img_stats[path] = img_cl_stats
-        print("Finished image: ", image)
-        image +=1
-
-    if unify:
-        u_labels = unify_labels(means_all, n_clusters)
-        return img_stats, u_labels
-
-    return img_stats
-
-
-def load_pca(paths, n_components, s_scale=True, filter=False):
-    image = 1
-    pcas = {}
-    for path in paths:
-        print("Processing image: ", image)
-        hsi = open_hsi_bil(path)
-
-        if filter:
-            hsi = filter_kernelspace(hsi)
-
-        if s_scale:
-            hsi = apply_sc(hsi)
-
-        X = Process(hsi, scale=False)
-        pca = hPCA(n_components=n_components, copy=False)
-        pca.fit_transform(X)
-        # pca.plot_statistics()
-        # input("Pause")
-        pcas[path] = pca
-
-    return None
+# def load_pca(paths, n_components, s_scale=True, filter=False):
+#     image = 1
+#     pcas = {}
+#     for path in paths:
+#         print("Processing image: ", image)
+#         hsi = open_hsi_bil(path)
+#
+#         if filter:
+#             hsi = filter_kernelspace(hsi)
+#
+#         if s_scale:
+#             hsi = apply_sc(hsi)
+#
+#         X = Process(hsi, scale=False)
+#         pca = hPCA(n_components=n_components, copy=False)
+#         pca.fit_transform(X)
+#         # pca.plot_statistics()
+#         # input("Pause")
+#         pcas[path] = pca
+#
+#     return None
 
 
 def unify_labels(cl_means, n_clusters, order_f_imgs=True):

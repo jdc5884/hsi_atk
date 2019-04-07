@@ -1,4 +1,4 @@
-from hsi_atk.augmentation.image_gen import *
+import hsi_atk.augmentation.image_gen as image_gen
 
 
 __all__ = ['image_gen']
